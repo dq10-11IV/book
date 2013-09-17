@@ -30,7 +30,7 @@
 	</sql>
 	<select id="findById" parameterType="Integer" resultMap="result">
 		<include refid="sql_select" />
-		WHERE ID = #{Id};
+		WHERE BOOK_ID = #{Id};
 	</select>
 
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
