@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turtledove.bookdrift.infrastruct.dao.BookDao">
+
+	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
+		id="result">
+		<id property="Id" column="BOOK_ID" />
+		<result property="bookName" column="BOOK_NAME" />
+		<result property="authorName" column="AUTHOR" />
+		<result property="bookPrice" column="BOOK_PRICE" />
+		<result property="bookPress" column="BOOK_PRESS" />
+		<result property="publishDate" column="PUBLISH_DATE" />
+		<result property="bookVersion" column="BOOK_VERSION" />
+		<result property="creatDate" column="CREAT_DATE"/>
+		<result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT
+		BOOK_ID,
+		BOOK_NAME,
+		AUTHOR,
+		BOOK_PRICE,
+		BOOK_PRESS,
+		PUBLISH_DATE,
+		BOOK_VERSION,
+		CREAT_DATE,
+		LAST_UPDATE_DATE
+		FROM bd_book
+	</sql>
+	<select id="findById" parameterType="Integer" resultMap="result">
+		<include refid="sql_select" />
+		WHERE ID = #{Id};
+	</select>
+
+	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
+		keyProperty="Id">
+		INSERT INTO
+		bd_book(BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE)
+		values(#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate});
+	</insert>
+</mapper>

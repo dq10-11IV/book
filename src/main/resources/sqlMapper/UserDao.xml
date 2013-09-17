@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turtledove.bookdrift.infrastruct.dao.UserDao">
+
+	<resultMap type="User" id="result">
+		<id property="Id" column="USER_ID" />
+		<result property="userEmail" column="USER_EMAIL"/>
+		<result property="userName" column="USER_NAME" />
+		<result property="userLevel" column="USER_LEVEL" />
+		<result property="userPwd" column="USER_PASSWORD" />
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT
+		USER_ID,
+		USER_EMAIL,
+		USER_NAME,
+		USER_LEVEL,
+		USER_PASSWORD,
+		CREATE_DATE,
+		LAST_UPDATE_DATE
+		FROM bd_user
+	</sql>
+	<select id="getUser" parameterType="String" resultMap="result">
+		<include refid="sql_select" />
+		WHERE USER_EMAIL =#{email};
+	</select>
+	<insert id="insert" parameterType="User">
+		INSERT INTO bd_user(USER_ID,USER_EMAIL,USER_NAME,USER_LEVEL,USER_PASSWORD,CREATE_DATE,LAST_UPDATE_DATE)
+		VALUE(#{Id},#{userEmail},#{userName},#{userLevel},#{userPwd},#{createDate},#{lastUpdateDate});
+	</insert>
+</mapper>  
