@@ -1,5 +1,7 @@
 package com.turtledove.bookdrift.application.serviceiml;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class BookServiceIml implements BookService {
 	
 	public Integer insert(Book book) {
 		return bookDao.insert(book);
+	}
+
+	public List<Book> findByBookName(String bookName) {
+		return bookDao.findBooksByBooKName(bookName);
 	}
 
 }

@@ -32,7 +32,13 @@
 		<include refid="sql_select" />
 		WHERE BOOK_ID = #{Id};
 	</select>
-
+    <select id="findBooksByBooKName" parameterType="String" resultMap="result">
+       <include refid="sql_select"/>
+        WHERE BOOK_ID > 0
+       <if test="bookName!=null">
+        and BOOK_NAME like CONCAT('%','${bookName}','%' )
+       </if>
+    </select>
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
 		keyProperty="Id">
 		INSERT INTO
