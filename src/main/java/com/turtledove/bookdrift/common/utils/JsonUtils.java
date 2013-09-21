@@ -6,7 +6,7 @@ import com.turtledove.bookdrift.common.AbstractClass.AbstractDomainObject;
 
 public class JsonUtils {
 
-	public static <T extends AbstractDomainObject> T  JsonToJavaBean(String jsonStr,Class<T> clazz){
+	public static  <T> T  JsonToJavaBean(String jsonStr,Class<T> clazz){
 
 		JSONObject obj = new JSONObject().fromObject(validationStr(jsonStr));
 		return (T) JSONObject.toBean(obj, clazz);
