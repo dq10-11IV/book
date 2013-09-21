@@ -1,16 +1,43 @@
 package com.turtledove.bookdrift.common.framework;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AjaxBase {
 
 	public static String SUCCESS = "success";
+	public static int SUCCESS_CODE = 200;
+	public static int FAILURE_CODE = 500;
 	public Map<String,Object> result = new HashMap<String,Object>();
 	
-	protected void setSuccessfulResult(Collection<?> collection){
-	     result.put("code", 200);
-	     result.put("result",collection);
+	protected void setSuccessResult(Object object){
+	     setResult(SUCCESS_CODE,object);
 	}
+
+	protected void  setFailureResult(Object msg) {
+		setResult(FAILURE_CODE, msg);
+	}
+	
+	public void setSuccessResultWithList(List<?> list) {
+		Map<String, Object> row = getMsg(list);
+		setResult(SUCCESS_CODE, row);
+	}
+
+	private Map<String, Object> getMsg(List<?> list) {
+		int rowCount = 0;
+
+		if (list != null)
+			rowCount = list.size();
+
+		Map<String, Object> row = new HashMap<String, Object>();
+		row.put("total", rowCount);
+		row.put("items", list);
+		return row;
+	}
+	private void setResult(int code, Object object) {
+         result.put("code",code);
+         result.put("msg",object);
+	}
+	
 }

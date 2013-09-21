@@ -13,10 +13,11 @@ public class BookAction extends AjaxBase {
 	@Autowired
 	BookService bookService;
 	public String bookName;
+	public String book;
 
 	public String query() throws UnsupportedEncodingException {
 		List<Book> bookList = bookService.findByBookName(enCoding(bookName));
-		setSuccessfulResult(bookList);
+		setSuccessResultWithList(bookList);
 		System.out.println(enCoding(bookName));
 		return SUCCESS;
 	}
