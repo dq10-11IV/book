@@ -6,24 +6,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.turtledove.bookdrift.application.service.BookService;
+import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.JsonUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
+import com.turtledove.bookdrift.domain.entity.BookInfo;
 public class BookAction extends AjaxBase {
 
 	@Autowired
 	BookService bookService;
 	public String bookName;
-	public String bookstr;
-
-	public String query() throws UnsupportedEncodingException {
-		Book book = JsonUtils.JsonToJavaBean(enCoding(bookstr), Book.class);
+	public String data;
+	public String query() {
+		try{
+			BookInfo bookInfo = JsonUtils.JsonToJavaBean(enCoding(data), BookInfo.class);
+			
+			List<Book> bookList = bookService.query(bookInfo);
+			setSuccessResultWithList(bookList);	
+		}catch(Exception e ){
+			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
+		}
 		
-		/*List<Book> bookList = bookService.findByBookName(enCoding(bookName));
-		setSuccessResultWithList(bookList);
-		System.out.println(enCoding(bookName));*/
-		System.out.println(book.getBookName());
-		setSuccessResult(book);
 		return SUCCESS;
 	}
 

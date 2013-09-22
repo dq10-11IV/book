@@ -20,7 +20,7 @@ public class DomainObjectBuilder {
         return new DomainObjectBuilder();
     }
 
-    public <T extends AbstractDomainObject> T build(Class<T> clazz) {
+    public <T> T build(Class<T> clazz) {
 
         T entity = null;
 
@@ -49,7 +49,7 @@ public class DomainObjectBuilder {
         return entity;
     }
 
-    private <T extends AbstractDomainObject> Field getFieldByName(Class<T> entityClass, String fieldName) {
+    private <T> Field getFieldByName(Class<T> entityClass, String fieldName) {
         Class currentClass = entityClass;
 
         while (!currentClass.equals(Object.class)) {

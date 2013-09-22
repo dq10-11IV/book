@@ -11,8 +11,8 @@
 		<result property="bookPress" column="BOOK_PRESS" />
 		<result property="publishDate" column="PUBLISH_DATE" />
 		<result property="bookVersion" column="BOOK_VERSION" />
-		<result property="creatDate" column="CREAT_DATE"/>
-		<result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
+		<result property="creatDate" column="CREAT_DATE" />
+		<result property="lastUpdateDate" column="LAST_UPDATE_DATE" />
 	</resultMap>
 
 	<sql id="sql_select">
@@ -32,13 +32,32 @@
 		<include refid="sql_select" />
 		WHERE BOOK_ID = #{Id};
 	</select>
-    <select id="findBooksByBooKName" parameterType="String" resultMap="result">
-       <include refid="sql_select"/>
-        WHERE BOOK_ID > 0
-       <if test="bookName!=null">
-        and BOOK_NAME like CONCAT('%','${bookName}','%' )
-       </if>
-    </select>
+	<select id="findBooksByBooKName" parameterType="String"
+		resultMap="result">
+		<include refid="sql_select" />
+		WHERE BOOK_ID > 0
+		<if test="bookName!=null">
+			and BOOK_NAME like CONCAT('%','${bookName}','%' )
+		</if>
+	</select>
+	<select id="query" parameterType="BookInfo" resultMap="result">
+		<include refid="sql_select" />
+		<where>
+			<if test="bookInfo.bookName!=null and bookInfo.bookName !='' ">
+			   BOOK_NAME like CONCAT('%','${bookInfo.bookName}','%' )
+			</if>
+			<if test="bookInfo.authorName!=null and bookInfo.authorName != ''">
+			   AND AUTHOR like CONCAT('%','${bookInfo.authorName}','%' )
+			</if>
+			<if test="bookInfo.version != null">
+			   AND BOOK_VERSION = ${bookInfo.version}
+			</if>
+			<if test="bookInfo.press !=null and bookInfo.press !=''">
+			  AND BOOK_PRESS like CONCAT('%','${bookInfo.press}','%' )
+			</if>
+		</where>
+
+	</select>
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
 		keyProperty="Id">
 		INSERT INTO
