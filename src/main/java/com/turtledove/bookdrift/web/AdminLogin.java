@@ -1,34 +1,38 @@
 package com.turtledove.bookdrift.web;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.turtledove.bookdrift.application.service.UserService;
+import com.turtledove.bookdrift.common.framework.ActionMessage;
+import com.turtledove.bookdrift.common.framework.AjaxBase;
+import com.turtledove.bookdrift.common.utils.JsonUtils;
 import com.turtledove.bookdrift.domain.entity.User;
 
-public class AdminLogin {
+public class AdminLogin extends AjaxBase{
 
-	private static final String USER_EMAIL = "liubshwzc@gmail.com";
+	public String data;
 	@Autowired
 	UserService userService;
-	private Map<String, Object> result = new HashMap<String, Object>();
-
+	/*
+	 * 用户注册时的action
+	 * */
+	public String register(){
+        User user;
+		try {
+			user = JsonUtils.JsonToJavaBean(enCoding(data), User.class);
+			user.setCreateDate(new Date());
+			user.setLastUpdateDate(new Date());
+			userService.insert(user);
+		    setSuccessResult(user);
+		} catch (Exception e) {
+			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
+		}
+		return SUCCESS;
+	}
 	public String login() {
-		  User user = new User(); user.setUserEmail(USER_EMAIL);
-		  user.setUserLevel(1); user.setUserName("liubsh");
-		  user.setUserPwd("123456");
-		result.put("code", 200);
-		result.put("success", userService.getUserByEmail(USER_EMAIL));
 		return "success";
-	}
-
-	public Map<String, Object> getResult() {
-		return result;
-	}
-
-	public void setResult(Map<String, Object> result) {
-		this.result = result;
 	}
 }

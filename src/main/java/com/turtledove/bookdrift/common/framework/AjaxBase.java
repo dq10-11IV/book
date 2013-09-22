@@ -1,5 +1,6 @@
 package com.turtledove.bookdrift.common.framework;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,5 +40,9 @@ public class AjaxBase {
          result.put("code",code);
          result.put("msg",object);
 	}
-	
+	protected String enCoding(String key) throws UnsupportedEncodingException{
+		String key_copy = new String(key.getBytes("ISO-8859-1"), "UTF-8");
+		key = key_copy;
+		return key;
+	}
 }

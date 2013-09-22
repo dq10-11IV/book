@@ -27,7 +27,7 @@
 		<include refid="sql_select" />
 		WHERE USER_EMAIL =#{email};
 	</select>
-	<insert id="insert" parameterType="User">
+	<insert id="insert" parameterType="User"  useGeneratedKeys="true" keyProperty="Id">
 		INSERT INTO bd_user(USER_ID,USER_EMAIL,USER_NAME,USER_LEVEL,USER_PASSWORD,CREATE_DATE,LAST_UPDATE_DATE)
 		VALUE(#{Id},#{userEmail},#{userName},#{userLevel},#{userPwd},#{createDate},#{lastUpdateDate});
 	</insert>

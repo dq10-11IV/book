@@ -5,4 +5,5 @@ import com.turtledove.bookdrift.domain.entity.User;
 public interface UserService {
 
 	public User getUserByEmail(String email);
+	public int  insert(User user);
 }

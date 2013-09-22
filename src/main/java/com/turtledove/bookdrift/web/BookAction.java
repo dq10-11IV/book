@@ -20,13 +20,11 @@ public class BookAction extends AjaxBase {
 	public String query() {
 		try{
 			BookInfo bookInfo = JsonUtils.JsonToJavaBean(enCoding(data), BookInfo.class);
-			
 			List<Book> bookList = bookService.query(bookInfo);
 			setSuccessResultWithList(bookList);	
 		}catch(Exception e ){
 			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
 		}
-		
 		return SUCCESS;
 	}
 
@@ -34,9 +32,4 @@ public class BookAction extends AjaxBase {
 		this.bookName = bookName;
 	}
 
-	private String enCoding(String key) throws UnsupportedEncodingException{
-		String key_copy = new String(key.getBytes("ISO-8859-1"), "UTF-8");
-		key = key_copy;
-		return key;
-	}
 }

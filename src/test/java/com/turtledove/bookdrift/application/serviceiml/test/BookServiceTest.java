@@ -41,7 +41,6 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		System.out.println(bookList.size());
 		Assert.assertNotNull(bookList);
 	}
-
 	@Test
 	public void test_query(){
 		bookDao.insert(create());
