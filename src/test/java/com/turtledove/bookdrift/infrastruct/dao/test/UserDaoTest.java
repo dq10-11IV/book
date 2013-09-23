@@ -12,13 +12,13 @@ import com.turtledove.bookdrift.infrastruct.dao.UserDao;
 public class UserDaoTest extends AbstractTestCase<User>{
 
 	private static final String INSERT_TEST_EMAIL = "insert@test.com";
-	private static final String USER_EMAIL = "liubshwzc@gmail.com";
 	@Autowired
 	UserDao userDao;
 	@Test
 	public void test_get_user(){
-		System.out.println(userDao.getUser(USER_EMAIL).getUserName());
-		Assert.assertEquals(userDao.getUser(USER_EMAIL).getUserEmail(), USER_EMAIL);
+		User user = create();
+		userDao.insert(user);
+		Assert.assertEquals(userDao.getUser(user.getUserEmail()).getUserEmail(), user.getUserEmail());
 	}
 	
 	@Test

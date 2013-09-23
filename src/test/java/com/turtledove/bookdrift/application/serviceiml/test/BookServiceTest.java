@@ -36,9 +36,10 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 
 	@Test
 	public void test_find_books_by_bookName() {
+		Book book = create();
+		bookDao.insert(book);
 		List<Book> bookList = new ArrayList<Book>();
-		bookList = bookDao.findBooksByBooKName(null);
-		System.out.println(bookList.size());
+		bookList = bookDao.findBooksByBooKName(book.getBookName());
 		Assert.assertNotNull(bookList);
 	}
 	@Test

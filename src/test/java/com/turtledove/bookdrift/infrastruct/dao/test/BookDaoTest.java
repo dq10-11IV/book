@@ -34,9 +34,10 @@ public class BookDaoTest extends AbstractTestCase<Book> {
 
 	@Test
 	public void test_find_by_BookId(){
-		
-		Book book = bookDao.findById(1);
-		Assert.assertEquals(book.getId(), new Integer(1));
+		Book book = create();
+    	bookDao.insert(book);
+		Book bookexp = bookDao.findById(book.getId());
+		Assert.assertEquals(book.getAuthorName(), bookexp.getAuthorName());
 	}
     @Test
     public void test_insert_book_and_update_bookId(){
