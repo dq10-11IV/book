@@ -1,4 +1,4 @@
-package com.turtledove.boodrift.common.filter;
+package com.turtledove.bookdrift.common.filter;
 
 import java.io.IOException;
 import java.util.Enumeration;
