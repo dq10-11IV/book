@@ -12,7 +12,6 @@ import com.turtledove.bookdrift.domain.entity.User;
 
 public class UserServiceTest extends AbstractTestCase<User>{
 
-	private static final String USER_EMAIL = "liubshwzc@gmail.com";
 	private static final String INSERT_TEST_EMAIL = "insert@test.com";
 	@Autowired
 	private UserService userService;
