@@ -1,6 +1,5 @@
 package com.turtledove.bookdrift.web;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,12 @@ import com.turtledove.bookdrift.domain.entity.User;
 public class AdminLogin extends AjaxBase{
 
 	public String data;
+	public String fieldName;
+	public String fieldValue;
 	@Autowired
 	UserService userService;
 	/*
-	 * 用户注册时的action
+	 * 用户注册时的actionO
 	 * */
 	public String register(){
         User user;
@@ -33,6 +34,15 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String login() {
-		return "success";
+		return SUCCESS;
+	}
+	public String validation(){
+	        
+		if(fieldName.equals("userEmail")){
+			if(userService.getUserByEmail(fieldValue)!=null)
+				setSuccessResult(ActionMessage.EXIST);
+			else setFailureResult(ActionMessage.NOT_EXIST);
+		}
+		return SUCCESS;
 	}
 }

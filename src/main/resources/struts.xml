@@ -23,6 +23,11 @@
 		  <param name="root">result</param>
 		</result>
 		</action>
+		<action name="validation" class="com.turtledove.bookdrift.web.AdminLogin" method="validation">
+		   <result name="success" type="json">
+		     <param name="root">result</param>
+		   </result>
+		</action>
 	</package>
 
 </struts> 
