@@ -35,4 +35,14 @@
 		<property name="basePackage" value="com.turtledove.bookdrift.infrastruct.dao" />
 	</bean>
 
+    
+<!-- 	<bean id="PdateSource" class="org.apache.commons.dbcp.BasicDataSource">
+	   <property name="driverClassName" value="${p.jdbc.driverClassName}"/>
+	   <property name="url" value="${jdbc:postgresql:bookdrift}"/>
+	   <property name="username" value="${username}"/>
+	   <property name="password" value="${password}"></property>
+	</bean>
+	<bean id="PSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource"></property>
+	</bean> -->
 </beans>
