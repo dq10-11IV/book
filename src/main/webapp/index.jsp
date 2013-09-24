@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <html >
 	<head>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">

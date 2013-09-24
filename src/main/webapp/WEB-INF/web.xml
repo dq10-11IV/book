@@ -25,10 +25,6 @@
       <param-value>struts-default.xml,struts-plugin.xml,struts/struts.xml</param-value>
     </init-param>
   </filter>
-  	<filter>
-		<filter-name>json2jsp</filter-name>
-		<filter-class>com.turtledove.bookdrift.web.toJsp</filter-class>
-	</filter>
   <filter-mapping>
     <filter-name>EncodingFiler</filter-name>
     <url-pattern>/*</url-pattern>
