@@ -25,6 +25,10 @@
       <param-value>struts-default.xml,struts-plugin.xml,struts/struts.xml</param-value>
     </init-param>
   </filter>
+  	<filter>
+		<filter-name>json2jsp</filter-name>
+		<filter-class>com.turtledove.bookdrift.web.toJsp</filter-class>
+	</filter>
   <filter-mapping>
     <filter-name>EncodingFiler</filter-name>
     <url-pattern>/*</url-pattern>
@@ -39,7 +43,7 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <filter>
+<!--   <filter>
     <display-name>LoginFilter</display-name>
     <filter-name>LoginFilter</filter-name>
     <filter-class>com.turtledove.bookdrift.common.filter.LoginFilter</filter-class>
@@ -47,5 +51,6 @@
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/LoginFilter</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
+
 </web-app>
