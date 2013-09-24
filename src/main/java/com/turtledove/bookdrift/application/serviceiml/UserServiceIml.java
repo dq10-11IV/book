@@ -19,4 +19,15 @@ public class UserServiceIml implements UserService {
     public int insert(User user){
     	return userDao.insert(user);
     }
+	public boolean validateEmail(String email) {
+		if(getUserByEmail(email)!=null)
+			return true;
+		return false;
+	}
+	public boolean validataUser(String email, String pwd) {
+		User user = userDao.getUser(email);
+		if(user.getUserPwd().equals(pwd))
+			return true;
+		return false;
+	}
 }

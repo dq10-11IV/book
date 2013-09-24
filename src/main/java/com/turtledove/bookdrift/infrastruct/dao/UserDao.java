@@ -1,5 +1,9 @@
 package com.turtledove.bookdrift.infrastruct.dao;
 
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.turtledove.bookdrift.common.AbstractClass.DomainObjectDao;
 import com.turtledove.bookdrift.domain.entity.User;
 

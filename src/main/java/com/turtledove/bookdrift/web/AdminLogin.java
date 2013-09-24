@@ -37,9 +37,8 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String validation(){
-	        
 		if(fieldName.equals("userEmail")){
-			if(userService.getUserByEmail(fieldValue)!=null)
+			if(userService.validateEmail(fieldValue))
 				setSuccessResult(ActionMessage.EXIST);
 			else setFailureResult(ActionMessage.NOT_EXIST);
 		}

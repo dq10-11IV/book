@@ -5,6 +5,5 @@
 <struts>
   	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.locale" value="UTF-8" />
-	
 	<include file="struts/struts-*.xml"></include>
 </struts> 
