@@ -21,6 +21,19 @@ public class LoginUtils {
 		String loginPwd = request.getParameter(ProjectConstants.LOGIN_USER_PWD);
 		return userService.validataUser(loginEmail, loginPwd);
 	}
+	public static boolean isSessionLogin(){
+		HttpSession httpsession = getHttpSession();
+		if(httpsession.getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION) != null)
+			return true;
+		return false;
+	}
+	public static boolean isFromWelcomePage(){
+		HttpServletRequest request = getHttpRequest();
+		if(request.getParameter(ProjectConstants.LOGIN_USER_EMAIL)!=null)
+			return false;
+		return true;
+		
+	}
 	private static HttpSession getHttpSession() {
         HttpServletRequest request = getHttpRequest();
         return request.getSession();

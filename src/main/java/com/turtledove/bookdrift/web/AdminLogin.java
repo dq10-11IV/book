@@ -8,6 +8,7 @@ import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.JsonUtils;
+import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.User;
 
 public class AdminLogin extends AjaxBase{
@@ -34,6 +35,8 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String login() {
+		if(LoginUtils.isFromWelcomePage())
+			return TOLOGINPAGE;
 		return SUCCESS;
 	}
 	public String validation(){

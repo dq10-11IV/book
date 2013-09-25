@@ -8,6 +8,7 @@ import java.util.Map;
 public class AjaxBase {
 
 	public static String SUCCESS = "success";
+	public static String TOLOGINPAGE="tologinpage";
 	public static int SUCCESS_CODE = 200;
 	public static int FAILURE_CODE = 500;
 	public Map<String,Object> result = new HashMap<String,Object>();
