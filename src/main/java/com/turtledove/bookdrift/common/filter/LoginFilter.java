@@ -51,7 +51,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse  = (HttpServletResponse) response;
 		Matcher matcher = notNeedFilterURLPattern.matcher(httpRequest.getRequestURI());
-		if (matcher.matches()) { //不需要过滤的uri
+		if (matcher.matches() | httpRequest.getRequestURI().contains("static")) { //不需要过滤的uri
 			chain.doFilter(request, response);
 			return;
 		}
