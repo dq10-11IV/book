@@ -34,7 +34,8 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.turtledove.bookdrift.infrastruct.dao" />
 	</bean>
-
+    
+    <bean id="springs" class="com.turtledove.bookdrift.common.utils.Springs" lazy-init="false"/>
     
 <!-- 	<bean id="PdateSource" class="org.apache.commons.dbcp.BasicDataSource">
 	   <property name="driverClassName" value="${p.jdbc.driverClassName}"/>
