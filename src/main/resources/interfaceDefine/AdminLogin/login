@@ -1,0 +1,9 @@
+登陆成功跳转到主页
+失败时候的json格式
+{
+   data
+   {
+      email:888@gmail.com;
+      error:用户密码错误；
+   }
+}

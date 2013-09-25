@@ -19,7 +19,11 @@ public class LoginUtils {
 		HttpServletRequest request = getHttpRequest();
 		String loginEmail = request.getParameter(ProjectConstants.LOGIN_USER_EMAIL);
 		String loginPwd = request.getParameter(ProjectConstants.LOGIN_USER_PWD);
-		return userService.validataUser(loginEmail, loginPwd);
+		if( userService.validataUser(loginEmail, loginPwd)){
+			request.getSession().setAttribute(ProjectConstants.LOGINED_EMAIL_SESSION, loginEmail);
+			return true;
+		}
+		return false;
 	}
 	public static boolean isSessionLogin(){
 		HttpSession httpsession = getHttpSession();
