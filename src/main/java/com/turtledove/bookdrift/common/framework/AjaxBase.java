@@ -10,10 +10,11 @@ public class AjaxBase {
 	public static String SUCCESS = "success";
 	public static String TOLOGINPAGE="tologinpage";
 	public static String TO_HUB_PAGE ="tohubpage"; 
+	public static String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
 	public static int SUCCESS_CODE = 200;
 	public static int FAILURE_CODE = 500;
 	public Map<String,Object> result = new HashMap<String,Object>();
-	
+	public Map<String,Object> dataresult = new HashMap<String, Object>();
 	protected void setSuccessResult(Object object){
 	     setResult(SUCCESS_CODE,object);
 	}
@@ -47,5 +48,15 @@ public class AjaxBase {
 		String key_copy = new String(key.getBytes("ISO-8859-1"), "UTF-8");
 		key = key_copy;
 		return key;
+	}
+	
+	public void setDateResult(){
+		result.put("data", dataresult);
+	}
+	public void setElementInDate(String key,Object value){
+		dataresult.put(key, value);
+	}
+	public void setTopElementInResult(String key,String value){
+		result.put(key, value);
 	}
 }

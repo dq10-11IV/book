@@ -35,7 +35,7 @@
     <filter-class>com.turtledove.bookdrift.common.filter.LoginFilter</filter-class>
     <init-param>
        <param-name>NotNeedFilterURL</param-name>
-       <param-value>^/(|login)$</param-value>
+       <param-value>^/(|login|login.jsp)$</param-value>
     </init-param>
   </filter>
   <filter-mapping>

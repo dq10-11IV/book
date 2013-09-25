@@ -39,7 +39,7 @@ public class AdminLogin extends AjaxBase{
 			return TOLOGINPAGE;
 		if(LoginUtils.isAExistUser())
 			return TO_HUB_PAGE;
-		return SUCCESS;
+		return TO_LOGIN_PAGR_WITH_FAIL_MSG;
 	}
 	public String validation(){
 		if(fieldName.equals("userEmail")){
