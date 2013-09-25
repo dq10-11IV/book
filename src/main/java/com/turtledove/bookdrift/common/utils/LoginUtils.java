@@ -14,13 +14,8 @@ import com.turtledove.bookdrift.common.framework.ProjectConstants;
 public class LoginUtils {
 
 	
-	//@Autowired
-	private static UserService userService = Springs.getBean(UserService.class);
-	//private static LoginUtils loginUtils;
 	
-/*	public  void   setUserService(UserService userService) {
-			this.userService = userService;
-	}*/
+	private static UserService userService = Springs.getBean(UserService.class);
 	public static boolean isAExistUser(){
 		HttpServletRequest request = getHttpRequest();
 		String loginEmail = request.getParameter(ProjectConstants.LOGIN_USER_EMAIL);
@@ -51,9 +46,5 @@ public class LoginUtils {
     private static HttpServletRequest getHttpRequest(){
     	return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
     }
- /*   @PostConstruct 
-    public void init(){
-    	loginUtils = this;
-    	loginUtils.userService = this.userService;
-    }*/
+
 }
