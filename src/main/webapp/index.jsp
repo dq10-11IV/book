@@ -5,6 +5,7 @@
 		<meta content="zh-cn" http-equiv="Content-language">
 		
 		<link rel="stylesheet" href="static/bootstrap3/css/bootstrap.css" >
+		<link rel="stylesheet" href="static/css/book.css" >
 	</head>
 	<style>
 	body {
