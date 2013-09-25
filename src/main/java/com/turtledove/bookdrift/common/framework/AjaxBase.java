@@ -21,8 +21,8 @@ public class AjaxBase {
 	}
 	
 	public void setSuccessResultWithList(List<?> list) {
-		Map<String, Object> row = getMsg(list);
-		setResult(SUCCESS_CODE, row);
+		//Map<String, Object> row = getMsg(list);
+		setResult(SUCCESS_CODE, list);
 	}
 
 	private Map<String, Object> getMsg(List<?> list) {
@@ -32,13 +32,14 @@ public class AjaxBase {
 			rowCount = list.size();
 
 		Map<String, Object> row = new HashMap<String, Object>();
-		row.put("total", rowCount);
-		row.put("items", list);
+	//	row.put("total", rowCount);
+		row.put("data", list);
 		return row;
 	}
 	private void setResult(int code, Object object) {
-         result.put("code",code);
-         result.put("msg",object);
+		 result.put("code",code);
+         result.put("data",object);
+         
 	}
 	protected String enCoding(String key) throws UnsupportedEncodingException{
 		String key_copy = new String(key.getBytes("ISO-8859-1"), "UTF-8");
