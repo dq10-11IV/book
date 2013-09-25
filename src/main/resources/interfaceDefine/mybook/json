@@ -1,0 +1,34 @@
+第一次进入显示当前用户的图书信息
+{
+	data: {
+		tags: [
+			// "我",这个标签式默认的
+			"实验室",
+			...
+		]
+		books: [
+			{},
+			{},
+			...
+		]
+	}
+}
+
+访问标签中的图书 ajax
+post request params:
+{
+	ajax: true,
+	tag: ''
+}
+
+respect answer:
+{
+	data: {
+		tag: '',
+		books: [
+			{},
+			{},
+			...
+		] // null is ok
+	}
+}

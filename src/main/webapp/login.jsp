@@ -56,13 +56,7 @@
 		</div>
 
 		<script>
-			result = {
-					code: 200,
-					data: {
-						email: 'wu.xinting@hotmail.com',
-						error: ''
-					}
-			};
+			result = <%=request.getAttribute("result") %>;
 		</script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
