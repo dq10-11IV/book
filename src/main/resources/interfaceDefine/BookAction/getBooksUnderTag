@@ -1,0 +1,18 @@
+访问标签中的图书 ajax
+post request params:
+{
+	ajax: true,
+	tag: ''
+}
+
+respect answer:
+{
+	data: {
+		tag: '',
+		books: [
+			{},
+			{},
+			...
+		] // null is ok
+	}
+}

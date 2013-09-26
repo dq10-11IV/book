@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turtledove.bookdrift.infrastruct.dao.LabelDao">
+
+    <resultMap type="Label" id="result">
+        <id property="Id" column="LABEL_ID"/>
+        <result property="labelName" column="LABEL_NAME"/>
+        <result property="creatorId" column="CREATOR_ID"/>
+        <result property="createDate" column="CREATE_DATE"/>
+        <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
+    </resultMap>
+    
+    <sql id="sql_select">
+SELECT
+  L.LABEL_ID         AS Id,
+  L.LABEL_NAME       AS labelName,
+  L.CREATOR_ID       AS creatorId,
+  L.CREATE_DATE      AS createDate,
+  L.LAST_UPDATE_DATE AS lastUpdateDate
+FROM bd_label AS L  
+    </sql>
+    <select id="getTags" parameterType="String" resultMap="result">
+       <include refid="sql_select"/>
+       INNER JOIN bd_user_label AS UL ON L.LABEL_ID = UL.LABEL_ID
+       INNER JOIN bd_user AS U ON U.USER_ID = UL.USER_ID
+       WHERE U.USER_EMAIL = #{email};
+    </select>
+    
+    <select id="findById" parameterType="Integer" resultMap="result" >
+       <include refid="sql_select"/>
+       where L.LABEL_ID=#{Id}
+    </select>
+    <select id="findByLabelName" parameterType="String" resultMap="result">
+      <include refid="sql_select"/>
+      where L.LABEL_NAME  = #{labelName};
+    </select>
+    <insert id="insert" parameterType="Label" useGeneratedKeys="true" keyProperty="Id">
+      INSERT INTO bd_label(LABEL_NAME,CREATOR_ID,CREATE_DATE,LAST_UPDATE_DATE)
+         VALUES(#{labelName},#{creatorId},#{createDate},#{lastUpdateDate});
+    </insert>
+</mapper>

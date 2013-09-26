@@ -12,7 +12,7 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="getBookUnderTag" class="com.turtledove.bookdrift.web.BookAction" method="getBookUnderTag">
+		<action name="getBooksUnderTag" class="com.turtledove.bookdrift.web.BookAction" method="getBooksUnderTag">
 		  <result type="json" name="success">
 		     <param name="root">result</param>
 		  </result>

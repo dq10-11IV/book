@@ -1,15 +1,21 @@
 package com.turtledove.bookdrift.application.serviceiml;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.turtledove.bookdrift.application.service.LabelService;
 import com.turtledove.bookdrift.application.service.UserService;
+import com.turtledove.bookdrift.domain.entity.Label;
 import com.turtledove.bookdrift.domain.entity.User;
 import com.turtledove.bookdrift.infrastruct.dao.UserDao;
 
 @Service
 public class UserServiceIml implements UserService {
 
+	@Autowired
+	private LabelService labelService;
 	@Autowired
 	private UserDao userDao;
 	
@@ -29,5 +35,8 @@ public class UserServiceIml implements UserService {
 		if(user!=null && user.getUserPwd().equals(pwd))
 			return true;
 		return false;
+	}
+	public List<Label> getTags(String email) {
+	  return labelService.getTags(email);
 	}
 }

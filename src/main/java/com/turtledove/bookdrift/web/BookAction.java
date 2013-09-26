@@ -36,8 +36,8 @@ public class BookAction extends AjaxBase {
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
-
-	public String getBookUnderTag(){
+   
+	public String getBooksUnderTag(){
 		String email = LoginUtils.getCurrentLoginUserEmail();
 		List<Book> bookList = queryService.getBookUnderEmailAndSpecailTag(email, tag);
 		setElementInDate("books", bookList);

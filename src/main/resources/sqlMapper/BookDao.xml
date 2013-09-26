@@ -39,7 +39,7 @@
 			and BOOK_NAME like CONCAT('%','${bookName}','%' )
 		</if>
 	</select>
-	<select id="getBooksUnderEmailAndTag" parameterType="String" resultMap="result">
+	<select id="getBooksUnderEmailAndTag" parameterType="Map" resultMap="result">
 		SELECT
 		B.BOOK_ID AS Id,
 		B.BOOK_NAME AS bookName,
