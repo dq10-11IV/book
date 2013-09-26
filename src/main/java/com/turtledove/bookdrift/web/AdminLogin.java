@@ -14,6 +14,7 @@ import com.turtledove.bookdrift.domain.entity.User;
 public class AdminLogin extends AjaxBase{
 
 	public String data;
+	public String email;
 	public String fieldName;
 	public String fieldValue;
 	@Autowired
@@ -39,6 +40,11 @@ public class AdminLogin extends AjaxBase{
 			return TOLOGINPAGE;
 		if(LoginUtils.isAExistUser())
 			return TO_HUB_PAGE;
+		
+		setElementInDate("email", email);
+		if(userService.getUserByEmail(email)==null)
+		setDateWithErrorMsg(ActionMessage.EMIAL_ERROE);
+		else setDateWithErrorMsg(ActionMessage.PASS_WORD_ERROR);
 		return TO_LOGIN_PAGR_WITH_FAIL_MSG;
 	}
 	public String validation(){

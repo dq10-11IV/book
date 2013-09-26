@@ -11,6 +11,9 @@ public class JsonUtils {
 		JSONObject obj = new JSONObject().fromObject(validationStr(jsonStr));
 		return (T) JSONObject.toBean(obj, clazz);
 	}
+	public static String ObjectToJson(Object object){
+		 return JSONObject.fromObject(object).toString();
+	}
 	private static String validationStr(String str){
 		if(!str.endsWith("}")) str +="}";
 		if(!str.startsWith("{")) str = "{"+str;

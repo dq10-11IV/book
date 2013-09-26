@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.turtledove.bookdrift.common.utils.JsonUtils;
+
 public class AjaxBase {
 
 	public static String SUCCESS = "success";
@@ -13,6 +15,7 @@ public class AjaxBase {
 	public static String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
 	public static int SUCCESS_CODE = 200;
 	public static int FAILURE_CODE = 500;
+	public String jsonResult;
 	public Map<String,Object> result = new HashMap<String,Object>();
 	public Map<String,Object> dataresult = new HashMap<String, Object>();
 	protected void setSuccessResult(Object object){
@@ -53,10 +56,20 @@ public class AjaxBase {
 	public void setDateResult(){
 		result.put("data", dataresult);
 	}
+	public void setDateWithErrorMsg(String errorMsg){
+		setErrorMsg(errorMsg);
+		setDateResult();
+	}
 	public void setElementInDate(String key,Object value){
 		dataresult.put(key, value);
 	}
+    public void setErrorMsg(String errorMsg){
+    	dataresult.put("error", errorMsg);
+    }
 	public void setTopElementInResult(String key,String value){
 		result.put(key, value);
+	}
+	public void setJsonResult(){
+		jsonResult = JsonUtils.ObjectToJson(result);
 	}
 }

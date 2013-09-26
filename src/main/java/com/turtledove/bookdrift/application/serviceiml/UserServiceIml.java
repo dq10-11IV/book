@@ -26,7 +26,7 @@ public class UserServiceIml implements UserService {
 	}
 	public boolean validataUser(String email, String pwd) {
 		User user = userDao.getUser(email);
-		if(user.getUserPwd().equals(pwd))
+		if(user!=null && user.getUserPwd().equals(pwd))
 			return true;
 		return false;
 	}

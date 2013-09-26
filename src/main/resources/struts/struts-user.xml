@@ -10,7 +10,10 @@
 			</result>
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirect">/mybook.jsp</result>
-			<result name="tologinpagewithfailmsg" type="redirect">/login.jsp</result>
+			<result name="tologinpagewithfailmsg" type="redirect">
+			   <param name="location">/login.jsp</param>
+			   <param name="jsonResult">${jsonResult}</param>
+			</result>
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 		<result name="success" type="json">

@@ -69,7 +69,6 @@ public class LoginFilter implements Filter {
 			return false;
 		return true;
 	}
-
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
