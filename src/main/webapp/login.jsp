@@ -56,7 +56,7 @@
 		</div>
 
 		<script>
-			result = <%=request.getAttribute("result") %>;
+			result = <%=request.getAttribute("jsonResult") %>;
 		</script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
