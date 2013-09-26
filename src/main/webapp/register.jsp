@@ -38,7 +38,7 @@
 				
 				<div class="form-group">
 					<label>昵称</label>
-					<input type="text" class="form-control" placeholder="昵称" name="passwd" data-check="name"/>
+					<input type="text" class="form-control" placeholder="昵称" name="nickname" data-check="name"/>
 					<p class="help-block"></p>
 				</div>
 				
