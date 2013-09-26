@@ -54,9 +54,9 @@
 				</a>
 			</form>
 		</div>
-
+		
 		<script>
-			result = <%=request.getParameter("jsonResult") %>;
+			result = <%=new String(request.getParameter("jsonResult").getBytes("iso-8859-1"), "utf-8") %>;
 		</script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
