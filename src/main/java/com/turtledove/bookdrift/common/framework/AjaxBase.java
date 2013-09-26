@@ -15,7 +15,7 @@ public class AjaxBase {
 	public static String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
 	public static int SUCCESS_CODE = 200;
 	public static int FAILURE_CODE = 500;
-	public String jsonResult;
+	public String jsonResult = new String();
 	public Map<String,Object> result = new HashMap<String,Object>();
 	public Map<String,Object> dataresult = new HashMap<String, Object>();
 	protected void setSuccessResult(Object object){
@@ -70,6 +70,8 @@ public class AjaxBase {
 		result.put(key, value);
 	}
 	public void setJsonResult(){
+		
 		jsonResult = JsonUtils.ObjectToJson(result);
+		System.out.println(jsonResult);
 	}
 }

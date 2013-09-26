@@ -45,6 +45,7 @@ public class AdminLogin extends AjaxBase{
 		if(userService.getUserByEmail(email)==null)
 		setDateWithErrorMsg(ActionMessage.EMIAL_ERROE);
 		else setDateWithErrorMsg(ActionMessage.PASS_WORD_ERROR);
+		setJsonResult();
 		return TO_LOGIN_PAGR_WITH_FAIL_MSG;
 	}
 	public String validation(){
