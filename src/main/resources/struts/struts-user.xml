@@ -5,9 +5,6 @@
  <struts>
     <package name="user" extends="json-default" namespace="/">
 		<action name="login" class="com.turtledove.bookdrift.web.AdminLogin"  method="login">
-			<result name="success" type="json">
-			      <param name="root">result</param>
-			</result>
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirect">/mybook.jsp</result>
 			<result name="tologinpagewithfailmsg" type="redirect">
