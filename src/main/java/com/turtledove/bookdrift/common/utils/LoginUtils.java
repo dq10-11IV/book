@@ -39,6 +39,9 @@ public class LoginUtils {
 		return true;
 		
 	}
+	public static String getCurrentLoginUserEmail(){
+		return (String) getHttpRequest().getSession().getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION);
+	}
 	private static HttpSession getHttpSession() {
         HttpServletRequest request = getHttpRequest();
         return request.getSession();

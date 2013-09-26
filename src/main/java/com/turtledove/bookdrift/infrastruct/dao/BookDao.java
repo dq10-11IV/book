@@ -1,6 +1,7 @@
 package com.turtledove.bookdrift.infrastruct.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -12,4 +13,5 @@ public interface BookDao extends DomainObjectDao<Book>{
 	public Book findById(Integer bookId);
 	public List<Book> findBooksByBooKName(@Param(value="bookName")String bookName);
 	public List<Book> query(@Param(value="bookInfo")BookInfo bookInfo);
+	public List<Book> getBooksUnderEmailAndTag(Map<String,String> paraMap);
 }

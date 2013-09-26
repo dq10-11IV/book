@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.turtledove.bookdrift.infrastruct.dao.BookDao">
 
-	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
-		id="result">
+	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"  id="result">
 		<id property="Id" column="BOOK_ID" />
 		<result property="bookName" column="BOOK_NAME" />
 		<result property="authorName" column="AUTHOR" />
@@ -40,20 +39,39 @@
 			and BOOK_NAME like CONCAT('%','${bookName}','%' )
 		</if>
 	</select>
+	<select id="getBooksUnderEmailAndTag" parameterType="String" resultMap="result">
+		SELECT
+		B.BOOK_ID AS Id,
+		B.BOOK_NAME AS bookName,
+		b.AUTHOR AS authorName,
+		B.BOOK_PRESS AS bookPress,
+		B.BOOK_PRICE AS bookPrice,
+		B.BOOK_VERSION AS bookVersion,
+		B.PUBLISH_DATE AS publishDate,
+		B.CREAT_DATE AS createDate,
+		B.LAST_UPDATE_DATE AS lastUpdateDate
+		FROM bd_user AS U
+		INNER JOIN bd_user_book_ass AS UB ON U.USER_ID = UB.USER_ID
+		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
+		INNER JOIN bd_label AS L ON L.LABEL_ID = UL.LABEL_ID
+		INNER JOIN bd_book AS B ON B.BOOK_ID = UB.BOOK_ID
+		WHERE L.LABEL_NAME = #{tag}
+		AND U.USER_EMAIL =#{email};
+	</select>
 	<select id="query" parameterType="BookInfo" resultMap="result">
 		<include refid="sql_select" />
 		<where>
 			<if test="bookInfo.bookName!=null and bookInfo.bookName !='' ">
-			   BOOK_NAME like CONCAT('%','${bookInfo.bookName}','%' )
+				BOOK_NAME like CONCAT('%','${bookInfo.bookName}','%' )
 			</if>
 			<if test="bookInfo.authorName!=null and bookInfo.authorName != ''">
-			   AND AUTHOR like CONCAT('%','${bookInfo.authorName}','%' )
+				AND AUTHOR like CONCAT('%','${bookInfo.authorName}','%' )
 			</if>
 			<if test="bookInfo.version != null">
-			   AND BOOK_VERSION = ${bookInfo.version}
+				AND BOOK_VERSION = ${bookInfo.version}
 			</if>
 			<if test="bookInfo.press !=null and bookInfo.press !=''">
-			  AND BOOK_PRESS like CONCAT('%','${bookInfo.press}','%' )
+				AND BOOK_PRESS like CONCAT('%','${bookInfo.press}','%' )
 			</if>
 		</where>
 

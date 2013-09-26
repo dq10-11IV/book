@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.turtledove.bookdrift.application.service.BookService;
 import com.turtledove.bookdrift.common.AbstractClass.AbstractTestCase;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.domain.entity.BookInfo;
@@ -26,6 +27,8 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	private static final String BOOK_NAME = "程序员的修炼之道";
 	@Autowired
 	BookDao bookDao;
+	@Autowired 
+	BookService bookService;
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -39,7 +42,7 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		Book book = create();
 		bookDao.insert(book);
 		List<Book> bookList = new ArrayList<Book>();
-		bookList = bookDao.findBooksByBooKName(book.getBookName());
+		bookList = bookService.findByBookName(book.getBookName());
 		Assert.assertNotNull(bookList);
 	}
 	@Test

@@ -12,5 +12,10 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="getBookUnderTag" class="com.turtledove.bookdrift.web.BookAction" method="getBookUnderTag">
+		  <result type="json" name="success">
+		     <param name="root">result</param>
+		  </result>
+		</action>
       </package>
  </struts>
