@@ -7,3 +7,79 @@ body {
 .help-block {
 	font-size: 12px;
 }
+
+.v-center-bg {
+	position: relative;
+	top: 180px;
+	width: 100%;	
+	padding: 25px 0;
+	border-style: solid;
+	border-width: 1px 0;
+	border-color: rgb( 209, 209, 209 );
+	background: rgb( 232, 232, 232);
+}
+
+/* show books */
+.navbar .glyphicon {
+	padding-top: 2px;
+}
+
+.icon-badge {
+	position: absolute;
+	top: 8;
+	right: 5;
+	color: brown;
+	font-size: 10px;
+}
+
+.book {
+	position: relative;
+	width: 100%;
+	padding-top: 40px;
+	height: 200px;
+	background: rgb( 232, 232, 232);
+}
+
+.book-name {
+	color: #888888;
+	font-size: 20px;
+	text-align: center;
+}
+
+.author-name {
+	color: rgb(162, 159, 160);
+	padding-right: 10px;
+	text-align: right;
+}
+
+.book-press {
+	position: relative;
+	top: 70px;
+	color: rgb( 209, 209, 209 );
+	text-align: center;
+}
+
+.book > span {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+.status {
+	position: absolute;
+	display: none;
+	width: 100%;
+	bottom: 12px;
+	padding: 10px 5%;
+}
+
+.status > li {
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+}
+
+.status > li:hover {
+	cursor: pointer;
+	color: blue;
+}

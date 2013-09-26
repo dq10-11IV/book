@@ -45,8 +45,8 @@
 	</div>
 	<div class="col-lg-6">
 		<p>让知识不再落单</p>
-		<a class="btn btn-default" href="/login">Login</a>
-		<a class="btn btn-default" href="/register">Register</a>
+		<a class="btn btn-default" href="/login">登陆</a>
+		<a class="btn btn-default" href="/register">注册</a>
 	</div>
 </div>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
