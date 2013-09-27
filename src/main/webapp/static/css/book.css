@@ -26,8 +26,8 @@ body {
 
 .icon-badge {
 	position: absolute;
-	top: 8;
-	right: 5;
+	top: 8px;
+	right: 5px;
 	color: brown;
 	font-size: 10px;
 }

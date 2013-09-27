@@ -61,15 +61,13 @@
 		</div>
 	
 	
-		<script>
-			reuslt = <%=new String(request.getParameter("jsonResult").getBytes("iso-8859-1"), "utf-8") %>;
-		</script>
+		<%@ include file="patch/result.jsp" %>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
 		<script src="static/js/with.js"></script>
 		<script>
 		$(function(){
-			fillDocument( result );
 			
 			$('.thumbnail').hover(function(){
 				$(this).find('.status').slideToggle();
@@ -82,7 +80,11 @@
 			
 			$('.nav-pills').find('li').draggable({
 				revert: 'invalid'
-			});
+			});/*each( function() {
+				$( this ).draggable({
+					revert: 'invalid'
+				});
+			})*/
 			
 			$('#trash').droppable({
 				drop: function ( event, ui ) {
