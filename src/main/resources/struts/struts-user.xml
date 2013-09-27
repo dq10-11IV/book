@@ -6,7 +6,7 @@
     <package name="user" extends="json-default" namespace="/">
 		<action name="login" class="com.turtledove.bookdrift.web.AdminLogin"  method="login">
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
-			<result name="tohubpage" type="chain">myBook</result>
+			<result name="tohubpage" type="redirectAction">myBook</result>
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 		<result name="success" type="json">
