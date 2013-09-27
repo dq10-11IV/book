@@ -16,6 +16,8 @@ public class AdminLogin extends AjaxBase{
 
 	public String data;
 	public String email;
+	public String passwd;
+	public String username;
 	public String fieldName;
 	public String fieldValue;
 	@Autowired
@@ -24,9 +26,12 @@ public class AdminLogin extends AjaxBase{
 	 * 用户注册时的actionO
 	 * */
 	public String register(){
-        User user;
+        User user = new User();
 		try {
-			user = JsonUtils.JsonToJavaBean(enCoding(data), User.class);
+			//user = JsonUtils.JsonToJavaBean(enCoding(data), User.class);
+			user.setUserEmail(email);
+			user.setUserName(username);
+			user.setUserPwd(passwd);
 			user.setCreateDate(new Date());
 			user.setLastUpdateDate(new Date());
 			userService.insert(user);

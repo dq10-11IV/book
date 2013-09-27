@@ -1,6 +1,5 @@
-request
-{
-	email:,
-	passwd:,
-	nickname:
+request{
+    email:,
+    passwd:,
+    nickname:
 }

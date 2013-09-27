@@ -1,8 +1,6 @@
-登陆成功跳转到主页
-失败时候的json格式
 {
-    "data": {
-        "error": "邮箱不对",
-        "email": "liubshwzc@gmail.com"
+    "data":{
+        "error":"邮箱不对",
+        "email":"liubshwzc@gmail.com"
     }
 }
