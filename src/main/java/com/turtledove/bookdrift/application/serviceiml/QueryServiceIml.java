@@ -16,10 +16,14 @@ public class QueryServiceIml implements QueryService {
 
 	@Autowired 
 	BookDao bookDao;
-	public List<Book> getBookUnderEmailAndSpecailTag(String email, String tag) {
+	public List<Book> getBookUnderUserAndSpecailTag(String email, String tag) {
 		Map<String,String> paraMap = new HashMap<String, String>();
 		paraMap.put("email", email);
 		paraMap.put("tag", tag);
-		return bookDao.getBooksUnderEmailAndTag(paraMap);
+		return bookDao.getBooksUnderUserAndTag(paraMap);
 	}
+	public List<Book> getBookUnderUser(Integer Id) {
+		return bookDao.getBookUnderUser(Id);
+	}
+	
 }

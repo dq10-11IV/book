@@ -32,7 +32,6 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	@Before
 	public void setUp() throws Exception {
 	}
-
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -64,5 +63,4 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).withField("authorName", AUTHOR_NAME)
 				.withField("version", VERSION).withField("press", BOOK_PRESS).build(BookInfo.class);
 	}
-
 }

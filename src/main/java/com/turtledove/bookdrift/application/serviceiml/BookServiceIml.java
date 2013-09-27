@@ -25,7 +25,6 @@ public class BookServiceIml implements BookService {
 	public List<Book> findByBookName(String bookName) {
 		return bookDao.findBooksByBooKName(bookName);
 	}
-
 	public List<Book> query(BookInfo bookInfo) {
 		return bookDao.query(bookInfo);
 	}

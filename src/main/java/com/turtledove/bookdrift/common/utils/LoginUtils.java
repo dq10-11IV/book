@@ -1,27 +1,29 @@
 package com.turtledove.bookdrift.common.utils;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.framework.ProjectConstants;
+import com.turtledove.bookdrift.domain.entity.User;
 
 public class LoginUtils {
 
-	
-	
 	private static UserService userService = Springs.getBean(UserService.class);
+	private static String loginEmail;
+	private static String  loginPwd ;
 	public static boolean isAExistUser(){
-		HttpServletRequest request = getHttpRequest();
-		String loginEmail = request.getParameter(ProjectConstants.LOGIN_USER_EMAIL);
-		String loginPwd = request.getParameter(ProjectConstants.LOGIN_USER_PWD);
-		if( userService.validataUser(loginEmail, loginPwd)){
-			request.getSession().setAttribute(ProjectConstants.LOGINED_EMAIL_SESSION, loginEmail);
+		 HttpServletRequest request = getHttpRequest();
+		 HttpSession httpSession =getHttpSession();
+		 loginEmail = request.getParameter(ProjectConstants.LOGIN_USER_EMAIL);
+		 loginPwd = request.getParameter(ProjectConstants.LOGIN_USER_PWD);
+		 User user = userService.getUserByEmail(loginEmail);
+		if(validateUser(user)){
+			httpSession.setAttribute(ProjectConstants.LOGINED_EMAIL_SESSION, loginEmail);
+			httpSession.setAttribute(ProjectConstants.LOGIN_ID_SESSION, user.getId());
 			return true;
 		}
 		return false;
@@ -39,8 +41,16 @@ public class LoginUtils {
 		return true;
 		
 	}
+	private static boolean validateUser(User user){
+		if(user!=null && user.getUserEmail().equals(loginEmail) && user.getUserPwd().equals(loginPwd))
+			return true;
+		return false;
+	}
 	public static String getCurrentLoginUserEmail(){
 		return (String) getHttpRequest().getSession().getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION);
+	}
+	public static Integer getCurrentLoginUserId(){
+		return  (Integer) getHttpSession().getAttribute(ProjectConstants.LOGIN_ID_SESSION);
 	}
 	private static HttpSession getHttpSession() {
         HttpServletRequest request = getHttpRequest();

@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.turtledove.bookdrift.infrastruct.dao.BookDao">
 
-	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"  id="result">
+	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
+		id="result">
 		<id property="Id" column="BOOK_ID" />
 		<result property="bookName" column="BOOK_NAME" />
 		<result property="authorName" column="AUTHOR" />
@@ -27,6 +28,19 @@
 		LAST_UPDATE_DATE
 		FROM bd_book
 	</sql>
+	<sql id="sql_select_m">
+		SELECT
+		B.BOOK_ID AS Id,
+		B.BOOK_NAME AS bookName,
+		b.AUTHOR AS
+		authorName,
+		B.BOOK_PRESS AS bookPress,
+		B.BOOK_PRICE AS bookPrice,
+		B.BOOK_VERSION AS bookVersion,
+		B.PUBLISH_DATE AS publishDate,
+		B.CREAT_DATE AS createDate,
+		B.LAST_UPDATE_DATE AS lastUpdateDate
+	</sql>
 	<select id="findById" parameterType="Integer" resultMap="result">
 		<include refid="sql_select" />
 		WHERE BOOK_ID = #{Id};
@@ -39,24 +53,19 @@
 			and BOOK_NAME like CONCAT('%','${bookName}','%' )
 		</if>
 	</select>
-	<select id="getBooksUnderEmailAndTag" parameterType="Map" resultMap="result">
-		SELECT
-		B.BOOK_ID AS Id,
-		B.BOOK_NAME AS bookName,
-		b.AUTHOR AS authorName,
-		B.BOOK_PRESS AS bookPress,
-		B.BOOK_PRICE AS bookPrice,
-		B.BOOK_VERSION AS bookVersion,
-		B.PUBLISH_DATE AS publishDate,
-		B.CREAT_DATE AS createDate,
-		B.LAST_UPDATE_DATE AS lastUpdateDate
+	<select id="getBooksUnderUserAndTag" parameterType="Map"
+		resultMap="result">
+		<include refid="sql_select_m" />
 		FROM bd_user AS U
-		INNER JOIN bd_user_book_ass AS UB ON U.USER_ID = UB.USER_ID
+		INNER JOIN bd_user_book_ass AS UB ON U.USER_ID =
+		UB.USER_ID
 		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
 		INNER JOIN bd_label AS L ON L.LABEL_ID = UL.LABEL_ID
-		INNER JOIN bd_book AS B ON B.BOOK_ID = UB.BOOK_ID
+		INNER JOIN bd_book
+		AS B ON B.BOOK_ID = UB.BOOK_ID
 		WHERE L.LABEL_NAME = #{tag}
-		AND U.USER_EMAIL =#{email};
+		AND
+		U.USER_EMAIL =#{email};
 	</select>
 	<select id="query" parameterType="BookInfo" resultMap="result">
 		<include refid="sql_select" />
@@ -74,7 +83,13 @@
 				AND BOOK_PRESS like CONCAT('%','${bookInfo.press}','%' )
 			</if>
 		</where>
-
+	</select>
+	<select id="getBookUnderUser" parameterType="Integer" resultMap="result">
+		<include refid="sql_select_m" />
+		FROM bd_book AS B
+		INNER JOIN bd_user_book_ass AS UB
+		ON B.BOOK_ID = UB.BOOK_ID
+		WHERE UB.USER_ID = #{Id}
 	</select>
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
 		keyProperty="Id">

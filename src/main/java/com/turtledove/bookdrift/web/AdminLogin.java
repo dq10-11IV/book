@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
@@ -36,8 +37,12 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String login() {
-		if(LoginUtils.isFromWelcomePage()) 
+		if(LoginUtils.isFromWelcomePage())
+		{
+			getRequest().put("jsonResult", setJsonResult());
 			return TOLOGINPAGE;
+		}
+			
 		if(LoginUtils.isAExistUser())
 			return TO_HUB_PAGE;
 		
@@ -45,8 +50,8 @@ public class AdminLogin extends AjaxBase{
 		if(userService.getUserByEmail(email)==null)
 		setDateWithErrorMsg(ActionMessage.EMIAL_ERROE);
 		else setDateWithErrorMsg(ActionMessage.PASS_WORD_ERROR);
-		setJsonResult();
-		return TO_LOGIN_PAGR_WITH_FAIL_MSG;
+		getRequest().put("jsonResult", setJsonResult());
+		return TOLOGINPAGE;
 	}
 	public String validation(){
 		if(fieldName.equals("userEmail")){

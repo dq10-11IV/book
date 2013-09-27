@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.turtledove.bookdrift.common.utils.JsonUtils;
 
 public class AjaxBase {
@@ -66,12 +67,15 @@ public class AjaxBase {
     public void setErrorMsg(String errorMsg){
     	dataresult.put("error", errorMsg);
     }
-	public void setTopElementInResult(String key,String value){
+	public void setTopElementInResult(String key,Object value){
 		result.put(key, value);
 	}
-	public void setJsonResult(){
+	public String setJsonResult(){
 		
-		jsonResult = JsonUtils.ObjectToJson(result);
-		System.out.println(jsonResult);
+		return jsonResult = JsonUtils.ObjectToJson(result);
+		//System.out.println(jsonResult);
+	}
+	public Map getRequest(){
+		return (Map) ActionContext.getContext().get("request");
 	}
 }
