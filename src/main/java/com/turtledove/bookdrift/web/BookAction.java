@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.turtledove.bookdrift.application.service.BookService;
 import com.turtledove.bookdrift.application.service.LabelService;
 import com.turtledove.bookdrift.application.service.QueryService;
@@ -15,6 +14,7 @@ import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.domain.entity.BookInfo;
 import com.turtledove.bookdrift.domain.entity.Label;
+import com.turtledove.bookdrift.domain.entity.User;
 public class BookAction extends AjaxBase {
 
 	@Autowired
@@ -42,8 +42,10 @@ public class BookAction extends AjaxBase {
 		this.bookName = bookName;
 	}
 	public String myBook(){
+		User currentUser = LoginUtils.getCurrentLoginUser();
 		List<Label> lableList = labelService.getLabels(LoginUtils.getCurrentLoginUserEmail());
 		List<Book> bookList = queryService.getBookUnderUser(LoginUtils.getCurrentLoginUserId());
+		setElementInDate("user", currentUser);
 		setElementInDate("labels", lableList);
 		setElementInDate("books", bookList);
 		setDateResult();

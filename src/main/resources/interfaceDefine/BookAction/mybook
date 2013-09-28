@@ -10,7 +10,17 @@
                 createDate:null,
                 id:1,
                 lastUpdateDate:null,
-                publishDate:"2010-01-01T00:00:00"
+                publishDate:{
+                    date:1,
+                    day:5,
+                    hours:0,
+                    minutes:0,
+                    month:0,
+                    seconds:0,
+                    time:1262275200000,
+                    timezoneOffset:-480,
+                    year:110
+                }
             },
             {
                 authorName:"Venkat Subramaniam",
@@ -21,7 +31,17 @@
                 createDate:null,
                 id:2,
                 lastUpdateDate:null,
-                publishDate:"2010-01-01T00:00:00"
+                publishDate:{
+                    date:1,
+                    day:5,
+                    hours:0,
+                    minutes:0,
+                    month:0,
+                    seconds:0,
+                    time:1262275200000,
+                    timezoneOffset:-480,
+                    year:110
+                }
             }
         ],
         labels:[
@@ -39,6 +59,15 @@
                 labelName:"硕1202",
                 lastUpdateDate:null
             }
-        ]
+        ],
+        user:{
+            createDate:null,
+            id:1,
+            lastUpdateDate:null,
+            userEmail:"liubshwzc@gmail.com",
+            userLevel:1,
+            userName:"liubsh",
+            userPwd:"123456"
+        }
     }
 }
