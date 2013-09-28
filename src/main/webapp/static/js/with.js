@@ -3,24 +3,32 @@ $('example').hide();
 	var methods = {
 		settings: {
 			selector: '[data-with]:not(example [data-with])',
-			inst: '<inst></inst>'
+			exampleSelector: '>example',
+			inst: '<inst></inst>',
+			key: /^\w/
 		},
+		
+		sys: {},
 		
 		map: {
 			text: $.fn.text,
 			val: $.fn.val,
-			contain: function ( data ) {
+			bool: function ( data ) {
+				if ( !data ) {
+					this.remove();
+				};
+			},
+			list: function ( data ) {
 				//find example, if failed, return
-				if ( this.find( 'example' ).length == 0 ) return;
-				
-				//new instance of example and fill it
-				var inst = $( methods.settings.inst ).append( $( this.find('example').html().trim() ) );
-				
+				var example = this.find( methods.settings.exampleSelector );
+				if (  example.length == 0 ) return;
+								
 				for ( var item in data ) {
-					inst.fill( data[item] );
+					//new instance of example and fill it
+					var inst = $( methods.settings.inst ).append( $( example.html().trim() ) );
+					inst.fill( data[item], {"loop": item} );
 					
-					var newInst = $( inst.html().trim() ).removeAttr( 'data-with' );
-					this.append( newInst );
+					this.append( $( inst.html().trim() ) );
 				}
 			}
 		},
@@ -42,28 +50,44 @@ $('example').hide();
 			var params = $( that ).data( 'with' ).split( ';' );
 			
 			for ( var item in params ) {
-				var method = methods.getmethod( params[item] );
-				var arg = methods.getargument( params[item], data );
+				var method = methods.getMethod( params[item] );
+				var arg = methods.getArgument( params[item], data );
 				
 				methods.map[method].call( $( that ), arg );
 			}
 		},
 		
-		getmethod: function ( param ) {
+		getMethod: function ( param ) {
 			return param.split( ':' )[0].trim();
 		},
 		
-		getargument: function ( param, data ) {
-			var key = param.split( ':' ).slice( 1 );
-			if ( key.length == 0 ) {
-				return data;
-			} else {
-				return data[key[0].trim()];
+		getArgument: function ( param, data ) {
+			var keys = param.split( ':' ).slice( 1 );
+			
+			//arguments name, data is argument
+			if ( keys.length == 0 ) return data;
+			
+			//handle key
+			var key = keys[0].trim().split('-');
+			$.extend( data, methods.sys );
+
+			for ( var item in key ) {
+				if ( methods.settings.key.test( key[item] ) )
+					key[item] = 'data.' + key[item];
 			}
+			
+			return eval( key.join('+') );
+			
+			//can't find argument in the data, return empty string
+			if ( typeof key === 'undefined') return '';
+			
+			//return argument
+			return data[key];
 		}
 	};
 	
-	$.fn.fill = function ( data ) {
+	$.fn.fill = function ( data, sys ) {
+		$.extend( methods.sys, sys );
 		return this.each( function() {
 			return methods.fill( this, data );
 		});
@@ -71,6 +95,5 @@ $('example').hide();
 	
 })( jQuery );
 
-if ( typeof result !== 'undefined' ) {
-	$( document ).fill( result )
-}
+if ( typeof result !== 'undefine' )
+	$( document ).fill( result.data );

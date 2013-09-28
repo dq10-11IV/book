@@ -20,7 +20,7 @@
 		</nav>
 		<div class="row">
 			<div class="col-lg-3">
-				<ul class="nav nav-pills nav-stacked nav-tabs" data-with="contain: tags">
+				<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: tags">
 					<li class="active"><a href="#tab1" data-toggle="tab">我</a></li>
 					<example>
 						<li><a href="#tab2" data-toggle="tab" data-with="text">实验室</a></li>
@@ -33,7 +33,7 @@
 			<div class="col-lg-9">
 				<div class="tab-content">
 					<div class="tab-pane active" id="tab1">
-						<div class="row" data-with="contain: books">
+						<div class="row" data-with="list: books">
 							<example>
 								<div class="col-lg-3">
 									<div href="#" class="thumbnail">
