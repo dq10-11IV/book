@@ -11,19 +11,19 @@
 	<body>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Book Drift</a>
+				<a class="navbar-brand" href="/">Book Drift</a>
 			</div>
-			<ul class="nav navbar-nav pull-right">
-				<li data-with="bool: username"><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
-				<li><a href="#" data-with="text: username">xinting</a></li>
+			<ul class="nav navbar-nav pull-right" data-with="bool: user">
+				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
+				<li><a href="#" data-with="text: user.userName"></a></li>
 			</ul>
 		</nav>
 		<div class="row">
 			<div class="col-lg-3">
-				<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: tags">
-					<li class="active"><a href="#tab1" data-toggle="tab">我</a></li>
+				<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels">
+					<li class="active"><a href="#tab_me" data-toggle="tab">我</a></li>
 					<example>
-						<li><a href="#tab2" data-toggle="tab" data-with="text">实验室</a></li>
+						<li><a href="" data-toggle="tab" data-with="href: '#tab'-id; text: labelName">实验室</a></li>
 					</example>
 				</ul>
 				<button type="button" class="btn btn-lg" style="margin-top: 20px; width: 100%;" id="trash">
@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-lg-9">
 				<div class="tab-content">
-					<div class="tab-pane active" id="tab1">
+					<div class="tab-pane active" id="tab_me">
 						<div class="row" data-with="list: books">
 							<example>
 								<div class="col-lg-3">
@@ -53,9 +53,6 @@
 							</example>
 						</div>
 					</div>
-					
-					<div class="tab-pane" id="tab2">2</div>
-					<div class="tab-pane" id="tab3">3</div>
 				</div>
 			</div>
 		</div>

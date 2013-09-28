@@ -14,9 +14,18 @@ $('example').hide();
 			text: $.fn.text,
 			val: $.fn.val,
 			bool: function ( data ) {
-				if ( !data ) {
-					this.remove();
-				};
+				if ( !data ) this.remove();
+				
+			},
+			show: function ( data ) {
+				if ( data ) this.show();
+			},
+			hide: function ( data ) {
+				if ( data ) this.hide();
+				
+			},
+			href: function ( data ) {
+				this.attr( 'href', data );
 			},
 			list: function ( data ) {
 				//find example, if failed, return
