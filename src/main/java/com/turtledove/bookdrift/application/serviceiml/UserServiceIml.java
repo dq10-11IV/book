@@ -37,6 +37,6 @@ public class UserServiceIml implements UserService {
 		return false;
 	}
 	public List<Label> getTags(String email) {
-	  return labelService.getLabels(email);
+	  return labelService.getLabelsByEmail(email);
 	}
 }

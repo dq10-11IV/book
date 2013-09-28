@@ -14,7 +14,7 @@ public class LabelServiceIml implements LabelService {
 
 	@Autowired
 	LabelDao labelDao;
-	public List<Label> getLabels(String email) {
+	public List<Label> getLabelsByEmail(String email) {
 		return labelDao.getTags(email);
 	}
 	public Label findById(Integer Id) {

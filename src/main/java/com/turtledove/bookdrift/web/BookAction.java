@@ -43,7 +43,7 @@ public class BookAction extends AjaxBase {
 	}
 	public String myBook(){
 		User currentUser = LoginUtils.getCurrentLoginUser();
-		List<Label> lableList = labelService.getLabels(LoginUtils.getCurrentLoginUserEmail());
+		List<Label> lableList = labelService.getLabelsByEmail(LoginUtils.getCurrentLoginUserEmail());
 		List<Book> bookList = queryService.getBookUnderUser(LoginUtils.getCurrentLoginUserId());
 		setElementInDate("user", currentUser);
 		setElementInDate("labels", lableList);
