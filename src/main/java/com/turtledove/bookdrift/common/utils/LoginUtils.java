@@ -22,6 +22,7 @@ public class LoginUtils {
 		 loginPwd = request.getParameter(ProjectConstants.LOGIN_USER_PWD);
 		 User user = userService.getUserByEmail(loginEmail);
 		if(validateUser(user)){
+			httpSession.setAttribute(ProjectConstants.LOGIN_USER_IN_SESSION, user);
 			httpSession.setAttribute(ProjectConstants.LOGINED_EMAIL_SESSION, loginEmail);
 			httpSession.setAttribute(ProjectConstants.LOGIN_ID_SESSION, user.getId());
 			return true;
@@ -51,6 +52,9 @@ public class LoginUtils {
 	}
 	public static Integer getCurrentLoginUserId(){
 		return  (Integer) getHttpSession().getAttribute(ProjectConstants.LOGIN_ID_SESSION);
+	}
+	public static User getCurrentLoginUser(){
+		return (User) getHttpSession().getAttribute(ProjectConstants.LOGIN_USER_IN_SESSION);
 	}
 	private static HttpSession getHttpSession() {
         HttpServletRequest request = getHttpRequest();
