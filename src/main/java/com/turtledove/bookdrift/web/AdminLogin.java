@@ -42,12 +42,10 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String login() {
-		if(LoginUtils.isFromWelcomePage())
-		{
+		if(LoginUtils.isFromWelcomePage()){
 			getRequest().put("jsonResult", setJsonResult());
 			return TOLOGINPAGE;
 		}
-			
 		if(LoginUtils.isAExistUser())
 			return TO_HUB_PAGE;
 		

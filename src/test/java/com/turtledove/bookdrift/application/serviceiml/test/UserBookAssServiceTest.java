@@ -1,6 +1,5 @@
-package com.turtledove.bookdrift.infrastruct.dao.test;
+package com.turtledove.bookdrift.application.serviceiml.test;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -8,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.turtledove.bookdrift.application.service.UserBookAssService;
 import com.turtledove.bookdrift.common.AbstractClass.AbstractTestCase;
 import com.turtledove.bookdrift.domain.entity.DomainObjectBuilder;
 import com.turtledove.bookdrift.domain.entity.UserBookAss;
-import com.turtledove.bookdrift.infrastruct.dao.UserBookAssDao;
 
-public class UserBookAssDaoTest extends AbstractTestCase<UserBookAss>{
+public class UserBookAssServiceTest  extends AbstractTestCase<UserBookAss>{
 
 	@Autowired
-	UserBookAssDao userBookDao;
+	UserBookAssService userBookAssService;
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -27,11 +26,12 @@ public class UserBookAssDaoTest extends AbstractTestCase<UserBookAss>{
 
 	@Test
 	public void test_findById_and_insert() {
-		UserBookAss expectedEntity,actualEntity = create();
-		userBookDao.insert(actualEntity);
-		expectedEntity = userBookDao.findById(actualEntity.getId().intValue());
-		Assert.assertNotNull(expectedEntity);
-		Assert.assertEquals(actualEntity.getBookId(), expectedEntity.getBookId());
+		UserBookAss  expectedEnity, actualEntity = create();
+		userBookAssService.insert(actualEntity);
+		expectedEnity = userBookAssService.findById(actualEntity.getId());
+		Assert.assertNotNull(expectedEnity);
+		Assert.assertEquals(expectedEnity.getBookId(),actualEntity.getBookId());
+		
 	}
 	@Override
 	protected UserBookAss create() {
