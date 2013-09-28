@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <struts>
+      <package name="userLabel" extends="json-default" namespace="/">
+          
+          <action name="addlabel" class="com.turtledove.bookdrift.web.UserLabelAction" method="addLabel">
+              <result name="success" type="json">
+                <param name="root">result</param>
+              </result>
+          </action>
+          
+      </package> 
+ </struts>

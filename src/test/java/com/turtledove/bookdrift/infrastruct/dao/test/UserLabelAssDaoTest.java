@@ -1,6 +1,5 @@
 package com.turtledove.bookdrift.infrastruct.dao.test;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -33,6 +32,13 @@ public class UserLabelAssDaoTest extends AbstractTestCase<UserLabelAss> {
 		Assert.assertEquals(expectedEntity.getLabelId(), actualEntity.getLabelId());
 	}
 
+	@Test
+	public void test_validate_userLabel(){
+		UserLabelAss expectedEntity ,actualEntity = create();
+		userLabelDao.insert(actualEntity);
+		expectedEntity = userLabelDao.ValidateUserLabelAss(actualEntity);
+		Assert.assertEquals(expectedEntity.getLabelId(), actualEntity.getLabelId());
+	}
 	@Override
 	protected UserLabelAss create() {
 		return DomainObjectBuilder.newInstance().

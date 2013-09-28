@@ -1,0 +1,13 @@
+访问路径/addlabel
+访问形式ajax
+参数labelName:xx
+返回形式
+
+{
+    code:500,
+    msg:"已有该标签"
+}
+{
+    code:200,
+    msg:"添加标签成功"
+}

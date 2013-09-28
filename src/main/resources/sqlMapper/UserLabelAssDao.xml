@@ -21,6 +21,11 @@
 		<include refid="sql_select" />
 		WHERE USER_LABEL_ID = #{Id};
 	</select>
+	<select id="ValidateUserLabelAss" parameterType="UserLabelAss" resultMap="result">
+	   <include refid="sql_select"/>
+	   WHERE USER_ID = #{userId}
+	         AND LABEL_ID = #{labelId};
+	</select>
 	<insert id="insert" parameterType="UserLabelAss"
 		useGeneratedKeys="true" keyProperty="Id">
 		INSERT INTO bd_user_label(USER_ID,LABEL_ID,CREATE_DATE,LAST_UPDATE_DATE)

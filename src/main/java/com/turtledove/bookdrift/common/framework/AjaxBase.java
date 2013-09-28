@@ -45,7 +45,7 @@ public class AjaxBase {
 	}
 	private void setResult(int code, Object object) {
 		 result.put("code",code);
-         result.put("data",object);
+         result.put("msg",object);
          
 	}
 	protected String enCoding(String key) throws UnsupportedEncodingException{
