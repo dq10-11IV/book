@@ -43,8 +43,8 @@ $('example').hide();
 		},
 		
 		fill: function ( that, data ) {
-			//not empty or null
-			if ( typeof data == 'undefined' || JSON.stringify( data ) == '{}' ) return that;
+			//not empty or null || JSON.stringify( data ) == '{}'
+			if ( typeof data == 'undefined' ) return that;
 			
 			methods.el = that;
 			
@@ -85,13 +85,7 @@ $('example').hide();
 					key[item] = 'data.' + key[item];
 			}
 			
-			return eval( key.join('+') );
-			
-			//can't find argument in the data, return empty string
-			if ( typeof key === 'undefined') return '';
-			
-			//return argument
-			return data[key];
+			return eval( 'try{' + key.join('+') + '}catch(e){""}' );
 		}
 	};
 	
@@ -104,5 +98,6 @@ $('example').hide();
 	
 })( jQuery );
 
-if ( typeof result !== 'undefine' )
+if ( typeof result !== 'undefined' )
 	$( document ).fill( result.data );
+document.getElementsByTagName( 'body' )[0].style.display = 'block';
