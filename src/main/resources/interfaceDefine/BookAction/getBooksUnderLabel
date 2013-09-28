@@ -1,0 +1,29 @@
+URL:/getBooksUnderLabel需要的参数：label:lab//通过点击标签获取该标签下的数据返回的json格式，是ajax形式访问{
+    data:{
+        books:[
+            {
+                authorName:"Venkat Subramaniam",
+                bookName:"高效程序员的45个习惯",
+                bookPress:"人民出版社",
+                bookPrice:35,
+                bookVersion:1,
+                createDate:null,
+                id:1,
+                lastUpdateDate:null,
+                publishDate:"2010-01-01T00:00:00"
+            },
+            {
+                authorName:"Venkat Subramaniam",
+                bookName:"程序员的修炼之道",
+                bookPress:"人民出版社",
+                bookPrice:35,
+                bookVersion:2,
+                createDate:null,
+                id:2,
+                lastUpdateDate:null,
+                publishDate:"2010-01-01T00:00:00"
+            }
+        ]
+    },
+    label:"lab"
+}

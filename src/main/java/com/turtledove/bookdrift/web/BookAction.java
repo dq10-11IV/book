@@ -26,7 +26,7 @@ public class BookAction extends AjaxBase {
 	public String bookName;
 	public String data;
 	public boolean isAjax;
-	public String  tag;
+	public String  label;
 	public String query() {
 		try{
 			BookInfo bookInfo = JsonUtils.JsonToJavaBean(enCoding(data), BookInfo.class);
@@ -54,12 +54,12 @@ public class BookAction extends AjaxBase {
 		
 		return SUCCESS;
 	}
-	public String getBooksUnderTag(){
+	public String getBooksUnderLabel(){
 		String email = LoginUtils.getCurrentLoginUserEmail();
-		List<Book> bookList = queryService.getBookUnderUserAndSpecailTag(email, tag);
+		List<Book> bookList = queryService.getBookUnderUserAndSpecailTag(email, label);
 		setElementInDate("books", bookList);
-		setDateWithErrorMsg("");
-		setTopElementInResult("tag", tag);
+		setDateResult();
+		setTopElementInResult("label", label);
 		return SUCCESS;
 	}
 }
