@@ -56,8 +56,6 @@
 		<script src="static/js/with.js"></script>
 		<script>
 		$(function(){
-			fillDocument( result );
-			
 			$('form').checkform({
 				error: function (el, msg) {
 					el.parent('div').addClass('has-error');

@@ -30,11 +30,12 @@ function douban () {
 		}
 	}
 	
-	this.askBookByIsbn = function ( isbn ) {
+	this.askBookByIsbn = function ( isbn, handle ) {
 		var data = {};
-		$.getJSON( methods.urlIsbn( isbn ), function ( book ) {
+		var url = methods.urlIsbn( isbn );
+		$.getJSON( url, function ( book ) {
 			$.extend( data, methods.book( book ) );
+			handle( data );
 		});
-		return data;
 	}
 }

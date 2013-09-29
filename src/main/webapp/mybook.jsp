@@ -90,7 +90,23 @@
 			</div>
 			<div class="modal-body">
 				<label>ISBN</label>
-				<input class="form-control" type="text" >
+				<p><input class="form-control" type="number" ></p>
+				<table class="table table-hover">
+				<tbody>
+					<tr>
+					<td><b>书名</b></td>
+					<td data-with="text: title"></td>
+					</tr>
+					<tr>
+					<b>作者</b>
+					<td data-with="text: author"></td>
+					</tr>
+					<tr>
+					<b>出版社</b>
+					<td data-with="text: publisher"></td>
+					</tr>
+				</tbody>
+				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary">确定</button>
@@ -104,6 +120,7 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="static/bootstrap3/js/bootstrap.js" ></script>
 <script src="static/js/with.js"></script>
+<script src="static/js/douban.js"></script>
 <script>
 $(function(){
 	$( '#tags [data-toggle="tab"]' ).on( 'show.bs.tab', function ( e ) {
@@ -121,11 +138,7 @@ $(function(){
 	
 	$('.nav-pills').find('li').draggable({
 		revert: 'invalid'
-	});/*each( function() {
-		$( this ).draggable({
-			revert: 'invalid'
-		});
-	})*/
+	});
 	
 	$('#trash').droppable({
 		drop: function ( event, ui ) {
@@ -133,6 +146,13 @@ $(function(){
 		},
 		hoverClass: 'btn-danger'
 	});
+	
+	$( '#add-book' ).find( '.modal-footer button' ).click( function () {
+		var isbn = $( '#add-book' ).find( '.modal-body input' ).val();
+		var data = new douban().askBookByIsbn( isbn, function( data ) {
+			$( '#add-book' ).fill( data );
+		} );
+	} );
 });
 </script>
 </body>
