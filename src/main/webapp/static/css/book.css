@@ -106,3 +106,22 @@ body {
 .thumbnail {
 	margin-bottom: 10px;
 }
+
+/* search books */
+.list-group {
+	margin-top: 20px;
+}
+.list-group-item {
+	margin: 10px 20%;
+}
+.list-group-item > p {
+	float: right;
+}
+.list-group-item > span {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+.list-group-item > span:hover {
+	cursor: pointer;
+}

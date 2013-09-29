@@ -27,6 +27,9 @@ $('example').hide();
 			href: function ( data ) {
 				this.attr( 'href', data );
 			},
+			src: function ( data ) {
+				this.attr( 'src', data );
+			},
 			list: function ( data ) {
 				//find example, if failed, return
 				var example = this.find( methods.settings.exampleSelector );

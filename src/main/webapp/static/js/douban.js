@@ -2,40 +2,48 @@ function douban () {
 	var $ = jQuery;
 	var settings = {
 		book: {
-			url: 'http://api.douban.com/book/subject/isbn/',
-			urlSuffix: '?alt=xd&callback=?',
-			atrributes: [
-				'title', 'author', 'summary', 'price', 'publisher', 'author-intro'
+			isbnUrl: 'http://api.douban.com/v2/book/isbn/',
+			isbnUrlSuffix: '&alt=xd&callback=?',
+			keysUrl: 'http://api.douban.com/v2/book/search',
+			keysUrlSuffix: '&alt=xd&callback=?',
+			attributes: [
+				'title', 'isbn10', 'isbn13', 'image', 'author', 'summary', 'price', 'publisher', 'author-intro'
 			]
 		}
 	}
 	
 	var methods = {
 		urlIsbn: function( isbn ) {
-			return settings.book.url + isbn + settings.book.urlSuffix;
+			return settings.book.isbnUrl + isbn + '?fields=' + settings.book.attributes.join( ',' ) +settings.book.isbnUrlSuffix;
+		},
+		
+		urlKeys: function ( keys ) {
+			return settings.book.keysUrl + '?q=' + keys + '&fields=' + settings.book.attributes.join( ',' ) + settings.book.keysUrlSuffix;
 		},
 		
 		//book
 		book: function( book ) {
-			var data = {};
-			var attrs = book["db:attribute"]
-			
-			data.title = book.title["$t"];
-			for ( var attr in  attrs) {
-				var key = attrs[attr]["@name"];
-				var val = attrs[attr]["$t"];
-				data[key] = val;
-			}
-			return data;
+			return book;
+		},
+		
+		books: function( books ) {
+			return books;
 		}
 	}
 	
 	this.askBookByIsbn = function ( isbn, handle ) {
-		var data = {};
-		var url = methods.urlIsbn( isbn );
-		$.getJSON( url, function ( book ) {
+		var data = {}
+		$.getJSON( methods.urlIsbn( isbn ), function ( book ) {
 			$.extend( data, methods.book( book ) );
-			handle( data );
+			if ( typeof handle !== 'undefined') handle( data );
+		});
+	}
+	
+	this.searchBooksByKeys = function ( keys, handle ) {
+		var data = {}
+		$.getJSON( methods.urlKeys( keys ), function ( books ) {
+			$.extend( data, methods.books( books ) );
+			if ( typeof handle !== 'undefined' ) handle( data );
 		});
 	}
 }
