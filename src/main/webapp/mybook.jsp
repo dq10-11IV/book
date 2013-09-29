@@ -24,7 +24,7 @@
 </nav>
 <div class="row">
 	<div class="col-lg-3">
-		<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels">
+		<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels" id="tags">
 			<li class="active"><a href="#tab_me" data-toggle="tab"><span class="glyphicon glyphicon-hand-right" style="color: black; float: left;"></span>我</a></li>
 			<example>
 				<li><a href="" data-toggle="tab" data-with="href: '#tab'-id; text: labelName"></a></li>
@@ -118,8 +118,8 @@
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBook">确定</button>
-				<button type="button" class="btn btn-info">更多</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBook">完成</button>
+				<a type="button" class="btn btn-info" href="/addbook">更多</a>
 			</div>
 		</div>
 	</div>
@@ -133,8 +133,36 @@
 <script src="static/js/douban.js"></script>
 <script>
 $(function(){
+	$( '#tags>li>[data-toggle="tab"]' ).each( function () {
+/*		var pane = $( this ).attr( 'href' );
+		if ( $( pane ).length == 0 ) {
+			var id = pane.substr( 1 );
+			var node = '<div class="tab-pane" id="'+ id +'"><div class="row" data-with="list: books">' +
+						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
+			
+			$( '.tab-content' ).append( node );
+		}*/
+	});
+	
 	$( '#tags [data-toggle="tab"]' ).on( 'show.bs.tab', function ( e ) {
 		$( e.relatedTarget ).find( 'span' ).remove().appendTo( $( e.target ) );
+
+		var id = $( e.target ).attr( 'href' ).substr( 1 );
+		var pane = $( '#'+id );
+		if ( pane.length == 0 ) {;
+			var node = '<div class="tab-pane" id="'+ id +'"><div class="row" data-with="list: books">' +
+						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
+			$( '.tab-content' ).append( node );
+
+			$.post( '/getBooksUnderLabel',
+					{
+						ajax: true,
+						label: $( this ).text()
+					},
+					function( data, status ) {
+				$( '#'+id ).fill( data.data );
+			})
+		}
 	} );
 	
 	$('.thumbnail').hover(function(){

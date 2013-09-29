@@ -1,4 +1,4 @@
-$('example').hide();
+$( 'head' ).append( '<style>example{display:none;}</style>' );
 (function ( $ ) {
 	var methods = {
 		settings: {
