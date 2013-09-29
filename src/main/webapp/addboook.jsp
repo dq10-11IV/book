@@ -27,7 +27,7 @@
 		<div class="input-group	 col-lg-4 col-lg-offset-4">
 			<input class="form-control" placeholder="书籍关键字">
 			<span class="input-group-btn">
-				<button class="btn btn-default" type="button" title="搜索"><span class="glyphicon glyphicon-search"></span></button>
+				<button class="btn btn-default" type="button" title="搜索" id="searchBooks"><span class="glyphicon glyphicon-search"></span></button>
 			</span>
 		</div>
 	</div>
@@ -76,16 +76,14 @@ $(function(){
 		hoverClass: 'btn-danger'
 	});
 	
-	$( '#add-book' ).find( '.modal-footer button' ).click( function () {
-		var isbn = $( '#add-book' ).find( '.modal-body input' ).val();
-		var data = new douban().askBookByIsbn( isbn, function( data ) {
-			$( '#add-book' ).fill( data );
+
+	$( '#searchBooks' ).click( function () {
+		var keys = $( this ).siblings( 'input' ).val();
+		var data = new douban().searchBooksByKeys( 'Java ee', function( data ) {
+			$( '#books' ).fill( data );
 		} );
 	} );
 	
-	new douban().searchBooksByKeys( 'Java ee', function( data ) {
-		$( '#books' ).fill( data );
-	} );
 });
 </script>
 </body>

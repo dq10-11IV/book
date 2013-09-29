@@ -90,26 +90,36 @@
 			</div>
 			<div class="modal-body">
 				<label>ISBN</label>
-				<p><input class="form-control" type="number" ></p>
-				<table class="table table-hover">
+				<p>
+					<div class="input-group">
+						<input class="form-control" type="text">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" id="searchIsbn">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</p>
+				<table class="table table-hover" style="display: none;">
 				<tbody>
 					<tr>
 					<td><b>书名</b></td>
 					<td data-with="text: title"></td>
 					</tr>
 					<tr>
-					<b>作者</b>
+					<td><b>作者</b></td>
 					<td data-with="text: author"></td>
 					</tr>
 					<tr>
-					<b>出版社</b>
+					<td><b>出版社</b></td>
 					<td data-with="text: publisher"></td>
 					</tr>
 				</tbody>
 				</table>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">确定</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBook">确定</button>
+				<button type="button" class="btn btn-info">更多</button>
 			</div>
 		</div>
 	</div>
@@ -147,11 +157,22 @@ $(function(){
 		hoverClass: 'btn-danger'
 	});
 	
-	$( '#add-book' ).find( '.modal-footer button' ).click( function () {
+	var saved = {};
+	$( '#searchIsbn' ).click( function () {
 		var isbn = $( '#add-book' ).find( '.modal-body input' ).val();
 		var data = new douban().askBookByIsbn( isbn, function( data ) {
 			$( '#add-book' ).fill( data );
+			$( '#add-book' ).find( 'table' ).show();
+			saved.data = data;
 		} );
+	} );
+	
+	$( '#submitBook' ).click( function () {
+		if ( typeof saved.data !== 'undefined' ) {
+			saved.data.ajax = true;
+			$.post( '/addbook', saved.data);
+		}
+		$( '#add-book' ).find( 'table' ).hide();
 	} );
 });
 </script>
