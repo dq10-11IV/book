@@ -37,7 +37,6 @@ public class BookAction extends AjaxBase {
 		}
 		return SUCCESS;
 	}
-
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
