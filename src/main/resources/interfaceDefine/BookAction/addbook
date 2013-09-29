@@ -1,0 +1,13 @@
+{
+	data: {
+		book: {
+			title:,
+			author:,
+			author-intro:,
+			price:,
+			publisher:
+			isbn10:,
+			isbn13:
+		}
+	}
+}

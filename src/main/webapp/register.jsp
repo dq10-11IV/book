@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>æ³¨å</title>
+		<title>注册</title>
 		<link rel="stylesheet" href="static/bootstrap3/css/bootstrap.css" />
 		<link rel="stylesheet" href="static/css/book.css" />
 		<style>
