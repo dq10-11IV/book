@@ -9,6 +9,7 @@
 </head>
 <body>
    <!-- 使用第一种方式获取jsonResult 这样不用使用任何java代码  现在不支持第二种方式了-->
+   ${sessionScope.login_emial_session}
   ${requestScope.jsonResult} 
 <%--  <% request.getAttribute("jsonResult"); %> --%>
 </body>
