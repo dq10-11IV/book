@@ -51,7 +51,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse  = (HttpServletResponse) response;
 		Matcher matcher = notNeedFilterURLPattern.matcher(httpRequest.getRequestURI());
-		if (matcher.matches()|httpRequest.getRequestURI().contains("static")) { //不需要过滤的uri
+		if (matcher.matches()) { //不需要过滤的uri
 			chain.doFilter(request, response);
 			return;
 		}
@@ -59,14 +59,6 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 		else httpResponse.sendRedirect("/login");
 
-	}
-	/*
-	 * 第一次登陆，没有sesssion 需要提供登陆账号和密码
-	 */
-	private boolean isFirstAccess(HttpServletRequest req) {
-		if (req.getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION) == null)
-			return false;
-		return true;
 	}
 	/**
 	 * @see Filter#init(FilterConfig)

@@ -13,6 +13,7 @@ commit;
 /* 创建book表*/
 CREATE TABLE `bd_book` (
   `BOOK_ID` int(11) NOT NULL AUTO_INCREMENT COMMENT '书的ID,自增长主键',
+  `ISBN_ID` varchar(100) DEFAULT NULL,
   `BOOK_NAME` varchar(100) NOT NULL COMMENT '书名',
   `AUTHOR` varchar(100) DEFAULT NULL COMMENT '该书的作者',
   `BOOK_PRICE` int(11) DEFAULT NULL COMMENT '该书的价格',
@@ -22,7 +23,7 @@ CREATE TABLE `bd_book` (
   `CREAT_DATE` datetime DEFAULT NULL COMMENT '创建的时间',
   `LAST_UPDATE_DATE` datetime DEFAULT NULL COMMENT '最后更新的时间',
   PRIMARY KEY (`BOOK_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 COMMIT;
 /* user_book 表的创建*/
 CREATE TABLE `bd_user_book_ass` (
