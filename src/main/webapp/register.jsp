@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<div class="v-center-bg">
-			<form role="form" action="/login" method="POST">
+			<form role="form" action="/register" method="POST">
 				<img src="static/img/register-logo.png" />
 				<div class="form-group">
 					<label>邮箱</label>
