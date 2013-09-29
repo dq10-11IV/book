@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<div class="v-center-bg">
-			<form role="form" action="/login" method="POST">
+			<form role="form" action="/register" method="POST">
 				<img src="static/img/register-logo.png" />
 				<div class="form-group">
 					<label>邮箱</label>
@@ -38,7 +38,7 @@
 				
 				<div class="form-group">
 					<label>昵称</label>
-					<input type="text" class="form-control" placeholder="昵称" name="nickname" data-check="name"/>
+					<input type="text" class="form-control" placeholder="昵称" name="username" data-check="name"/>
 					<p class="help-block"></p>
 				</div>
 				
