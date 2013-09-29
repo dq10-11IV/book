@@ -16,6 +16,7 @@ public class AdminLogin extends AjaxBase{
 
 	public String data;
 	public String email;
+
 	public String passwd;
 	public String username;
 	public String fieldName;
@@ -26,6 +27,8 @@ public class AdminLogin extends AjaxBase{
 	 * 用户注册时的actionO
 	 * */
 	public String register(){
+		if(username == null && email==null)
+			return TO_REGISTER_PAGE;
         User user = new User();
 		try {
 			//user = JsonUtils.JsonToJavaBean(enCoding(data), User.class);
@@ -38,6 +41,7 @@ public class AdminLogin extends AjaxBase{
 		    setSuccessResult(user);
 		} catch (Exception e) {
 			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
+			e.printStackTrace();
 		}
 		return SUCCESS;
 	}
@@ -63,5 +67,26 @@ public class AdminLogin extends AjaxBase{
 			else setFailureResult(ActionMessage.NOT_EXIST);
 		}
 		return SUCCESS;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+	public void setFieldValue(String fieldValue) {
+		this.fieldValue = fieldValue;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

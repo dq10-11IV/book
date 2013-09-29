@@ -9,9 +9,8 @@
 			<result name="tohubpage" type="redirectAction">myBook</result>
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
-		<result name="success" type="json">
-		  <param name="root">result</param>
-		</result>
+	        <result name="toregisterpage">/register.jsp</result>
+	        <result name="success" type="redirect">/login.jsp</result>
 		</action>
 		<action name="validation" class="com.turtledove.bookdrift.web.AdminLogin" method="validation">
 		   <result name="success" type="json">
@@ -19,5 +18,4 @@
 		   </result>
 		</action>
 	</package>
-    
  </struts>
