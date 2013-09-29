@@ -13,6 +13,7 @@ public class AjaxBase {
 	public static String SUCCESS = "success";
 	public static String TOLOGINPAGE="tologinpage";
 	public static String TO_HUB_PAGE ="tohubpage"; 
+    public static String TO_REGISTER_PAGE ="toregisterpage";
 	public static String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
 	public static int SUCCESS_CODE = 200;
 	public static int FAILURE_CODE = 500;

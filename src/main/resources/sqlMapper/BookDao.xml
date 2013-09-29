@@ -5,6 +5,7 @@
 	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
 		id="result">
 		<id property="Id" column="BOOK_ID" />
+		<result property="isbnId" column="ISBN_ID"/>
 		<result property="bookName" column="BOOK_NAME" />
 		<result property="authorName" column="AUTHOR" />
 		<result property="bookPrice" column="BOOK_PRICE" />
@@ -18,6 +19,7 @@
 	<sql id="sql_select">
 		SELECT
 		BOOK_ID,
+		ISBN_ID,
 		BOOK_NAME,
 		AUTHOR,
 		BOOK_PRICE,
@@ -31,9 +33,9 @@
 	<sql id="sql_select_m">
 		SELECT
 		B.BOOK_ID AS Id,
+		B.ISBN_ID AS isbnId,
 		B.BOOK_NAME AS bookName,
-		b.AUTHOR AS
-		authorName,
+		b.AUTHOR AS authorName,
 		B.BOOK_PRESS AS bookPress,
 		B.BOOK_PRICE AS bookPrice,
 		B.BOOK_VERSION AS bookVersion,
@@ -94,7 +96,7 @@
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
 		keyProperty="Id">
 		INSERT INTO
-		bd_book(BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE)
-		values(#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate});
+		bd_book(ISBN_ID,BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE)
+		values(#{isbnId},#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate});
 	</insert>
 </mapper>
