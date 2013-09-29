@@ -13,7 +13,7 @@
 			</result>
 		</action>
 		<action name="myBook" class="com.turtledove.bookdrift.web.BookAction" method="myBook">
-		 <result name="success">/book.jsp</result>
+		 <result name="success">/mybook.jsp</result>
 		</action>
 		<action name="getBooksUnderLabel" class="com.turtledove.bookdrift.web.BookAction" method="getBooksUnderLabel">
 		  <result type="json" name="success">
