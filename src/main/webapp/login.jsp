@@ -37,7 +37,7 @@
 				
 				<button type="submit" class="btn btn-default">登陆</button>
 				<a type="button" class="btn btn-default" href="/register">
-					注册&nbsp;<span class="glyphicon glyphicon-arrow-right" style="color: blue;"></span>
+					注册&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
 				</a>
 			</form>
 		</div>

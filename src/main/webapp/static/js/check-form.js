@@ -22,10 +22,9 @@
 			methods.el = that;
 			
 			methods.settings = $.extend( {
-				success: function(el){
-				},
-				error: function(el, msg) {
-				}
+				success: function(el){},
+				error: function(el, msg) {},
+				remote: function ( data, status ) {},
 			}, opt );
 			
 			methods.bind();
@@ -40,8 +39,19 @@
 		
 		check: function (e) {
 			var _type = $(e.target).data('check');
-			if ( typeof _type == 'undefined' ) return;
+			var _href = $( e.target ).data( 'remote' );
 			
+			if ( typeof _href !== 'undefined' ) {
+				var params = {};
+				params[$( e.target ).attr( 'name' )] = $( e.target ).val();
+				
+				$.post( _href, params, function ( data, status) {
+					methods.settings.remote( data, status );
+				} );
+			}
+			
+			if ( typeof _type == 'undefined' ) return;
+			//check with re
 			if ( methods.res[_type].test( $(e.target).val() ) ) {
 				methods.settings.success( $(e.target) );
 			} else {

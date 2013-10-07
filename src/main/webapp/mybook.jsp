@@ -71,7 +71,7 @@
 				添加新的标签
 			</div>
 			<div class="modal-body">
-				<label>标签号</label>
+				<label>标签号</label><p></p>
 				<input type="text" class="form-control">
 			</div>
 			<div class="modal-footer">
@@ -90,16 +90,16 @@
 			</div>
 			<div class="modal-body">
 				<label>ISBN</label>
-				<p>
-					<div class="input-group">
-						<input class="form-control" type="text">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" id="searchIsbn">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</span>
-					</div>
-				</p>
+				<p></p>
+				<div class="input-group">
+					<input class="form-control" type="text">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" id="searchIsbn">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			
 				<table class="table table-hover" style="display: none;">
 				<tbody>
 					<tr>

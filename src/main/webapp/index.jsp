@@ -9,52 +9,73 @@
 	</head>
 	<style>
 	body {
-		font-family: 微软雅黑;
-		font-size: 14px;
-		color: white;
-		background-color: rgb(30, 26, 26);
+		background: #ceab65;
+		overflow: hidden;
 	}
 	
-	h1 {
-		font-size: 80px;
-		font-weight: 200px;
+	#title-contain {
+		width: 100%; 
+		display: block;
+		position: fixed;
+		top:150px;
+		padding: 50px;
+		font-family:微软雅黑 仿宋;
+		color:#333333;
+		letter-spacing:40px;
 	}
 	
-	p {
-		color: gray;
-		margin-top: 60px;
-		font-size: 20px;
+	#title {
+		font-size:80px;
+		text-align: center;
+		line-height: 80px;
+		background: #ceab65;
 	}
 	
-	img {
+	#desc {
+		width: 400px;
+		margin: 5px auto;
+		text-align: right;
+		letter-spacing:4px;
+		font-family:微软雅黑;
+	}
+	
+	#desc > span {
 		float: right;
 	}
 	
-	.btn {
-		margin-top: 100px;
-		margin-right: 20px;
-		padding-left: 20px;
-		padding-right: 20px;
+	#ctrl {
+		display: block;
+		width: 400px;
+		margin: 10px auto;
+		letter-spacing: 0;
+		font-family:微软雅黑;
+	}
+	
+	#ctrl a {
+		float: right;
+		width: 150px;
+		color: #336666;
+		border: none;
+		margin-left: 15px;
+	}
+	
+	#ctrl .btn:hover {
+		background: #336666;
+		color: #ffffcc;
+		transition: background 0.5s;
 	}
 	</style>
 <body>
-<h1>图书漂流</h1>
-<div class="row">
-	<div class="col-lg-6">
-		<img src="static/img/welcome.png" >
+<div id="title-contain">
+	<div id="title">
+		<div><span class="glyphicon glyphicon-book" style="font-size: 14px; line-height: 14px;letter-spacing: 0; position: relative; top: -50px; left: -10px;"></span>图书漂流</div>
 	</div>
-	<div class="col-lg-6">
-		<p>让知识不再落单</p>
-		<a class="btn btn-default" href="/login">登陆</a>
-		<a class="btn btn-default" href="/register">注册</a>
+	<div id="desc">快捷图书分享&nbsp;&nbsp;让知识不再落单
+	</div>
+	<div id="ctrl">
+		<a type="button" href="/login" class="btn btn-default">登陆</a>
+		<a type="button" href="/register" class="btn btn-default">注册</a>
 	</div>
 </div>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="static/bootstrap3/js/bootstrap.js"></script>
-<script>
-(function(){
-	
-})();
-</script>
 </body>
 </html>
