@@ -26,7 +26,7 @@
 				<img src="static/img/register-logo.png" />
 				<div class="form-group">
 					<label>邮箱</label>
-					<input type="email" class="form-control" placeholder="你的邮箱" data-check="email" data-with="val: email" name="email"/>
+					<input type="email" class="form-control" placeholder="你的邮箱" data-check="email" data-remote="/validation" data-with="val: email" name="email"/>
 					<p class="help-block" style="color: #b94a48;" data-with="text: error"></p>
 				</div>
 				
@@ -44,7 +44,7 @@
 				
 				<button type="submit" class="btn btn-default">注册</button>
 				<a type="button" class="btn btn-default" href="/login">
-					登陆&nbsp;<span class="glyphicon glyphicon-arrow-right" style="color: blue;"></span>
+					登陆&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
 				</a>
 			</form>
 		</div>

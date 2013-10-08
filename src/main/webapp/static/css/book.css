@@ -1,7 +1,30 @@
 body {
-	font-family: 微软雅黑;
+	font-family: 微软雅黑 ,Consolas;
 	font-size: 14px;
+	background-color: #ffffee;
 	min-width: 1000px;
+}
+
+/* hover */
+.btn:hover,
+a:hover {
+	color: #ffffcc;
+	background: #336666;
+	transition: background 0.5s;
+}
+
+/* navbar */
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ceab65;
+  background-color: transparent;
+}
+
+/* modal */
+.modal-content {
+	background-color: #ffffee;
+	border-radius: 0;
+	box-shadow: 0 5px 15px rgba(206, 171, 65, 0.5);
 }
 
 .help-block {
@@ -15,8 +38,8 @@ body {
 	padding: 25px 0;
 	border-style: solid;
 	border-width: 1px 0;
-	border-color: rgb( 209, 209, 209 );
-	background: rgb( 232, 232, 232);
+	border-color: #336666;
+	background: #ceab65;
 }
 
 /* show books */
@@ -28,7 +51,7 @@ body {
 	position: absolute;
 	top: 8px;
 	right: 5px;
-	color: brown;
+	color: #ceab65;
 	font-size: 10px;
 }
 
@@ -81,7 +104,7 @@ body {
 
 .status > li:hover {
 	cursor: pointer;
-	color: blue;
+	color: #ceab65;
 }
 
 .nav-pills > li.active > a,
