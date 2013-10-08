@@ -7,13 +7,15 @@ import com.turtledove.bookdrift.common.AbstractClass.AbstractDomainObject;
 public class Book  extends AbstractDomainObject {
 
 
-	private String isbnId;
+	private String isbn;
 	private String bookName;
 	private String authorName;
-	private Integer bookPrice;
+	private Double bookPrice;
 	private String bookPress;
 	private Date publishDate;
 	private int bookVersion;
+	private String imageUrl;
+	private String summary;
 	public String getBookName() {
 		return bookName;
 	}
@@ -26,12 +28,7 @@ public class Book  extends AbstractDomainObject {
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
 	}
-	public Integer getBookPrice() {
-		return bookPrice;
-	}
-	public void setBookPrice(Integer bookPrice) {
-		this.bookPrice = bookPrice;
-	}
+
 	public String getBookPress() {
 		return bookPress;
 	}
@@ -50,11 +47,30 @@ public class Book  extends AbstractDomainObject {
 	public void setBookVersion(int bookVersion) {
 		this.bookVersion = bookVersion;
 	}
-	public String getIsbnId() {
-		return isbnId;
+
+	public Double getBookPrice() {
+		return bookPrice;
 	}
-	public void setIsbnId(String isbnId) {
-		this.isbnId = isbnId;
+	public void setBookPrice(Double bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 
 }

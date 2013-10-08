@@ -5,7 +5,7 @@
 	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
 		id="result">
 		<id property="Id" column="BOOK_ID" />
-		<result property="isbnId" column="ISBN_ID"/>
+		<result property="isbn" column="ISBN"/>
 		<result property="bookName" column="BOOK_NAME" />
 		<result property="authorName" column="AUTHOR" />
 		<result property="bookPrice" column="BOOK_PRICE" />
@@ -14,12 +14,14 @@
 		<result property="bookVersion" column="BOOK_VERSION" />
 		<result property="creatDate" column="CREAT_DATE" />
 		<result property="lastUpdateDate" column="LAST_UPDATE_DATE" />
+		<result property="imageUrl" column="BOOK_IMAGE_URL"/>
+		<result property="summary" column="BOOK_SUMMARY"/>
 	</resultMap>
 
 	<sql id="sql_select">
 		SELECT
 		BOOK_ID,
-		ISBN_ID,
+		ISBN,
 		BOOK_NAME,
 		AUTHOR,
 		BOOK_PRICE,
@@ -27,13 +29,15 @@
 		PUBLISH_DATE,
 		BOOK_VERSION,
 		CREAT_DATE,
-		LAST_UPDATE_DATE
+		LAST_UPDATE_DATE,
+		BOOK_IMAGE_URL,
+		BOOK_SUMMARY
 		FROM bd_book
 	</sql>
 	<sql id="sql_select_m">
 		SELECT
 		B.BOOK_ID AS Id,
-		B.ISBN_ID AS isbnId,
+		B.ISBN AS isbnId,
 		B.BOOK_NAME AS bookName,
 		b.AUTHOR AS authorName,
 		B.BOOK_PRESS AS bookPress,
@@ -41,7 +45,9 @@
 		B.BOOK_VERSION AS bookVersion,
 		B.PUBLISH_DATE AS publishDate,
 		B.CREAT_DATE AS createDate,
-		B.LAST_UPDATE_DATE AS lastUpdateDate
+		B.LAST_UPDATE_DATE AS lastUpdateDate,
+		B.BOOK_SUMMARY as summary,
+		B.BOOK_IMAGE_URL as imageUrl
 	</sql>
 	<select id="findById" parameterType="Integer" resultMap="result">
 		<include refid="sql_select" />
@@ -96,7 +102,7 @@
 	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
 		keyProperty="Id">
 		INSERT INTO
-		bd_book(ISBN_ID,BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE)
-		values(#{isbnId},#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate});
+		bd_book(ISBN,BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE,BOOK_SUMMARY,BOOK_IMAGE_URL)
+		values(#{isbn},#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate},#{summary},#{imageUrl});
 	</insert>
 </mapper>

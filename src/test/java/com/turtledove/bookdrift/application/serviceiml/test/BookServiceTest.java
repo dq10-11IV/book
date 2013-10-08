@@ -21,7 +21,7 @@ import com.turtledove.bookdrift.infrastruct.dao.BookDao;
 public class BookServiceTest extends AbstractTestCase<Book>{
 
 	private static final int VERSION = 2;
-	private static final int PRICE = 39;
+	private static final Double PRICE = 39.1;
 	private static final String BOOK_PRESS = "人民出版社";
 	private static final String AUTHOR_NAME = "roger";
 	private static final String BOOK_NAME = "程序员的修炼之道";

@@ -1,9 +1,6 @@
 package com.turtledove.bookdrift.common.utils.test;
 
-import java.util.Date;
-
 import junit.framework.Assert;
-
 import net.sf.json.JSONArray;
 
 import org.junit.After;
@@ -18,7 +15,7 @@ import com.turtledove.bookdrift.domain.entity.DomainObjectBuilder;
 public class JsonUtilsTest extends AbstractTestCase<Book>{
 
 	private static final int VERSION = 2;
-	private static final int PRICE = 39;
+	private static final Double PRICE = 39.1;
 	private static final String BOOK_PRESS = "人民出版社";
 	private static final String AUTHOR_NAME = "roger";
 	private static final String BOOK_NAME = "程序员的修炼之道";
