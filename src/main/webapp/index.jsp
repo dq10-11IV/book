@@ -9,7 +9,7 @@
 	</head>
 	<style>
 	body {
-		background: #ceab65;
+		background: url(static/img/indexbg.jpg);
 		overflow: hidden;
 	}
 	
@@ -28,7 +28,7 @@
 		font-size:80px;
 		text-align: center;
 		line-height: 80px;
-		background: #ceab65;
+		text-shadow: 0px 5px 5px #ceab65;
 	}
 	
 	#desc {

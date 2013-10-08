@@ -3,3 +3,9 @@ request{
     passwd:,
     username:
 }
+
+validation parameters
+
+email=
+
+ajax post 方式
