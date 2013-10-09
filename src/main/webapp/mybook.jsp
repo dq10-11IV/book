@@ -119,7 +119,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal" id="submitBook">完成</button>
-				<a type="button" class="btn btn-info" href="/addbook">更多</a>
+				<a type="button" class="btn btn-info" href="/addbook">高级>></a>
 			</div>
 		</div>
 	</div>

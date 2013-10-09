@@ -138,13 +138,19 @@ a:hover {
 	margin: 10px 20%;
 }
 .list-group-item > p {
-	float: right;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
 }
 .list-group-item > span {
 	position: absolute;
 	top: 20px;
 	right: 20px;
+	transition: transform 1s, font-size 1s;
 }
 .list-group-item > span:hover {
 	cursor: pointer;
+	transform: rotate( 360deg );
+	font-size: 20px;
+	transition: transform 1s, font-size 1s;
 }
