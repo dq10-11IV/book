@@ -24,11 +24,9 @@
 </nav>
 <div class="container">
 	<div class="row">
-		<div class="input-group	 col-lg-4 col-lg-offset-4">
-			<input class="form-control" placeholder="书籍关键字">
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button" title="搜索" id="searchBooks"><span class="glyphicon glyphicon-search"></span></button>
-			</span>
+		<div class="col-lg-5 col-lg-offset-4">
+			<input class="form-control" placeholder="书籍关键字" style="display: inline-block; width: 80%;">
+			<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks"><span class="glyphicon glyphicon-search"></span></button>
 		</div>
 	</div>
 	<div id="books">
@@ -47,6 +45,7 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="static/bootstrap3/js/bootstrap.js" ></script>
 <script src="static/js/with.js"></script>
 <script src="static/js/douban.js"></script>
@@ -79,7 +78,7 @@ $(function(){
 
 	$( '#searchBooks' ).click( function () {
 		var keys = $( this ).siblings( 'input' ).val();
-		var data = new douban().searchBooksByKeys( 'Java ee', function( data ) {
+		new douban().searchBooksByKeys( keys, function( data ) {
 			$( '#books' ).fill( data );
 		} );
 	} );
