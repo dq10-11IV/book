@@ -24,8 +24,12 @@ public class UserBookAssServiceIml implements UserBookAssService {
 		return userBookAssDao.findById(Id);
 	}
 	public void save(Book book,UserBookAss userBookAss){
-		if(bookService.findByBookNameAndVersion(book.getBookName(), book.getBookVersion())==null)
-			bookService.insert(book);
+		Book findBook =bookService.findByBookNameAndVersion(book.getBookName(), book.getBookVersion());
+		Integer bookId = null;
+		if(findBook==null)
+			bookId = bookService.insert(findBook);
+		else bookId = findBook.getId();
+		userBookAss.setBookId(bookId);
 		insert(userBookAss);
 	}
 }
