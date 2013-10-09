@@ -11,11 +11,12 @@
 <body>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="/">Book Drift</a>
+		<a class="navbar-brand">Book Drift</a>
 	</div>
 	<ul class="nav navbar-nav">
+		<li><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
 		<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
-		<li><a href="#" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
+		<li class="active"><a href="#" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
 	</ul>
 	<ul class="nav navbar-nav pull-right" data-with="bool: user">
 		<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
@@ -34,7 +35,7 @@
 		<example>
 			<li class="list-group-item">
 			<h3 data-with="text: title"></h3>
-			<img data-with="src: image">
+			<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
 			<span class="glyphicon glyphicon-share"></span>
 			<small data-with="text: author"></small>
 			<p data-with="text: publisher"></p>
@@ -44,6 +45,7 @@
 	</div>
 </div>
 
+<%@include file="patch/result.jsp" %>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="static/bootstrap3/js/bootstrap.js" ></script>
@@ -77,9 +79,26 @@ $(function(){
 	
 
 	$( '#searchBooks' ).click( function () {
+		$( '#books>ul>li' ).remove();
 		var keys = $( this ).siblings( 'input' ).val();
 		new douban().searchBooksByKeys( keys, function( data ) {
 			$( '#books' ).fill( data );
+			$( '#books>ul>li img' ).each( function () {
+				$( this ).popover({
+					trigger: 'hover',
+					title: '详细',
+					html: true,
+					content: function () {
+						var node = '<div>';
+						var text = $( this ).siblings( '.book-summary' ).text().split( '\n' );
+						for ( var item in text ) {
+							node += '<p>' + text[item] + '</p>';
+						}
+						node += '</div>';
+						return node;
+					}
+				});
+			} );
 		} );
 	} );
 	

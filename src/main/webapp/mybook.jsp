@@ -11,9 +11,10 @@
 <body>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="/">Book Drift</a>
+		<a class="navbar-brand">Book Drift</a>
 	</div>
 	<ul class="nav navbar-nav">
+		<li class="active"><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
 		<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
 		<li><a href="#add-book" data-toggle="modal" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
 	</ul>
@@ -40,20 +41,23 @@
 				
 				<div class="row" data-with="list: books">
 					<example>
-						<div class="col-lg-3">
-							<div href="#" class="thumbnail">
+						<div class="col-lg-2">
+							<a href="#" class="thumbnail">
+								<img data-with="src: imageUrl">
+								<ul class="status">
+									<li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li>
+									<li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li>
+									<li title="不可借"><span class="glyphicon glyphicon-remove-sign"></span></li>
+								</ul>
+								<p class="book-summary" data-with="text: summary" style="display: none;"></p>
+								<!-- 
 								<div class="book">
-									<span class="glyphicon glyphicon-ok-sign"></span>
 									<p class="book-name" data-with="text: bookName"></p>
 									<p class="author-name" data-with="text: authorName"></p>
 									<p class="book-press" data-with="text: bookPress"></p>
-									<ul class="status">
-										<li><span class="glyphicon glyphicon-ok"></span></li>
-										<li><span class="glyphicon glyphicon-minus"></span></li>
-										<li><span class="glyphicon glyphicon-remove"></span></li>
-									</ul>
-								</div>
-							</div>
+									
+								</div> -->
+							</a>
 						</div>
 					</example>
 				</div>
@@ -133,15 +137,26 @@
 <script src="static/js/douban.js"></script>
 <script>
 $(function(){
-	$( '#tags>li>[data-toggle="tab"]' ).each( function () {
-/*		var pane = $( this ).attr( 'href' );
-		if ( $( pane ).length == 0 ) {
-			var id = pane.substr( 1 );
-			var node = '<div class="tab-pane" id="'+ id +'"><div class="row" data-with="list: books">' +
-						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
-			
-			$( '.tab-content' ).append( node );
-		}*/
+	function thumbnailPopover( tn ) {
+		$( tn ).popover({
+			trigger: 'click',
+			placement: 'auto right',
+			title: '详细',
+			html: true,
+			content: function () {
+				var node = '<div style="min-width: 200px; max-height: 300px; overflow: auto;">';
+				var text = $( this ).children( '.book-summary' ).text().split( '\n' );
+				for ( var item in text ) {
+					node += '<p>' + text[item] + '</p>';
+				}
+				node += '</div>';
+				return node;
+			}
+		});
+	}
+	
+	$( '.thumbnail' ).each( function () {
+		thumbnailPopover(this);
 	});
 	
 	$( '#tags [data-toggle="tab"]' ).on( 'show.bs.tab', function ( e ) {
@@ -154,27 +169,27 @@ $(function(){
 						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
 			$( '.tab-content' ).append( node );
 
-			$.post( '/getBooksUnderLabel',
-					{
-						ajax: true,
-						label: $( this ).text()
-					},
-					function( data, status ) {
-				$( '#'+id ).fill( data.data );
-			})
+			$.post(
+				'/getBooksUnderLabel',
+				{
+					ajax: true,
+					label: $( this ).text()
+				},
+				function( data, status ) {
+					$( '#'+id ).fill( data.data );/* .find('li').click( function () {
+						var parent = $(this).parent('ul');
+						$(this).insertBefore( parent.children().first() );
+					}) */
+			});
 		}
 	} );
 	
-	$('.thumbnail').hover(function(){
-		$(this).find('.status').slideToggle();
-	});
-	
 	$('.status').find('li').click(function(){
-		var claz = $(this).find('span').attr('class')+'-sign';
-		$(this).parent('ul').siblings('span').attr('class', claz);
+		var parent = $(this).parent('ul');
+		$(this).insertBefore( parent.children().first() );
 	});
 	
-	$('.nav-pills').find('li').draggable({
+	$('.nav-pills').find('li:not(:eq(0))').draggable({
 		revert: 'invalid'
 	});
 	
@@ -198,6 +213,7 @@ $(function(){
 	$( '#submitBook' ).click( function () {
 		if ( typeof saved.data !== 'undefined' ) {
 			saved.data.ajax = true;
+			saved.data.author = saved.data.author.join('');
 			$.post( '/addbook', saved.data);
 		}
 		$( '#add-book' ).find( 'table' ).hide();
