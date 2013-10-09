@@ -20,7 +20,7 @@ import com.turtledove.bookdrift.infrastruct.dao.BookDao;
 
 public class BookServiceTest extends AbstractTestCase<Book>{
 
-	private static final int VERSION = 2;
+	private static final int VERSION = 3;
 	private static final Double PRICE = 39.1;
 	private static final String BOOK_PRESS = "人民出版社";
 	private static final String AUTHOR_NAME = "roger";
@@ -43,6 +43,15 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		List<Book> bookList = new ArrayList<Book>();
 		bookList = bookService.findByBookName(book.getBookName());
 		Assert.assertNotNull(bookList);
+	}
+	@Test
+	public void test_findbook_by_name_and_verion(){
+		Book actualEntity = create(),expectedEntity;
+		bookService.insert(actualEntity);
+		expectedEntity = bookService.findByBookNameAndVersion(BOOK_NAME, VERSION);
+		Assert.assertNotNull(expectedEntity);
+		Assert.assertEquals(expectedEntity.getAuthorName(), actualEntity.getAuthorName());
+		
 	}
 	@Test
 	public void test_query(){

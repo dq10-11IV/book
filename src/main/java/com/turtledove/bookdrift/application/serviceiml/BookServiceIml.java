@@ -1,8 +1,6 @@
 package com.turtledove.bookdrift.application.serviceiml;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +25,10 @@ public class BookServiceIml implements BookService {
 	}
 	public List<Book> query(BookInfo bookInfo) {
 		return bookDao.query(bookInfo);
+	}
+
+	public Book findByBookNameAndVersion(String bookName, Integer version) {
+		return bookDao.findByBookNameAndVerion(bookName, version);
 	}
 
 }
