@@ -66,6 +66,10 @@
 	   WHERE BOOK_NAME = #{bookName} 
 	        AND BOOK_VERSION = #{version};
 	</select>
+	<select id="findByISBN" resultMap="result">
+	   <include refid="sql_select"/>
+	   WHERE ISBN = #{isbn};
+	</select>
 	<select id="getBooksUnderUserAndTag" parameterType="Map"
 		resultMap="result">
 		<include refid="sql_select_m" />
@@ -104,8 +108,7 @@
 		ON B.BOOK_ID = UB.BOOK_ID
 		WHERE UB.USER_ID = #{Id}
 	</select>
-	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
-		keyProperty="Id">
+	<insert id="insert" parameterType="Book" useGeneratedKeys="true" keyProperty="Id">
 		INSERT INTO
 		bd_book(ISBN,BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE,BOOK_SUMMARY,BOOK_IMAGE_URL)
 		values(#{isbn},#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate},#{summary},#{imageUrl});

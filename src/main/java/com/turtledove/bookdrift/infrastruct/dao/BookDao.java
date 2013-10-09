@@ -16,4 +16,5 @@ public interface BookDao extends DomainObjectDao<Book>{
 	public List<Book> getBooksUnderUserAndTag(Map<String,String> paraMap);
 	public List<Book> getBookUnderUser(Integer Id);
 	public Book findByBookNameAndVerion(@Param("bookName") String bookName,@Param("version") Integer version);
+	public Book findByISBN(@Param("isbn")String isbn);
 }

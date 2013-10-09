@@ -25,6 +25,10 @@
        <include refid="sql_select"/>
        WHERE USER_BOOK_ID = #{Id}
     </select>
+    <select id="findByUserIdAndBookId" resultMap="result">
+       <include refid="sql_select"/>
+       WHERE USER_ID  = #{userId} AND BOOK_ID = #{bookId};
+    </select>
     <insert id="insert" parameterType="UserBookAss" useGeneratedKeys="true" keyProperty="Id">
        INSERT INTO bd_user_book_ass(BOOK_ID,USER_ID,IS_ONHAND,IS_ANY_PERSON_WANTED,CREATE_DATE,LAST_UPDATE_DATE)
          VALUE(#{bookId},#{userId},#{isOnHand},#{isWanted},#{createDate},#{lastUpdateDate});

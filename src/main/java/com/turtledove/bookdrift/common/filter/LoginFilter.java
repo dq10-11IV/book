@@ -1,6 +1,7 @@
 package com.turtledove.bookdrift.common.filter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

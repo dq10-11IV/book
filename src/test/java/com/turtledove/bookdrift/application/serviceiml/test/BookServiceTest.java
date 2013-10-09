@@ -25,6 +25,8 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	private static final String BOOK_PRESS = "人民出版社";
 	private static final String AUTHOR_NAME = "roger";
 	private static final String BOOK_NAME = "程序员的修炼之道";
+	private static final String ISBN = "9787115215536";
+	private String SUMMARY = "三天不读书，智商输给猪";
 	@Autowired
 	BookDao bookDao;
 	@Autowired 
@@ -36,6 +38,15 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	public void tearDown() throws Exception {
 	}
 
+	@Test
+	public void test_insert_and_findById(){
+		Book actualEntity = create(),expectedEntity;
+		bookService.insert(actualEntity);
+		expectedEntity = bookDao.findById(actualEntity.getId());
+		Assert.assertNotNull(expectedEntity);
+		Assert.assertEquals(expectedEntity.getAuthorName(), actualEntity.getAuthorName());
+		Assert.assertEquals(expectedEntity.getSummary(), actualEntity.getSummary());
+	}
 	@Test
 	public void test_find_books_by_bookName() {
 		Book book = create();
@@ -54,6 +65,14 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		
 	}
 	@Test
+	public void test_findbook_by_isbn(){
+		Book actualEntity = create(),expectedEntity;
+		bookService.insert(actualEntity);
+		expectedEntity = bookService.findByISBN(actualEntity.getIsbn());
+		Assert.assertNotNull(expectedEntity);
+		Assert.assertEquals(expectedEntity.getAuthorName(), actualEntity.getAuthorName());
+	}
+	@Test
 	public void test_query(){
 		bookDao.insert(create());
 		BookInfo bookInfo = create_BookInfo();
@@ -65,7 +84,7 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	@Override
 	protected Book create() {
 		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).
-				withField("authorName", AUTHOR_NAME).withField("bookPress", BOOK_PRESS).withField("bookPrice", PRICE)
+				withField("authorName", AUTHOR_NAME).withField("bookPress", BOOK_PRESS).withField("bookPrice", PRICE).withField("isbn", ISBN).withField("summary", SUMMARY)
 				.withField("bookVersion", VERSION).withField("publishDate", new Date()).build(Book.class);
 	}
 	private BookInfo create_BookInfo(){

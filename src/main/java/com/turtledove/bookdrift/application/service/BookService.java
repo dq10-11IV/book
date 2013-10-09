@@ -10,4 +10,5 @@ public interface BookService {
 	public List<Book> findByBookName(String bookName);
 	public Book findByBookNameAndVersion(String bookName,Integer version);
 	public List<Book> query(BookInfo bookInfo);
+	public Book findByISBN(String isbn);
 }

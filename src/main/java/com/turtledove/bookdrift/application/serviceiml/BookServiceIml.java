@@ -31,4 +31,8 @@ public class BookServiceIml implements BookService {
 		return bookDao.findByBookNameAndVerion(bookName, version);
 	}
 
+	public Book findByISBN(String isbn) {
+		return bookDao.findByISBN(isbn);
+	}
+
 }

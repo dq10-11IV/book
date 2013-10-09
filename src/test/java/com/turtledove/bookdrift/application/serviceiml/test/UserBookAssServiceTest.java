@@ -33,9 +33,17 @@ public class UserBookAssServiceTest  extends AbstractTestCase<UserBookAss>{
 		Assert.assertEquals(expectedEnity.getBookId(),actualEntity.getBookId());
 		
 	}
+	@Test 
+	public void test_find_by_userId_and_bookId(){
+		UserBookAss  expectedEnity, actualEntity = create();
+		userBookAssService.insert(actualEntity);
+		expectedEnity = userBookAssService.findByUserIdAndBookId(actualEntity.getUserId(),actualEntity.getBookId());
+		Assert.assertNotNull(expectedEnity);
+		Assert.assertEquals(expectedEnity.getBookId(),actualEntity.getBookId());
+	}
 	@Override
 	protected UserBookAss create() {
-		return DomainObjectBuilder.newInstance().withField("userId", new Integer(1)).withField("bookId", new Integer(1)).build(UserBookAss.class);
+		return DomainObjectBuilder.newInstance().withField("userId", new Integer(1000)).withField("bookId", new Integer(1000)).build(UserBookAss.class);
 	}
 
 }
