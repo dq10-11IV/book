@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.turtledove.bookdrift.application.service.UserBookAssService;
+import com.turtledove.bookdrift.commom.Enum.ActionResult;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
@@ -28,7 +29,7 @@ public class UserBookAssAction extends AjaxBase{
 			return TO_ADD_BOOK_PAGE;
 		UserBookAss userBookAss = createUserBookWithUserId();
 		Book book = createBookWithHttpParam();
-		userBookAssService.save(book, userBookAss);
+		ActionResult actionReuslt = userBookAssService.save(book, userBookAss);
 		return SUCCESS;
 	}
 	private Book createBookWithHttpParam() {

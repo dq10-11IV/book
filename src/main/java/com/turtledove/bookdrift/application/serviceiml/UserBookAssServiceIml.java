@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.turtledove.bookdrift.application.service.BookService;
 import com.turtledove.bookdrift.application.service.UserBookAssService;
+import com.turtledove.bookdrift.commom.Enum.ActionResult;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.domain.entity.UserBookAss;
 import com.turtledove.bookdrift.infrastruct.dao.UserBookAssDao;
@@ -26,7 +27,7 @@ public class UserBookAssServiceIml implements UserBookAssService {
 		return userBookAssDao.findById(Id);
 	}
 	@Transactional(propagation=Propagation.REQUIRED)
-	public void save(Book book,UserBookAss userBookAss){
+	public ActionResult save(Book book,UserBookAss userBookAss){
 		Book findBook =bookService.findByISBN(book.getIsbn());
 		Integer bookId = null;
 		if(findBook==null){
@@ -35,8 +36,10 @@ public class UserBookAssServiceIml implements UserBookAssService {
 		}
 		bookId = findBook.getId();
 		userBookAss.setBookId(bookId);
-		if(findByUserIdAndBookId(userBookAss.getUserId(), userBookAss.getBookId())==null)
+		if(findByUserIdAndBookId(userBookAss.getUserId(), userBookAss.getBookId())!=null)
+			return ActionResult.EXIST;
 		insert(userBookAss);
+		return ActionResult.SUCCESS;
 	}
 	public UserBookAss findByUserIdAndBookId(Integer userId, Integer bookId) {
 		return userBookAssDao.findByUserIdAndBookId(userId,bookId);
