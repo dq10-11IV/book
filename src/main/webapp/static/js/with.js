@@ -47,7 +47,10 @@ $( 'head' ).append( '<style>example{display:none;}</style>' );
 		
 		fill: function ( that, data ) {
 			//not empty or null || JSON.stringify( data ) == '{}'
-			if ( typeof data == 'undefined' ) return that;
+			if ( typeof data == 'undefined' ) {
+				$( this ).find( '[data-with^="bool"]' ).remove();
+				return that;
+			}
 			
 			methods.el = that;
 			
