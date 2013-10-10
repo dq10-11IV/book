@@ -1,0 +1,7 @@
+需要传过来的参数
+fieldName,fieldValue
+例如验证eamil
+传过来的参数是
+
+fieldName:email
+fieldValue:***@gmail.com
