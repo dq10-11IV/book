@@ -61,11 +61,12 @@ public class AdminLogin extends AjaxBase{
 		return TOLOGINPAGE;
 	}
 	public String validation(){
-		if(fieldName.equals("userEmail")){
+		if(fieldName.equals("email")){
 			if(userService.validateEmail(fieldValue))
-				setSuccessResult(ActionMessage.EXIST);
-			else setFailureResult(ActionMessage.NOT_EXIST);
+				setDateWithErrorMsg("");
+			else setDateWithErrorMsg(ActionMessage.USER_EXIST);
 		}
+		getRequest().put("jsonResult", setJsonResult());
 		return SUCCESS;
 	}
 	public void setData(String data) {

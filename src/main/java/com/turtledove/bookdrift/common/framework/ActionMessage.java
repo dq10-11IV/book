@@ -10,4 +10,5 @@ public class ActionMessage {
 	public static String NOT_EXIST="Not exist";
 	public static String ADD_LABEL_SUCCESS = "添加标签成功";
 	public static String EXCEPTION = "异常，请联系管理员";
+	public static String USER_EXIST = "邮箱已经存在";
 }
