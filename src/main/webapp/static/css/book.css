@@ -76,6 +76,7 @@ a:hover {
 
 .thumbnail {
 	position: relative;
+	min-height: 160px;
 }
 
 .book {
@@ -83,7 +84,7 @@ a:hover {
 	width: 100%;
 	padding-top: 40px;
 	max-height: 200px;
-	min-height: 145px;
+	min-height: 150px;
 	background: rgb( 232, 232, 232);
 }
 

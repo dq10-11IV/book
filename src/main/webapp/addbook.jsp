@@ -36,7 +36,7 @@
 			<li class="list-group-item">
 			<h3 data-with="text: title"></h3>
 			<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-			<span class="glyphicon glyphicon-share"></span>
+			<span class="glyphicon glyphicon-share" data-with="id: loop"></span>
 			<small data-with="text: author"></small>
 			<p data-with="text: publisher"></p>
 			</li>
@@ -53,36 +53,22 @@
 <script src="static/js/douban.js"></script>
 <script>
 $(function(){
-	$( '#tags [data-toggle="tab"]' ).on( 'show.bs.tab', function ( e ) {
-		$( e.relatedTarget ).find( 'span' ).remove().appendTo( $( e.target ) );
-	} );
-	
-	$('.thumbnail').hover(function(){
-		$(this).find('.status').slideToggle();
-	});
-	
-	$('.status').find('li').click(function(){
-		var claz = $(this).find('span').attr('class')+'-sign';
-		$(this).parent('ul').siblings('span').attr('class', claz);
-	});
-	
-	$('.nav-pills').find('li').draggable({
-		revert: 'invalid'
-	});
-	
-	$('#trash').droppable({
-		drop: function ( event, ui ) {
-			ui.draggable.remove();
-		},
-		hoverClass: 'btn-danger'
-	});
-	
-
+	var saved = {};
 	$( '#searchBooks' ).click( function () {
 		$( '#books>ul>li' ).remove();
 		var keys = $( this ).siblings( 'input' ).val();
 		new douban().searchBooksByKeys( keys, function( data ) {
+			saved.books = data.books;
+			//fill datas
 			$( '#books' ).fill( data );
+			
+			//add action of share
+			$( '#books .glyphicon-share' ).click( function () {
+				var index = $( this ).attr( 'id' );
+				alert( JSON.stringify(saved.books[index]) );
+			});
+			
+			//add action of popover about book's summary
 			$( '#books>ul>li img' ).each( function () {
 				$( this ).popover({
 					trigger: 'hover',

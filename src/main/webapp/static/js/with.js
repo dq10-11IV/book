@@ -30,6 +30,9 @@ $( 'head' ).append( '<style>example{display:none;}</style>' );
 			src: function ( data ) {
 				this.attr( 'src', data );
 			},
+			id: function ( data ) {
+				this.attr( 'id', data);
+			},
 			list: function ( data ) {
 				//find example, if failed, return
 				var example = this.find( methods.settings.exampleSelector );

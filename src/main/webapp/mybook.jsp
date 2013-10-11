@@ -75,11 +75,12 @@
 				添加新的标签
 			</div>
 			<div class="modal-body">
-				<label>标签号</label><p></p>
+				<label>标签</label><p></p>
 				<input type="text" class="form-control">
+				<p data-with="text: msg"></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">确定</button>
+				<button type="button" class="btn btn-primary" id="submitTag">确定</button>
 			</div>
 		</div>
 	</div>
@@ -143,9 +144,10 @@ $(function(){
 			placement: 'auto right',
 			title: '详细',
 			html: true,
+			container: 'body',
 			content: function () {
 				var node = '<div style="min-width: 200px; max-height: 300px; overflow: auto;">';
-				var text = $( this ).children( '.book-summary' ).text().split( '\n' );
+				var text = $( this ).siblings( '.book-summary' ).text().split( '\n' );
 				for ( var item in text ) {
 					node += '<p>' + text[item] + '</p>';
 				}
@@ -155,7 +157,7 @@ $(function(){
 		});
 	}
 	
-	$( '.thumbnail' ).each( function () {
+	$( '.thumbnail>img' ).each( function () {
 		thumbnailPopover(this);
 	});
 	
@@ -164,22 +166,16 @@ $(function(){
 
 		var id = $( e.target ).attr( 'href' ).substr( 1 );
 		var pane = $( '#'+id );
-		if ( pane.length == 0 ) {;
+		if ( pane.length == 0 ) {
 			var node = '<div class="tab-pane" id="'+ id +'"><div class="row" data-with="list: books">' +
 						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
 			$( '.tab-content' ).append( node );
 
-			$.post(
-				'/getBooksUnderLabel',
-				{
-					ajax: true,
-					label: $( this ).text()
-				},
-				function( data, status ) {
-					$( '#'+id ).fill( data.data );/* .find('li').click( function () {
-						var parent = $(this).parent('ul');
-						$(this).insertBefore( parent.children().first() );
-					}) */
+			$.post( '/getBooksUnderLabel', {ajax: true,	label: $( this ).text()	}, function( data, status ) {
+				$( '#'+id ).fill( data.data );
+				$( '#'+id ).find( '.thumbnail>img' ).each( function () {
+					thumbnailPopover( this );
+				});
 			});
 		}
 	} );
@@ -218,6 +214,15 @@ $(function(){
 		}
 		$( '#add-book' ).find( 'table' ).hide();
 	} );
+	
+	$( '#submitTag' ).click( function () {
+		var param = {};
+		param['labelName'] = $( '#add-tag input' ).val();
+		
+		$.post( '/addlabel', param, function ( data, status ) {
+			$( '#add-tag' ).fill( data );
+		})
+	})
 });
 </script>
 </body>

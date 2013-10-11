@@ -24,7 +24,7 @@
 			methods.settings = $.extend( {
 				success: function(el){},
 				error: function(el, msg) {},
-				remote: function ( data, status ) {},
+				remote: function ( el, data ) {},
 			}, opt );
 			
 			methods.bind();
@@ -43,10 +43,11 @@
 			
 			if ( typeof _href !== 'undefined' ) {
 				var params = {};
-				params[$( e.target ).attr( 'name' )] = $( e.target ).val();
+				params['fieldName'] = $( e.target ).attr( 'name' );
+				params['fieldValue'] = $( e.target ).val();
 				
 				$.post( _href, params, function ( data, status) {
-					methods.settings.remote( data, status );
+					methods.settings.remote( $(e.target), data );
 				} );
 			}
 			

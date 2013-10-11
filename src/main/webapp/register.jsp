@@ -65,6 +65,11 @@
 				success: function (el) {
 					el.parent('div').removeClass('has-error');
 					el.next().text('');
+				},
+				
+				remote: function ( el, data ) {
+					el.parent('div').addClass('has-error');
+					el.next().text( data.data.error );
 				}
 			});
 		})
