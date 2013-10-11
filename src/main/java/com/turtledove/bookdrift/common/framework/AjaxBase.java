@@ -73,9 +73,7 @@ public class AjaxBase {
 		result.put(key, value);
 	}
 	public String setJsonResult(){
-		
 		return jsonResult = JsonUtils.ObjectToJson(result);
-		//System.out.println(jsonResult);
 	}
 	public Map getRequest(){
 		return (Map) ActionContext.getContext().get("request");
