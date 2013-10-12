@@ -221,7 +221,14 @@ $(function(){
 		
 		$.post( '/addlabel', param, function ( data, status ) {
 			$( '#add-tag' ).fill( data );
+			
+			if ( data.code == 200 ) {
+				setTimeout( function() {
+					$( '#add-tag' ).modal( 'hide' );
+				}, 1500 )
+			}
 		})
+		
 	})
 });
 </script>

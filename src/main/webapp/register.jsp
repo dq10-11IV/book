@@ -72,6 +72,26 @@
 					el.next().text( data.data.error );
 				}
 			});
+			
+			$( 'form' ).submit( function () {
+				var error = '';
+				
+				$( this ).find( 'input' ).each( function () {
+					if ( $( this ).val() == '' ) { 
+						error += $(this).siblings('label').text() + '尚未填写\n';
+					}
+				})
+				
+				$( this ).find( '.help-block' ).each( function () {
+					if ( $( this ).text() != '' ) {
+						error += $(this).siblings('label').text()+'填写有误\n';
+					}
+				})
+				if ( error != '' ) {
+					alert( error );
+					return false;
+				}
+			});
 		})
 		</script>
 	</body>

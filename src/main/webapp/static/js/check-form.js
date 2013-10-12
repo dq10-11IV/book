@@ -5,7 +5,7 @@
 			email: /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
 			
 			//字母，下划线，数字，特殊字符 8-22位
-			passwd: /^[\_\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{8,22}$/,
+			passwd: /^[\_\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/,
 			
 			//4-16位由数字、字母、下划线
 			name: /^[a-zA-Z0-9\_\u3400-\u9FFF]{2,16}$/
@@ -41,7 +41,7 @@
 			var _type = $(e.target).data('check');
 			var _href = $( e.target ).data( 'remote' );
 			
-			if ( typeof _href !== 'undefined' ) {
+			if ( typeof _href !== 'undefined' && $( e.target ).val() != '' ) {
 				var params = {};
 				params['fieldName'] = $( e.target ).attr( 'name' );
 				params['fieldValue'] = $( e.target ).val();
