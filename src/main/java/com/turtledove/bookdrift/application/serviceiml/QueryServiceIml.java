@@ -25,5 +25,8 @@ public class QueryServiceIml implements QueryService {
 	public List<Book> getBookUnderUser(Integer Id) {
 		return bookDao.getBookUnderUser(Id);
 	}
+	public List<Book> getBookUnderSpecialTag(String tags) {
+		return  bookDao.getBookUnderSpecialTag(tags);
+	}
 	
 }

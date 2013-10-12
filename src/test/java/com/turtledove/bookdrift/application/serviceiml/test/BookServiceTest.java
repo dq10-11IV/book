@@ -25,7 +25,7 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 	private static final String BOOK_PRESS = "人民出版社";
 	private static final String AUTHOR_NAME = "roger";
 	private static final String BOOK_NAME = "程序员的修炼之道";
-	private static final String ISBN = "9787115215536";
+	private static final String ISBN = "9887115215536";
 	private String SUMMARY = "三天不读书，智商输给猪";
 	@Autowired
 	BookDao bookDao;

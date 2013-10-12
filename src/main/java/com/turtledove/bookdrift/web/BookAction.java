@@ -55,7 +55,7 @@ public class BookAction extends AjaxBase {
 	}
 	public String getBooksUnderLabel(){
 		String email = LoginUtils.getCurrentLoginUserEmail();
-		List<Book> bookList = queryService.getBookUnderUserAndSpecailTag(email, label);
+		List<Book> bookList = queryService.getBookUnderSpecialTag(label);
 		setElementInDate("books", bookList);
 		setDateResult();
 		setTopElementInResult("label", label);

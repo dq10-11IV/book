@@ -5,17 +5,17 @@
 	<resultMap type="com.turtledove.bookdrift.domain.entity.Book"
 		id="result">
 		<id property="Id" column="BOOK_ID" />
-		<result property="isbn" column="ISBN"/>
+		<result property="isbn" column="ISBN" />
 		<result property="bookName" column="BOOK_NAME" />
 		<result property="authorName" column="AUTHOR" />
 		<result property="bookPrice" column="BOOK_PRICE" />
 		<result property="bookPress" column="BOOK_PRESS" />
 		<result property="publishDate" column="PUBLISH_DATE" />
 		<result property="bookVersion" column="BOOK_VERSION" />
-		<result property="creatDate" column="CREAT_DATE" />
+		<result property="createDate" column="CREAT_DATE" />
 		<result property="lastUpdateDate" column="LAST_UPDATE_DATE" />
-		<result property="imageUrl" column="BOOK_IMAGE_URL"/>
-		<result property="summary" column="BOOK_SUMMARY"/>
+		<result property="imageUrl" column="BOOK_IMAGE_URL" />
+		<result property="summary" column="BOOK_SUMMARY" />
 	</resultMap>
 
 	<sql id="sql_select">
@@ -38,7 +38,8 @@
 		SELECT
 		B.BOOK_ID AS Id,
 		B.ISBN AS isbnId,
-		B.BOOK_NAME AS bookName,
+		B.BOOK_NAME AS
+		bookName,
 		b.AUTHOR AS authorName,
 		B.BOOK_PRESS AS bookPress,
 		B.BOOK_PRICE AS bookPrice,
@@ -62,13 +63,13 @@
 		</if>
 	</select>
 	<select id="findByBookNameAndVerion" resultMap="result">
-	   <include refid="sql_select"/>
-	   WHERE BOOK_NAME = #{bookName} 
-	        AND BOOK_VERSION = #{version};
+		<include refid="sql_select" />
+		WHERE BOOK_NAME = #{bookName}
+		AND BOOK_VERSION = #{version};
 	</select>
 	<select id="findByISBN" resultMap="result">
-	   <include refid="sql_select"/>
-	   WHERE ISBN = #{isbn};
+		<include refid="sql_select" />
+		WHERE ISBN = #{isbn};
 	</select>
 	<select id="getBooksUnderUserAndTag" parameterType="Map"
 		resultMap="result">
@@ -83,6 +84,18 @@
 		WHERE L.LABEL_NAME = #{tag}
 		AND
 		U.USER_EMAIL =#{email};
+	</select>
+	<select id="getBookUnderSpecialTag" parameterType="String"
+		resultMap="result">
+		<include refid="sql_select_m" />
+		FROM bd_user AS U
+		INNER JOIN bd_user_book_ass AS UB ON U.USER_ID =
+		UB.USER_ID
+		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
+		INNER JOIN bd_label AS L ON L.LABEL_ID = UL.LABEL_ID
+		INNER JOIN bd_book
+		AS B ON B.BOOK_ID = UB.BOOK_ID
+		WHERE L.LABEL_NAME = #{tags};
 	</select>
 	<select id="query" parameterType="BookInfo" resultMap="result">
 		<include refid="sql_select" />
@@ -105,10 +118,12 @@
 		<include refid="sql_select_m" />
 		FROM bd_book AS B
 		INNER JOIN bd_user_book_ass AS UB
-		ON B.BOOK_ID = UB.BOOK_ID
+		ON B.BOOK_ID =
+		UB.BOOK_ID
 		WHERE UB.USER_ID = #{Id}
 	</select>
-	<insert id="insert" parameterType="Book" useGeneratedKeys="true" keyProperty="Id">
+	<insert id="insert" parameterType="Book" useGeneratedKeys="true"
+		keyProperty="Id">
 		INSERT INTO
 		bd_book(ISBN,BOOK_NAME,AUTHOR,BOOK_PRICE,BOOK_PRESS,PUBLISH_DATE,BOOK_VERSION,CREAT_DATE,LAST_UPDATE_DATE,BOOK_SUMMARY,BOOK_IMAGE_URL)
 		values(#{isbn},#{bookName},#{authorName},#{bookPrice},#{bookPress},#{publishDate},#{bookVersion},#{createDate},#{lastUpdateDate},#{summary},#{imageUrl});
