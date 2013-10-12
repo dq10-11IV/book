@@ -36,7 +36,7 @@ public class UserLabelAction extends AjaxBase{
 	}
 	private Label createLabelByName() throws UnsupportedEncodingException {
 		Label label = new Label();
-		label.setLabelName(enCoding(labelName));
+		label.setLabelName(labelName);
 		label.setCreateDate(new Date());
 		label.setCreatorId(LoginUtils.getCurrentLoginUserId());
 		label.setLastUpdateDate(new Date());

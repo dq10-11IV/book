@@ -31,12 +31,13 @@ public class AdminLogin extends AjaxBase{
 			return TO_REGISTER_PAGE;
         User user = new User();
 		try {
-			//user = JsonUtils.JsonToJavaBean(enCoding(data), User.class);
 			user.setUserEmail(email);
 			user.setUserName(username);
 			user.setUserPwd(passwd);
 			user.setCreateDate(new Date());
 			user.setLastUpdateDate(new Date());
+			if(userService.validateEmail(email))
+				return SUCCESS;
 			userService.insert(user);
 		    setSuccessResult(user);
 		} catch (Exception e) {
@@ -61,7 +62,7 @@ public class AdminLogin extends AjaxBase{
 		return TOLOGINPAGE;
 	}
 	public String validation(){
-			if(userService.validateEmail(email))
+			if(userService.validateEmail(fieldValue))
 				setDateWithErrorMsg(ActionMessage.USER_EXIST);
 			else setDateWithErrorMsg(""); 
 		getRequest().put("jsonResult", setJsonResult());
