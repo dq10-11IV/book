@@ -54,6 +54,7 @@
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
 		<script src="static/js/check-form.js"></script>
 		<script src="static/js/with.js"></script>
+		<script src="static/js/x.js"></script>
 		<script>
 		$(function(){
 			$('form').checkform({
@@ -88,7 +89,8 @@
 					}
 				})
 				if ( error != '' ) {
-					alert( error );
+					error = error.split( '\n' )[0];
+					x.alert({text: error});
 					return false;
 				}
 			});
