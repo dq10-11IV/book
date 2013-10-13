@@ -65,7 +65,9 @@ $(function(){
 			//add action of share
 			$( '#books .glyphicon-share' ).click( function () {
 				var index = $( this ).attr( 'id' );
-				alert( JSON.stringify(saved.books[index]) );
+				saved.books[index].ajax = true;
+				saved.books[index].author = saved.books[index].author.join(',');
+				$.post( '/addbook', saved.books[index]);
 			});
 			
 			//add action of popover about book's summary
@@ -74,8 +76,9 @@ $(function(){
 					trigger: 'hover',
 					title: '详细',
 					html: true,
+					container: 'body',
 					content: function () {
-						var node = '<div>';
+						var node = '<div class="book-summary" style="display: block;">';
 						var text = $( this ).siblings( '.book-summary' ).text().split( '\n' );
 						for ( var item in text ) {
 							node += '<p>' + text[item] + '</p>';

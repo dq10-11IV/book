@@ -71,6 +71,11 @@
 			src: function ( arg ) {
 				this.attr( 'src', methods.unaryParam( arg ) );
 				this.children().fill( methods.data );
+			},
+			
+			id: function ( arg ) {
+				this.attr( 'id', methods.unaryParam( arg ));
+				this.children().fill( methods.data );
 			}
 		},
 		

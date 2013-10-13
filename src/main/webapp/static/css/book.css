@@ -5,6 +5,10 @@ body {
 	min-width: 1000px;
 }
 
+example {
+	display: none;
+}
+
 /* hover */
 .btn:hover,
 a:hover {
@@ -202,7 +206,7 @@ a:hover {
 .list-group-item > span:hover {
 	cursor: pointer;
 	color: #ceab65;
-	font-size: 20px;
+	font-size: 14px;
 }
 
 .popover {
