@@ -18,9 +18,9 @@
 		<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
 		<li><a href="#add-book" data-toggle="modal" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
 	</ul>
-	<ul class="nav navbar-nav pull-right" data-with="bool: user">
+	<ul class="nav navbar-nav pull-right" data-with="bool: user?(fill: user)(remove)">
 		<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
-		<li><a href="#" data-with="text: user.userName"></a></li>
+		<li><a href="#" data-with="text: userName"></a></li>
 	</ul>
 </nav>
 <div class="row">
@@ -49,14 +49,12 @@
 									<li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li>
 									<li title="不可借"><span class="glyphicon glyphicon-remove-sign"></span></li>
 								</ul>
-								<p class="book-summary" data-with="text: summary" style="display: none;"></p>
-								<!-- 
-								<div class="book">
-									<p class="book-name" data-with="text: bookName"></p>
-									<p class="author-name" data-with="text: authorName"></p>
-									<p class="book-press" data-with="text: bookPress"></p>
-									
-								</div> -->
+								<div class="book-summary">
+									<p data-with="text: bookName"></p>
+									<p data-with="text: authorName"></p>
+									<p data-with="text: bookPress"></p>
+									<pre data-with="text: summary"></pre>
+								</div>
 							</a>
 						</div>
 					</example>
@@ -146,13 +144,7 @@ $(function(){
 			html: true,
 			container: 'body',
 			content: function () {
-				var node = '<div style="min-width: 200px; max-height: 300px; overflow: auto;">';
-				var text = $( this ).siblings( '.book-summary' ).text().split( '\n' );
-				for ( var item in text ) {
-					node += '<p>' + text[item] + '</p>';
-				}
-				node += '</div>';
-				return node;
+				return '<div class="book-summary" style="display: block;">' + $( this ).siblings( '.book-summary' ).html() + '</div>';
 			}
 		});
 	}
