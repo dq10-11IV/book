@@ -47,6 +47,7 @@
 		<script src="static/bootstrap3/js/bootstrap.js" ></script>
 		<script src="static/js/check-form.js"></script>
 		<script src="static/js/with.js"></script>
+		<script src="static/js/x.js"></script>
 		<script>
 		$(function(){
 			$('form').checkform({
@@ -58,6 +59,27 @@
 				success: function (el) {
 					el.parent('div').removeClass('has-error');
 					el.next().text('');
+				}
+			})
+			
+			$('form').submit( function () {
+				var error = '';
+				
+				$( this ).find( 'input' ).each( function () {
+					if ( $( this ).val() == '' ) { 
+						error += $(this).siblings('label').text() + '尚未填写\n';
+					}
+				})
+				
+				$( this ).find( '.help-block' ).each( function () {
+					if ( $( this ).text() != '' ) {
+						error += $(this).siblings('label').text()+'填写有误\n';
+					}
+				})
+				if ( error != '' ) {
+					error = error.split( '\n' )[0];
+					x.alert({text: error});
+					return false;
 				}
 			});
 		})

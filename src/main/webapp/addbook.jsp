@@ -15,7 +15,6 @@
 	</div>
 	<ul class="nav navbar-nav">
 		<li><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
-		<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
 		<li class="active"><a href="#" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
 	</ul>
 	<ul class="nav navbar-nav pull-right" data-with="bool: user">
@@ -26,7 +25,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-5 col-lg-offset-4">
-			<input class="form-control" placeholder="书籍关键字" style="display: inline-block; width: 80%;">
+			<input class="form-control" placeholder="搜索" style="display: inline-block; width: 80%;">
 			<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks"><span class="glyphicon glyphicon-search"></span></button>
 		</div>
 	</div>
@@ -73,7 +72,7 @@ $(function(){
 			//add action of popover about book's summary
 			$( '#books>ul>li img' ).each( function () {
 				$( this ).popover({
-					trigger: 'hover',
+					trigger: 'click',
 					title: '详细',
 					html: true,
 					container: 'body',
