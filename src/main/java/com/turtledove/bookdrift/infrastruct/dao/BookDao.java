@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.turtledove.bookdrift.common.AbstractClass.DomainObjectDao;
 import com.turtledove.bookdrift.domain.entity.Book;
-import com.turtledove.bookdrift.domain.entity.BookInfo;
 
 public interface BookDao extends DomainObjectDao<Book>{
 	public Book findById(Integer bookId);

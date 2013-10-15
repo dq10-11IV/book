@@ -7,8 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.turtledove.bookdrift.common.AbstractClass.DomainObjectDao;
 import com.turtledove.bookdrift.domain.entity.Book;
-import com.turtledove.bookdrift.domain.entity.BookInfo;
 
-public interface QueryDao extends DomainObjectDao<BookInfo> {
+public interface QueryDao extends DomainObjectDao<Book> {
 	List<Book> query(@Param("para")Map<String,Object> para);
 }

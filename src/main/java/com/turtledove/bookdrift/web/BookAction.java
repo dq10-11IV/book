@@ -7,12 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.turtledove.bookdrift.application.service.BookService;
 import com.turtledove.bookdrift.application.service.LabelService;
 import com.turtledove.bookdrift.application.service.QueryService;
-import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
-import com.turtledove.bookdrift.common.utils.JsonUtils;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
-import com.turtledove.bookdrift.domain.entity.BookInfo;
 import com.turtledove.bookdrift.domain.entity.Label;
 import com.turtledove.bookdrift.domain.entity.User;
 public class BookAction extends AjaxBase {

@@ -10,12 +10,15 @@ import org.springframework.stereotype.Service;
 import com.turtledove.bookdrift.application.service.QueryService;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.infrastruct.dao.BookDao;
+import com.turtledove.bookdrift.infrastruct.dao.QueryDao;
 
 @Service
 public class QueryServiceIml implements QueryService {
 
 	@Autowired 
 	BookDao bookDao;
+	@Autowired
+	QueryDao queryDao;
 	public List<Book> getBookUnderUserAndSpecailTag(String email, String tag) {
 		Map<String,String> paraMap = new HashMap<String, String>();
 		paraMap.put("email", email);
@@ -27,6 +30,9 @@ public class QueryServiceIml implements QueryService {
 	}
 	public List<Book> getBookUnderSpecialTag(String tags) {
 		return  bookDao.getBookUnderSpecialTag(tags);
+	}
+	public List<Book> query(Map<String, Object> para) {
+		return queryDao.query(para);
 	}
 	
 }

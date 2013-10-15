@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.turtledove.bookdrift.application.service.BookService;
 import com.turtledove.bookdrift.common.AbstractClass.AbstractTestCase;
 import com.turtledove.bookdrift.domain.entity.Book;
-import com.turtledove.bookdrift.domain.entity.BookInfo;
 import com.turtledove.bookdrift.domain.entity.DomainObjectBuilder;
 import com.turtledove.bookdrift.infrastruct.dao.BookDao;
 
@@ -78,8 +77,4 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 				withField("authorName", AUTHOR_NAME).withField("bookPress", BOOK_PRESS).withField("bookPrice", PRICE).withField("isbn", ISBN).withField("summary", SUMMARY)
 				.withField("bookVersion", VERSION).withField("publishDate", new Date()).build(Book.class);
 	}
-	/*private BookInfo create_BookInfo(){
-		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).withField("authorName", AUTHOR_NAME)
-				.withField("version", VERSION).withField("press", BOOK_PRESS).build(BookInfo.class);
-	}*/
 }

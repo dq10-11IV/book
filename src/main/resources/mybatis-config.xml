@@ -4,11 +4,9 @@
     <typeAliases>  
         <typeAlias alias="User" type="com.turtledove.bookdrift.domain.entity.User"/>
         <typeAlias alias="Book" type="com.turtledove.bookdrift.domain.entity.Book"/>
-        <typeAlias alias="BookInfo" type="com.turtledove.bookdrift.domain.entity.BookInfo"/>
         <typeAlias alias="Label" type="com.turtledove.bookdrift.domain.entity.Label" />
         <typeAlias alias="UserBookAss" type="com.turtledove.bookdrift.domain.entity.UserBookAss"/>
         <typeAlias alias="UserLabelAss" type="com.turtledove.bookdrift.domain.entity.UserLabelAss"/>  
-        <typeAlias alias="BookInfo"  type="com.turtledove.bookdrift.domain.entity.BookInfo"/>
     </typeAliases>  
     <mappers>  
         <mapper resource="sqlMapper/UserDao.xml" />

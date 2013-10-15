@@ -18,14 +18,13 @@ import com.turtledove.bookdrift.application.service.UserLabelAssService;
 import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.AbstractClass.AbstractTestCase;
 import com.turtledove.bookdrift.domain.entity.Book;
-import com.turtledove.bookdrift.domain.entity.BookInfo;
 import com.turtledove.bookdrift.domain.entity.DomainObjectBuilder;
 import com.turtledove.bookdrift.domain.entity.User;
 import com.turtledove.bookdrift.domain.entity.UserBookAss;
 import com.turtledove.bookdrift.domain.entity.UserLabelAss;
 import com.turtledove.bookdrift.infrastruct.dao.QueryDao;
 
-public class QueryDaoTest extends AbstractTestCase<BookInfo>{
+public class QueryDaoTest extends AbstractTestCase<Book>{
 
 	private static final int VERSION = 3;
 	private static final Double PRICE = 39.1;
@@ -55,7 +54,7 @@ public class QueryDaoTest extends AbstractTestCase<BookInfo>{
 
 	@Test
 	public void test_query() {
-		Book book = create_book();
+		Book book = create();
 		User user = create_User();
 		userService.insert(user);
 		bookService.insert(book);
@@ -79,11 +78,7 @@ public class QueryDaoTest extends AbstractTestCase<BookInfo>{
 		Assert.assertNotNull(queryDao);
 	}
 
-	@Override
-	protected BookInfo create() {
-		return null;
-	}
-	protected Book create_book() {
+	protected Book create() {
 		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).
 				withField("authorName", AUTHOR_NAME).withField("bookPress", BOOK_PRESS).withField("bookPrice", PRICE).withField("isbn", ISBN).withField("summary", SUMMARY)
 				.withField("bookVersion", VERSION).withField("publishDate", new Date()).build(Book.class);
@@ -94,4 +89,5 @@ public class QueryDaoTest extends AbstractTestCase<BookInfo>{
 		.withField("userLevel", 10).withField("userName", "insert").withField("userPwd", "123456")
 		.build(User.class);
 	}
+
 }
