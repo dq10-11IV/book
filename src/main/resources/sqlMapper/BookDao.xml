@@ -97,23 +97,6 @@
 		AS B ON B.BOOK_ID = UB.BOOK_ID
 		WHERE L.LABEL_NAME = #{tags};
 	</select>
-	<select id="query" parameterType="BookInfo" resultMap="result">
-		<include refid="sql_select" />
-		<where>
-			<if test="bookInfo.bookName!=null and bookInfo.bookName !='' ">
-				BOOK_NAME like CONCAT('%','${bookInfo.bookName}','%' )
-			</if>
-			<if test="bookInfo.authorName!=null and bookInfo.authorName != ''">
-				AND AUTHOR like CONCAT('%','${bookInfo.authorName}','%' )
-			</if>
-			<if test="bookInfo.version != null">
-				AND BOOK_VERSION = ${bookInfo.version}
-			</if>
-			<if test="bookInfo.press !=null and bookInfo.press !=''">
-				AND BOOK_PRESS like CONCAT('%','${bookInfo.press}','%' )
-			</if>
-		</where>
-	</select>
 	<select id="getBookUnderUser" parameterType="Integer" resultMap="result">
 		<include refid="sql_select_m" />
 		FROM bd_book AS B

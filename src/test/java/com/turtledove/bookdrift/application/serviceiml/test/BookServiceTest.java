@@ -72,23 +72,14 @@ public class BookServiceTest extends AbstractTestCase<Book>{
 		Assert.assertNotNull(expectedEntity);
 		Assert.assertEquals(expectedEntity.getAuthorName(), actualEntity.getAuthorName());
 	}
-	@Test
-	public void test_query(){
-		bookDao.insert(create());
-		BookInfo bookInfo = create_BookInfo();
-		List<Book> booklist = new ArrayList<Book>();
-		booklist =bookDao.query(bookInfo);
-		Assert.assertTrue(booklist.size() > 0);
-		Assert.assertEquals(bookInfo.getBookName(), booklist.get(0).getBookName());
-	}
 	@Override
 	protected Book create() {
 		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).
 				withField("authorName", AUTHOR_NAME).withField("bookPress", BOOK_PRESS).withField("bookPrice", PRICE).withField("isbn", ISBN).withField("summary", SUMMARY)
 				.withField("bookVersion", VERSION).withField("publishDate", new Date()).build(Book.class);
 	}
-	private BookInfo create_BookInfo(){
+	/*private BookInfo create_BookInfo(){
 		return DomainObjectBuilder.newInstance().withField("bookName", BOOK_NAME).withField("authorName", AUTHOR_NAME)
 				.withField("version", VERSION).withField("press", BOOK_PRESS).build(BookInfo.class);
-	}
+	}*/
 }

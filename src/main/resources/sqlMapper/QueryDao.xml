@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.turtledove.bookdrift.domain.entity.Book">
+<mapper namespace="com.turtledove.bookdrift.infrastruct.dao.QueryDao">
 
+	<resultMap type="Book" id="result">
+		<result property="Id" column="BOOK_ID" />
+		<result property="isbn" column="ISBN" />
+		<result property="bookName" column="BOOK_NAME" />
+		<result property="authorName" column="AUTHOR" />
+		<result property="bookPrice" column="BOOK_PRICE" />
+		<result property="bookPress" column="BOOK_PRESS" />
+		<result property="publishDate" column="PUBLISH_DATE" />
+		<result property="bookVersion" column="BOOK_VERSION" />
+		<result property="createDate" column="CREAT_DATE" />
+		<result property="lastUpdateDate" column="LAST_UPDATE_DATE" />
+		<result property="imageUrl" column="BOOK_IMAGE_URL" />
+		<result property="summary" column="BOOK_SUMMARY" />
+
+		<association property="owner" javaType="User">
+			<id property="Id" column="USER_ID" />
+			<result property="userName" column="USER_NAME" />
+			<result property="userEmail" column="USER_EMAIL" />
+		</association>
+	</resultMap>
+
+	<sql id="sql_select">
+		SELECT
+		DISTINCT
+		B.AUTHOR,
+		B.BOOK_ID,
+		B.BOOK_IMAGE_URL,
+		B.BOOK_NAME,
+		B.BOOK_PRESS,
+		B.BOOK_PRICE,
+		B.BOOK_SUMMARY,
+		B.BOOK_VERSION,
+		B.CREAT_DATE,
+		B.ISBN,
+		B.LAST_UPDATE_DATE,
+		B.PUBLISH_DATE,
+		U.USER_ID,
+		U.USER_EMAIL
+	</sql>
+	<select id="query" parameterType="map" resultMap="result">
+		<include refid="sql_select" />
+		FROM bd_book AS B
+		INNER JOIN bd_user_book_ass AS UB ON B.BOOK_ID = UB.BOOK_ID
+		INNER JOIN bd_user AS U ON U.USER_ID = UB.USER_ID
+		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
+		WHERE UL.LABEL_ID IN (SELECT ULL.LABEL_ID FROM bd_user_label AS ULL WHERE ULL.USER_ID =#{para.userId})
+		 AND B.BOOK_NAME LIKE CONCAT('%','${para.bookName}','%' ) 
+	</select>
 </mapper>

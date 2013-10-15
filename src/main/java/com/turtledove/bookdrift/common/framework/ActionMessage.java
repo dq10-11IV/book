@@ -2,9 +2,10 @@ package com.turtledove.bookdrift.common.framework;
 
 public class ActionMessage {
 
+	public static final String EMAIL_IS_NULL = "邮箱不能为空！";
 	public static String EXIST_DATE_IN_TABEL = "已有该标签";
-	public static String EMIAL_ERROE = "邮箱不对";
-	public static String PASS_WORD_ERROR ="密码不对";
+	public static String EMIAL_ERROE = "输入邮箱不正确";
+	public static String PASS_WORD_ERROR ="输入的密码不正确";
 	public static String EXIST = "Exist";
 	public static String FINAL_EXCEPTION_MESSAGE = "系统出现异常，请联系管理员";
 	public static String NOT_EXIST="Not exist";

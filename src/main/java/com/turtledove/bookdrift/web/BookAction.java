@@ -28,13 +28,6 @@ public class BookAction extends AjaxBase {
 	public boolean isAjax;
 	public String  label;
 	public String query() {
-		try{
-			BookInfo bookInfo = JsonUtils.JsonToJavaBean(enCoding(data), BookInfo.class);
-			List<Book> bookList = bookService.query(bookInfo);
-			setSuccessResultWithList(bookList);	
-		}catch(Exception e ){
-			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
-		}
 		return SUCCESS;
 	}
 	public void setBookName(String bookName) {

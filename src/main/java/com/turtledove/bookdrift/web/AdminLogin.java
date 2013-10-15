@@ -36,7 +36,7 @@ public class AdminLogin extends AjaxBase{
 			user.setUserPwd(passwd);
 			user.setCreateDate(new Date());
 			user.setLastUpdateDate(new Date());
-			if(userService.validateEmail(email))
+			if(email == null || email.length() == 0 || userService.validateEmail(email))
 				return SUCCESS;
 			userService.insert(user);
 		    setSuccessResult(user);
@@ -55,7 +55,9 @@ public class AdminLogin extends AjaxBase{
 			return TO_HUB_PAGE;
 		
 		setElementInDate("email", email);
-		if(userService.getUserByEmail(email)==null)
+		if(email == null || email.length()==0)
+			setDateWithErrorMsg(ActionMessage.EMAIL_IS_NULL);
+		else if(userService.getUserByEmail(email)==null)
 		setDateWithErrorMsg(ActionMessage.EMIAL_ERROE);
 		else setDateWithErrorMsg(ActionMessage.PASS_WORD_ERROR);
 		getRequest().put("jsonResult", setJsonResult());

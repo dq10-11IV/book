@@ -42,5 +42,4 @@ public class UserLabelAction extends AjaxBase{
 		label.setLastUpdateDate(new Date());
 		return label;
 	}
-
 }

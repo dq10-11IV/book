@@ -9,6 +9,5 @@ public interface BookService {
 	public Integer insert(Book book);
 	public List<Book> findByBookName(String bookName);
 	public Book findByBookNameAndVersion(String bookName,Integer version);
-	public List<Book> query(BookInfo bookInfo);
 	public Book findByISBN(String isbn);
 }
