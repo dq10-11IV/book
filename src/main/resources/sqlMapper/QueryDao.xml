@@ -48,6 +48,6 @@
 		INNER JOIN bd_user AS U ON U.USER_ID = UB.USER_ID
 		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
 		WHERE UL.LABEL_ID IN (SELECT ULL.LABEL_ID FROM bd_user_label AS ULL WHERE ULL.USER_ID =#{para.userId})
-		 AND B.BOOK_NAME LIKE CONCAT('%','${para.bookName}','%' ) 
+		 AND B.BOOK_NAME LIKE  '%${para.bookName}%' <!-- CONCAT('%','${para.bookName}','%' )  -->
 	</select>
 </mapper>
