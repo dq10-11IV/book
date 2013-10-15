@@ -1,5 +1,7 @@
+function chat(e) {
+	alert('chat');
+};
 $(function(){
-	
 	/* popover */
 	function thumbnailPopover( tn ) {
 		$( tn ).popover({
@@ -9,7 +11,7 @@ $(function(){
 			html: true,
 			container: 'body',
 			content: function () {
-				return '<div class="book-summary" style="display: block;">' + $( this ).siblings( '.book-summary' ).html() + '</div>';
+				return '<div class="book-summary" style="display: block;">' + $( this ).siblings( '.book-summary' ).html() + '</div><button onclick="chat(this)" style="margin-top: 10px;" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;对话</button>';
 			}
 		});
 	}
@@ -20,7 +22,7 @@ $(function(){
 	
 	/* tab change */
 	$( '#tags [data-toggle="tab"]' ).on( 'show.bs.tab', function ( e ) {
-		$( e.relatedTarget ).find( 'span' ).remove().appendTo( $( e.target ) );
+		//$( e.relatedTarget ).find( 'span' ).remove().appendTo( $( e.target ) );
 
 		var id = $( e.target ).attr( 'href' ).substr( 1 );
 		var pane = $( '#'+id );
@@ -43,7 +45,18 @@ $(function(){
 		$(this).insertBefore( parent.children().first() );
 	});
 	
-	$('.nav-pills').find('li:not(:eq(0))').draggable({
+	$('#search').click(function(){
+		var param = {};
+		param.ajax = true;
+		param.keys = $(this).val();
+		if (prams.keys == '') return;
+		
+		$.post('/search', param, function ( data, status) {
+			alert( JSON.stringify(data) );
+		});
+	});
+	
+	/*$('.nav-pills').find('li:not(:eq(0))').draggable({
 		revert: 'invalid'
 	});
 	
@@ -71,7 +84,7 @@ $(function(){
 			$.post( '/addbook', saved.data);
 		}
 		$( '#add-book' ).find( 'table' ).hide();
-	} );
+	} );*/
 	
 	$( '#submitTag' ).click( function () {
 		var param = {};

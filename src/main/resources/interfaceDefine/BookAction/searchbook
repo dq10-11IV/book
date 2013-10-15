@@ -1,0 +1,14 @@
+url: /search
+
+post:
+{
+	ajax: true,
+	keys: '' //string
+}
+
+respect answer:
+{
+	data: {
+		books: [/*like mybook interface*/]
+	}
+}
