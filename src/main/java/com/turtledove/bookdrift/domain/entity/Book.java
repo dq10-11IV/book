@@ -7,7 +7,7 @@ import com.turtledove.bookdrift.common.AbstractClass.AbstractDomainObject;
 public class Book  extends AbstractDomainObject {
 
 
-	private User owner;
+	private UserInfo owner;
 	private String isbn;
 	private String bookName;
 	private String authorName;
@@ -73,10 +73,10 @@ public class Book  extends AbstractDomainObject {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public User getOwner() {
+	public UserInfo getOwner() {
 		return owner;
 	}
-	public void setOwner(User owner) {
+	public void setOwner(UserInfo owner) {
 		this.owner = owner;
 	}
 

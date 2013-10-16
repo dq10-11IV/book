@@ -16,7 +16,7 @@
 		<result property="imageUrl" column="BOOK_IMAGE_URL" />
 		<result property="summary" column="BOOK_SUMMARY" />
 
-		<association property="owner" javaType="User">
+		<association property="owner" javaType="UserInfo">
 			<id property="Id" column="USER_ID" />
 			<result property="userName" column="USER_NAME" />
 			<result property="userEmail" column="USER_EMAIL" />
@@ -39,7 +39,8 @@
 		B.LAST_UPDATE_DATE,
 		B.PUBLISH_DATE,
 		U.USER_ID,
-		U.USER_EMAIL
+		U.USER_EMAIL,
+		U.USER_NAME
 	</sql>
 	<select id="query" parameterType="map" resultMap="result">
 		<include refid="sql_select" />

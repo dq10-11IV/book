@@ -7,6 +7,7 @@
         <typeAlias alias="Label" type="com.turtledove.bookdrift.domain.entity.Label" />
         <typeAlias alias="UserBookAss" type="com.turtledove.bookdrift.domain.entity.UserBookAss"/>
         <typeAlias alias="UserLabelAss" type="com.turtledove.bookdrift.domain.entity.UserLabelAss"/>  
+        <typeAlias alias="UserInfo"  type="com.turtledove.bookdrift.domain.entity.UserInfo"/>
     </typeAliases>  
     <mappers>  
         <mapper resource="sqlMapper/UserDao.xml" />

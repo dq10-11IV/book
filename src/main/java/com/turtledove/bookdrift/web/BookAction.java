@@ -1,6 +1,9 @@
 package com.turtledove.bookdrift.web;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,11 +27,15 @@ public class BookAction extends AjaxBase {
 	public String data;
 	public boolean isAjax;
 	public String  label;
-	public String query() {
+	public String query() throws UnsupportedEncodingException {
+		
+		Map<String,Object> para = new HashMap<String,Object>();
+		para.put("userId", LoginUtils.getCurrentLoginUserId());
+		para.put("bookName", enCoding(bookName));
+		List<Book> bookList = queryService.query(para);
+		setElementInDate("books", bookList);
+		setDateResult();
 		return SUCCESS;
-	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
 	}
 	public String myBook(){
 		User currentUser = LoginUtils.getCurrentLoginUser();
@@ -51,4 +58,26 @@ public class BookAction extends AjaxBase {
 		setTopElementInResult("label", label);
 		return SUCCESS;
 	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public void setBookService(BookService bookService) {
+		this.bookService = bookService;
+	}
+	public void setQueryService(QueryService queryService) {
+		this.queryService = queryService;
+	}
+	public void setLabelService(LabelService labelService) {
+		this.labelService = labelService;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public void setAjax(boolean isAjax) {
+		this.isAjax = isAjax;
+	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
 }
