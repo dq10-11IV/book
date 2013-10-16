@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="static/css/book.css" />
 </head>
 <body>
-<div class="row" style="z-index: 10;">
+<div class="row" id="head">
 	<div class="container">
 		<div style="margin: 10px 20%; padding-top: 50px;color:#777777;">
 			<div data-with="text: user.userName" style="height: 37px;line-height: 37px; display: inline-block;width:auto;"></div>
@@ -21,10 +21,6 @@
 				<li id="search"><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
 			</ul>
 			<hr style="margin-top: 5px;">
-			<div id="searchInput">
-				<input class="form-control" placeholder="标签内搜索" style="display: inline-block;width:84%">
-				<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks">Go</button>
-			</div>
 		</div>
 	</div>
 </div>
@@ -57,7 +53,30 @@
 	<div class="container">
 		<div class="tab-content">
 		<!-- tab_me -->
-			<div class="tab-pane active" id="tab_me">
+			<div class="tab-pane active" id="tab-me">
+				<ul data-with="list: books" class="list-group">
+					<example>
+						<li class="list-group-item">
+						<h3 data-with="text: bookName"></h3>
+						<img data-with="src: imageUrl"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
+						<ul class="status">
+							<li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li>
+							<li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li>
+						</ul>
+						<small data-with="text: authorName"></small>
+						<p data-with="text: bookPress"></p>
+						</li>
+					</example>
+				</ul>
+			</div>
+			
+			<!-- tab search -->
+			<div class="tab-pane" id="tab-search">
+				<div style="margin: 10px 20%;">
+					<input class="form-control" placeholder="标签内搜索" style="display: inline-block;width:84%">
+					<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks">Go</button>
+				</div>
+			
 				<ul data-with="list: books" class="list-group">
 					<example>
 						<li class="list-group-item">
@@ -71,21 +90,6 @@
 				</ul>
 			</div>
 			
-			<example>
-			<div class="tab-pane" data-with="id: 'tab'-id">
-				<ul data-with="list: books" class="list-group">
-					<example>
-						<li class="list-group-item">
-						<h3 data-with="text: title"></h3>
-						<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-						<span class="glyphicon glyphicon-share" data-with="id: loop"></span>
-						<small data-with="text: author"></small>
-						<p data-with="text: publisher"></p>
-						</li>
-					</example>
-				</ul>
-			</div>
-			</example>
 		</div>
 	</div>
 </div>
@@ -111,7 +115,8 @@
 
 <div class="fixed-tags">
 	<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels" id="tags">
-		<li class="active"><a href="#tab_me" data-toggle="tab">我</a></li>
+		<li class="active"><a href="#tab-me" data-toggle="tab">我</a></li>
+		<li ><a href="#tab-search" data-toggle="tab">标签内搜索</a></li>
 		<example>
 			<li><a href="" data-toggle="tab" data-with="href: '#tab'-id; text: labelName"></a><span onclick="removeTag(this)" class="glyphicon glyphicon-remove"></span></li>
 		</example>

@@ -91,17 +91,6 @@ example {
 	font-size: 10px;
 }
 
-.thumbnail {
-	position: relative;
-	min-height: 160px;
-}
-
-.thumbnail:hover {
-	color: #336666;
-	background: #ffffcc;
-	transition: background 0.5s;
-}
-
 .book-summary {
 	display: none;
 	min-width: 200px;
@@ -124,13 +113,12 @@ example {
 	overflow: hidden;
 }
 .status:hover {
-	height: 70px;
+	height: 40px;
 	transition: height 1s;
 }
 
 .status > li {
 	font-size: 16px;
-	display: inline-block;
 	width: 16px;
 	height: 16px;
 	margin: 0px;
@@ -149,8 +137,7 @@ example {
 	color: #666666;
 	border-width: 1px 0 0 0;
 	box-shadow: none;
-	background-image: -moz-linear-gradient(left, #bcab23 5%, #ceab65);
-	background-image: linear-gradient(left, #ffffee 15%, #ceab65);
+	background: #ceab65;
 }
 
 .nav-pills > li {
@@ -205,12 +192,6 @@ example {
 	border-width: 1px 0 0 0;
 	border-color: #dddddd;
 	transition: height 0.6s, font-size 0.5s;
-}
-
-#searchInput {
-	transform: scale(1,0);
-	height: 0;
-	transition: transform 0.3s, height 0.3s;
 }
 
 /* search books */

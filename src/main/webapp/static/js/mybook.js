@@ -7,7 +7,8 @@ function removeTag(e) {
 	alert(str);
 };
 $(function(){
-	$('.row').fill( result.data );
+	$('#head').fill( result.data );
+	$('#tab-me').fill(result.data);
 	$('.fixed-tags').fill( result.data );
 	/* popover */
 	function thumbnailPopover( tn ) {
@@ -34,7 +35,7 @@ $(function(){
 		var id = $( e.target ).attr( 'href' ).substr( 1 );
 		var pane = $( '#'+id );
 		if ( pane.length == 0 ) {
-			var node = '<div class="tab-pane" id="'+ id +'"><ul data-with="list: books" class="list-group"><example>' + $( '#tab_me example' ).html().trim() + '<example></ul></div>';
+			var node = '<div class="tab-pane" id="'+ id +'"><ul data-with="list: books" class="list-group"><example>' + $( '#tab-search example' ).html().trim() + '<example></ul></div>';
 			$( '.tab-content' ).append( node );
 			
 			var param = {};
@@ -55,25 +56,17 @@ $(function(){
 	});
 	
 	$('#search').click(function(){
-		if ($('#searchInput').height() > 1) {
-			$('#searchInput').css({
-				"transform": "scale(1,0)",
-				"height": "0px"
-			});return;
-		}
-		$('#searchInput').css({
-			"transform": "scale(1,1)",
-			"height": "34px"
-		});
+		$('[href="#tab-search"]').click();
 	});
 	$('#searchBooks').click(function(){
 		var param = {};
 		param.ajax = true;
-		param.keys = $('#searchInput>input').val();
+		param.bookName = $('#tab-search input').val();
 		if (param.keys == '') return;
 		
-		$.post('/search', param, function ( data, status) {
-			alert( JSON.stringify(data) );
+		$.post('/query', param, function ( data, status) {
+			$('#tab-search').fill(data.data);
+			thumbnailPopover('#tab-search img')
 		});
 	});
 	
