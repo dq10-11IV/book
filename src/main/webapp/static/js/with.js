@@ -153,4 +153,3 @@
 	};
 	
 })( jQuery );
-$('body').fill( result.data );

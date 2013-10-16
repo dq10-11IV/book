@@ -1,7 +1,9 @@
 function chat(e) {
-	alert('chat');
+	var str = 'talk to ' + $(e).attr("title");
+	alert(str);
 };
 $(function(){
+	$('body').fill( result.data );
 	/* popover */
 	function thumbnailPopover( tn ) {
 		$( tn ).popover({
@@ -27,8 +29,7 @@ $(function(){
 		var id = $( e.target ).attr( 'href' ).substr( 1 );
 		var pane = $( '#'+id );
 		if ( pane.length == 0 ) {
-			var node = '<div class="tab-pane" id="'+ id +'"><div class="row" data-with="list: books">' +
-						'<example>' + $( '#tab_me' ).find( 'example' ).html().trim() + '</example></div></div>';
+			var node = '<div class="tab-pane" id="'+ id +'">' + $( '#tab_me' ).html().trim() + '</div>';
 			$( '.tab-content' ).append( node );
 
 			$.post( '/getBooksUnderLabel', {ajax: true,	label: $( this ).text()	}, function( data, status ) {
@@ -46,15 +47,20 @@ $(function(){
 	});
 	
 	$('#search').click(function(){
+		$('#searchInput').slideToggle("fast");
+	});
+	$('#searchBooks').click(function(){
 		var param = {};
 		param.ajax = true;
-		param.keys = $(this).val();
+		param.keys = $('#searchInput>input').val();
 		if (prams.keys == '') return;
 		
 		$.post('/search', param, function ( data, status) {
 			alert( JSON.stringify(data) );
 		});
 	});
+	
+	
 	
 	/*$('.nav-pills').find('li:not(:eq(0))').draggable({
 		revert: 'invalid'
