@@ -9,6 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.framework.ProjectConstants;
 import com.turtledove.bookdrift.domain.entity.User;
+import com.turtledove.bookdrift.domain.entity.UserInfo;
 
 public class LoginUtils {
 
@@ -42,6 +43,15 @@ public class LoginUtils {
 		return true;
 		
 	}
+	 public static UserInfo getCurrentUserInfo(){
+	    	User user = getCurrentLoginUser();
+	    	UserInfo ui = new UserInfo();
+	    	ui.setId(user.getId());
+	    	ui.setUserEmail(user.getUserEmail());
+	    	ui.setUserName(user.getUserName());
+	    	return ui;
+	    	
+	    }
 	private static boolean validateUser(User user){
 		if(user!=null && user.getUserEmail().equals(loginEmail) && user.getUserPwd().equals(loginPwd))
 			return true;
@@ -63,5 +73,6 @@ public class LoginUtils {
     private static HttpServletRequest getHttpRequest(){
     	return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
     }
+   
 
 }
