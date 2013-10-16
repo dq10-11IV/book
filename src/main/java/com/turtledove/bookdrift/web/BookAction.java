@@ -26,7 +26,7 @@ public class BookAction extends AjaxBase {
 	public String bookName;
 	public String data;
 	public boolean isAjax;
-	public String  label;
+	public int  label;
 	public String query() throws UnsupportedEncodingException {
 		
 		Map<String,Object> para = new HashMap<String,Object>();
@@ -47,12 +47,14 @@ public class BookAction extends AjaxBase {
 		setDateResult();
 		setJsonResult();
 		getRequest().put("jsonResult", jsonResult);
-		
 		return SUCCESS;
 	}
 	public String getBooksUnderLabel(){
 		String email = LoginUtils.getCurrentLoginUserEmail();
-		List<Book> bookList = queryService.getBookUnderSpecialTag(label);
+		Map<String,Object> para = new HashMap<String, Object>();
+		para.put("currentUserId", LoginUtils.getCurrentLoginUserId());
+		para.put("labelId", label);
+		List<Book> bookList = queryService.getBooksUnderLableExceptCurrentUser(para);
 		setElementInDate("books", bookList);
 		setDateResult();
 		setTopElementInResult("label", label);
@@ -76,7 +78,7 @@ public class BookAction extends AjaxBase {
 	public void setAjax(boolean isAjax) {
 		this.isAjax = isAjax;
 	}
-	public void setLabel(String label) {
+	public void setLabel(int label) {
 		this.label = label;
 	}
 	

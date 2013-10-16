@@ -62,7 +62,7 @@
 		resultMap="result">
 		<include refid="sql_select" />
 		<include refid="sql_from" />
-		WHERE UL.LABEL_ID = #{para.labeId}
+		WHERE UL.LABEL_ID = #{para.labelId}
 		AND U.USER_ID != #{para.currentUserId};
 	</select>
 </mapper>
