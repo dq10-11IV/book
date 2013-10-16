@@ -208,7 +208,9 @@ example {
 }
 
 #searchInput {
-	display: none;
+	transform: scale(1,0);
+	height: 0;
+	transition: transform 0.3s, height 0.3s;
 }
 
 /* search books */

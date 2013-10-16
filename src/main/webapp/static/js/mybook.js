@@ -18,12 +18,12 @@ $(function(){
 			html: true,
 			container: 'body',
 			content: function () {
-				return '<div class="book-summary" style="display: block;">' + $( this ).siblings( '.book-summary' ).html() + '</div><button onclick="chat(this)" style="margin-top: 10px;" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;对话</button>';
+				return '<div class="book-summary" style="display: block;">' + $( this ).siblings( '.book-summary' ).html() + '</div>';
 			}
 		});
 	}
 	
-	$( '.thumbnail>img' ).each( function () {
+	$( '#tab_me img' ).each( function () {
 		thumbnailPopover(this);
 	});
 	
@@ -42,7 +42,7 @@ $(function(){
 			param.label = id.substr(3).trim();
 			$.post( '/getBooksUnderLabel', param, function( data, status ) {
 				$( '#'+id ).fill( data.data );
-				$( '#'+id ).find( '.thumbnail>img' ).each( function () {
+				$( '#'+id ).find( 'img' ).each( function () {
 					thumbnailPopover( this );
 				});
 			});
@@ -55,18 +55,29 @@ $(function(){
 	});
 	
 	$('#search').click(function(){
-		$('#searchInput').slideToggle("fast");
+		if ($('#searchInput').height() > 1) {
+			$('#searchInput').css({
+				"transform": "scale(1,0)",
+				"height": "0px"
+			});return;
+		}
+		$('#searchInput').css({
+			"transform": "scale(1,1)",
+			"height": "34px"
+		});
 	});
 	$('#searchBooks').click(function(){
 		var param = {};
 		param.ajax = true;
 		param.keys = $('#searchInput>input').val();
-		if (prams.keys == '') return;
+		if (param.keys == '') return;
 		
 		$.post('/search', param, function ( data, status) {
 			alert( JSON.stringify(data) );
 		});
 	});
+	
+	/*addbook.jsp*/
 	$('#addbook').click(function(){
 		$('.fixed-tags').css("left","-200px");
 		setTimeout(function(){

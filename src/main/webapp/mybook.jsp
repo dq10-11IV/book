@@ -22,7 +22,7 @@
 			</ul>
 			<hr style="margin-top: 5px;">
 			<div id="searchInput">
-				<input class="form-control" style="display: inline-block;width:84%">
+				<input class="form-control" placeholder="标签内搜索" style="display: inline-block;width:84%">
 				<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks">Go</button>
 			</div>
 		</div>
