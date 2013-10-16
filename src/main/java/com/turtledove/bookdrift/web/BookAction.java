@@ -31,7 +31,7 @@ public class BookAction extends AjaxBase {
 		
 		Map<String,Object> para = new HashMap<String,Object>();
 		para.put("userId", LoginUtils.getCurrentLoginUserId());
-		para.put("bookName", enCoding(bookName));
+		para.put("bookName", bookName);
 		List<Book> bookList = queryService.query(para);
 		setElementInDate("books", bookList);
 		setDateResult();
