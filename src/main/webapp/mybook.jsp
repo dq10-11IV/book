@@ -9,64 +9,66 @@
 	<link rel="stylesheet" href="static/css/book.css" />
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<a class="navbar-brand">Book Drift</a>
-	</div>
-	<ul class="nav navbar-nav">
-		<li class="active"><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
-		<li></li>
-		<li><a href="/addbook" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
-	</ul>
-	<ul class="nav navbar-nav navbar-right" data-with="bool: user?(fill: user)(remove)">
-		<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
-		<li><a href="#" data-with="text: userName"></a></li>
-	</ul>
-	<form class="navbar-form navbar-right" role="search" >
-		<div class="form-group" style="position: relative;width: 400px; max-width: 500px;">
-			<input type="text" class="form-control" >
-			<span id="search" class="glyphicon glyphicon-search" style="position:absolute;line-height: 28px; right: 20px;color:#777777;"></span>
-		</div>
-	</form>
-</nav>
 <div class="row">
-	<div class="col-lg-3">
+	<div class="container">
+		<div style="margin: 10px 20%; padding-top: 50px;color:#777777;">
+			<b data-with="text: user.userName" ></b>
+			<ul class="nav nav-pills pull-right">
+				<li ><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
+				<li><a href="/addbook" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
+				<li id="search"><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+			</ul>
+			<hr>
+			<div id="searchInput">
+				<input class="form-control" style="display: inline-block;width:84%">
+				<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks">Go</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="fixed-tags">
 		<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels" id="tags">
 			<li class="active"><a href="#tab_me" data-toggle="tab">我</a></li>
 			<example>
 				<li><a href="" data-toggle="tab" data-with="href: '#tab'-id; text: labelName"></a><span class="glyphicon glyphicon-remove"></span></li>
 			</example>
 		</ul>
-		<button data-target="#add-tag" type="button" data-toggle="modal" title="添加新的标签" class="btn btn-lg" style="margin-top: 20px; width: 100%;">
-			<span class="glyphicon glyphicon-plus"></span>
-		</button>
 	</div>
-	<div class="col-lg-9">
+	<div class="container">
 		<div class="tab-content">
+		<!-- tab_me -->
 			<div class="tab-pane active" id="tab_me">
-				
-				<div class="row" data-with="list: books">
+				<ul data-with="list: books" class="list-group">
 					<example>
-						<div class="col-lg-2">
-							<a href="#" class="thumbnail">
-								<img data-with="src: imageUrl">
-								<ul class="status">
-									<li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li>
-									<li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li>
-									<li title="不可借"><span class="glyphicon glyphicon-remove-sign"></span></li>
-								</ul>
-								<div class="book-summary">
-									<p data-with="text: bookName"></p>
-									<p data-with="text: authorName"></p>
-									<p data-with="text: bookPress"></p>
-									<pre data-with="text: summary"></pre>
-								</div>
-							</a>
-						</div>
+						<li class="list-group-item">
+						<h3 data-with="text: bookName"></h3>
+						<img data-with="src: imageUrl"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
+						<div data-with="attr: title,owner" onclick="chat(this)"><span class="glyphicon glyphicon-comment"></span></div>
+						<small data-with="text: authorName"></small>
+						<p data-with="text: bookPress"></p>
+						</li>
 					</example>
-				</div>
-				
+				</ul>
 			</div>
+			
+			<example>
+			<div class="tab-pane" data-with="id: 'tab'-id">
+				<ul data-with="list: books" class="list-group">
+					<example>
+						<li class="list-group-item">
+						<h3 data-with="text: title"></h3>
+						<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
+						<span class="glyphicon glyphicon-share" data-with="id: loop"></span>
+						<small data-with="text: author"></small>
+						<p data-with="text: publisher"></p>
+						</li>
+					</example>
+				</ul>
+			</div>
+			</example>
 		</div>
 	</div>
 </div>
