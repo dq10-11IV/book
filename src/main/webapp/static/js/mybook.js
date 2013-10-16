@@ -64,6 +64,7 @@ $(function(){
 		param.bookName = $('#tab-search input').val();
 		if (param.keys == '') return;
 		
+		$('#tab-search>ul>li').remove();
 		$.post('/query', param, function ( data, status) {
 			$('#tab-search').fill(data.data);
 			thumbnailPopover('#tab-search img')

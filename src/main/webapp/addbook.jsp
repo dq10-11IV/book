@@ -35,7 +35,7 @@
 			<li class="list-group-item">
 			<h3 data-with="text: title"></h3>
 			<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-			<span class="glyphicon glyphicon-share" data-with="id: loop"></span>
+			<div><span class="glyphicon glyphicon-share" data-with="id: loop"></span></div>
 			<small data-with="text: author"></small>
 			<p data-with="text: publisher"></p>
 			</li>
