@@ -2,8 +2,13 @@ function chat(e) {
 	var str = 'talk to ' + $(e).attr("title");
 	alert(str);
 };
+function removeTag(e) {
+	var str = 'remove tag '+$(e).siblings('a').attr('href').substr(4).trim();
+	alert(str);
+};
 $(function(){
-	$('body').fill( result.data );
+	$('.row').fill( result.data );
+	$('.fixed-tags').fill( result.data );
 	/* popover */
 	function thumbnailPopover( tn ) {
 		$( tn ).popover({
@@ -29,10 +34,13 @@ $(function(){
 		var id = $( e.target ).attr( 'href' ).substr( 1 );
 		var pane = $( '#'+id );
 		if ( pane.length == 0 ) {
-			var node = '<div class="tab-pane" id="'+ id +'">' + $( '#tab_me' ).html().trim() + '</div>';
+			var node = '<div class="tab-pane" id="'+ id +'"><ul data-with="list: books" class="list-group"><example>' + $( '#tab_me example' ).html().trim() + '<example></ul></div>';
 			$( '.tab-content' ).append( node );
-
-			$.post( '/getBooksUnderLabel', {ajax: true,	label: $( this ).text()	}, function( data, status ) {
+			
+			var param = {};
+			param.ajax = true;
+			param.label = id.substr(3).trim();
+			$.post( '/getBooksUnderLabel', param, function( data, status ) {
 				$( '#'+id ).fill( data.data );
 				$( '#'+id ).find( '.thumbnail>img' ).each( function () {
 					thumbnailPopover( this );
@@ -59,9 +67,68 @@ $(function(){
 			alert( JSON.stringify(data) );
 		});
 	});
+	$('#addbook').click(function(){
+		$('.fixed-tags').css("left","-200px");
+		setTimeout(function(){
+			$('.tab-content').hide(1000);
+		}, 500);
+		
+		$('#book>li').remove();
+		setTimeout(function(){
+			$('.fixed-books').css({
+				"top": "130px"
+			});
+		},1500);
+	});
+	$('#addbook-hide').click(function(){
+		$('.fixed-books').css({
+			"top": "-300px"
+		});
+		setTimeout(function(){
+			$('.tab-content').show(1000);
+		}, 1000);
+		setTimeout(function(){
+			$('.fixed-tags').css("left","0px");
+		},2000);
+	});
 	
-	
-	
+	var saved = {};
+	$( '#searchBooks-douban' ).click( function () {
+		$( '#books>ul>li' ).remove();
+		var keys = $( this ).siblings( 'input' ).val();
+		new douban().searchBooksByKeys( keys, function( data ) {
+			saved.books = data.books;
+			//fill datas
+			$( '#books' ).fill( data );
+			
+			//add action of share
+			$( '#books .glyphicon-share' ).click( function () {
+				var index = $( this ).attr( 'id' );
+				saved.books[index].ajax = true;
+				saved.books[index].author = saved.books[index].author.join(',');
+				$.post( '/addbook', saved.books[index]);
+			});
+			
+			//add action of popover about book's summary
+			$( '#books>ul>li img' ).each( function () {
+				$( this ).popover({
+					trigger: 'click',
+					title: '详细',
+					html: true,
+					container: 'body',
+					content: function () {
+						var node = '<div class="book-summary" style="display: block;">';
+						var text = $( this ).siblings( '.book-summary' ).text().split( '\n' );
+						for ( var item in text ) {
+							node += '<p>' + text[item] + '</p>';
+						}
+						node += '</div>';
+						return node;
+					}
+				});
+			} );
+		} );
+	} );
 	/*$('.nav-pills').find('li:not(:eq(0))').draggable({
 		revert: 'invalid'
 	});
