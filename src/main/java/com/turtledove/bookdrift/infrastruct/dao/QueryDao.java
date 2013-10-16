@@ -10,4 +10,5 @@ import com.turtledove.bookdrift.domain.entity.Book;
 
 public interface QueryDao extends DomainObjectDao<Book> {
 	List<Book> query(@Param("para")Map<String,Object> para);
+	List<Book> getBooksUnderLableExceptCurrentUser(@Param("para")Map<String,Object> para);
 }

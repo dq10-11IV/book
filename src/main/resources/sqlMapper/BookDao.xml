@@ -71,20 +71,6 @@
 		<include refid="sql_select" />
 		WHERE ISBN = #{isbn};
 	</select>
-	<select id="getBooksUnderUserAndTag" parameterType="Map"
-		resultMap="result">
-		<include refid="sql_select_m" />
-		FROM bd_user AS U
-		INNER JOIN bd_user_book_ass AS UB ON U.USER_ID =
-		UB.USER_ID
-		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
-		INNER JOIN bd_label AS L ON L.LABEL_ID = UL.LABEL_ID
-		INNER JOIN bd_book
-		AS B ON B.BOOK_ID = UB.BOOK_ID
-		WHERE L.LABEL_NAME = #{tag}
-		AND
-		U.USER_EMAIL =#{email};
-	</select>
 	<select id="getBookUnderSpecialTag" parameterType="String"
 		resultMap="result">
 		<include refid="sql_select_m" />

@@ -42,14 +42,27 @@
 		U.USER_EMAIL,
 		U.USER_NAME
 	</sql>
+	<sql id="sql_from">
+		FROM bd_book AS B
+		INNER JOIN bd_user_book_ass AS UB ON B.BOOK_ID =
+		UB.BOOK_ID
+		INNER JOIN bd_user AS U ON U.USER_ID = UB.USER_ID
+		INNER JOIN
+		bd_user_label AS UL ON U.USER_ID = UL.USER_ID
+	</sql>
 	<select id="query" parameterType="map" resultMap="result">
 		<include refid="sql_select" />
-		FROM bd_book AS B
-		INNER JOIN bd_user_book_ass AS UB ON B.BOOK_ID = UB.BOOK_ID
-		INNER JOIN bd_user AS U ON U.USER_ID = UB.USER_ID
-		INNER JOIN bd_user_label AS UL ON U.USER_ID = UL.USER_ID
-		
-		WHERE UL.LABEL_ID IN (SELECT ULL.LABEL_ID FROM bd_user_label AS ULL WHERE ULL.USER_ID =#{para.userId})
-		 AND B.BOOK_NAME LIKE  '%${para.bookName}%' <!-- CONCAT('%','${para.bookName}','%' )  -->
+		<include refid="sql_from" />
+		WHERE UL.LABEL_ID IN (SELECT ULL.LABEL_ID FROM bd_user_label AS ULL
+		WHERE ULL.USER_ID =#{para.userId})
+		AND B.BOOK_NAME LIKE '%${para.bookName}%' <!-- CONCAT('%','${para.bookName}','%' 
+			) -->
+	</select>
+	<select id="getBooksUnderLableExceptCurrentUser" parameterType="map"
+		resultMap="result">
+		<include refid="sql_select" />
+		<include refid="sql_from" />
+		WHERE UL.LABEL_ID = #{para.labeId}
+		AND U.USER_ID != #{para.currentUserId};
 	</select>
 </mapper>

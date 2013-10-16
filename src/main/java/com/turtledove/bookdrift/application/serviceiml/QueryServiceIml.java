@@ -19,12 +19,6 @@ public class QueryServiceIml implements QueryService {
 	BookDao bookDao;
 	@Autowired
 	QueryDao queryDao;
-	public List<Book> getBookUnderUserAndSpecailTag(String email, String tag) {
-		Map<String,String> paraMap = new HashMap<String, String>();
-		paraMap.put("email", email);
-		paraMap.put("tag", tag);
-		return bookDao.getBooksUnderUserAndTag(paraMap);
-	}
 	public List<Book> getBookUnderUser(Integer Id) {
 		return bookDao.getBookUnderUser(Id);
 	}
@@ -33,6 +27,9 @@ public class QueryServiceIml implements QueryService {
 	}
 	public List<Book> query(Map<String, Object> para) {
 		return queryDao.query(para);
+	}
+	public List<Book> getBooksUnderLableExceptCurrentUser(Map<String, Object> para) {
+		return queryDao.getBooksUnderLableExceptCurrentUser(para);
 	}
 	
 }
