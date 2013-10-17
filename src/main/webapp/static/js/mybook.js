@@ -56,48 +56,63 @@ $(function(){
 	});
 	
 	$('#search').click(function(){
-		$('[href="#tab-search"]').click();
+		if ($('#search-input-pane').height() == 0 ) {
+			setTimeout(function(){
+				$('#search-input-pane').css({
+					"transform": "scale(1,1)",
+					"height": "60px"
+				}).children('input').focus();
+			},500);
+			$('.fixed-tags').css({
+				"left": "-200px"
+			})
+			$('#search span').removeClass('glyphicon-search').addClass('glyphicon-remove');
+		} else {
+			$('#search-input-pane').css({
+				"transform": "scale(1,0)",
+				"height": "0"
+			}).children('input').val('');
+			setTimeout(function(){
+				$('.fixed-tags').css({
+					"left": "0"
+				}).find('li.active>a').attr('href').trim()).addClass('active');;
+			},500);
+			$('#search span').removeClass('glyphicon-remove').addClass('glyphicon-search');
+			$('#tab-search').removeClass('active');
+		}
 	});
-	$('#searchBooks').click(function(){
-		var param = {};
-		param.ajax = true;
-		param.bookName = $('#tab-search input').val();
-		if (param.keys == '') return;
-		
-		$('#tab-search>ul>li').remove();
-		$.post('/query', param, function ( data, status) {
-			$('#tab-search').fill(data.data);
-			thumbnailPopover('#tab-search img')
-		});
+	$('#search-input-pane').keypress(function(e){
+		if (e.keyCode == 13) {
+			var param = {};
+			param.ajax = true;
+			param.bookName = $('#search-input-pane input').val();
+			if (param.keys == '') return;
+			
+			$('#tab-search>ul>li').remove();
+			$.post('/query', param, function ( data, status) {
+				$('#tab-search').fill(data.data).addClass('active');;
+				thumbnailPopover('#tab-search img');
+				$('.tab-content .active').removeClass('active');
+			});
+		}
 	});
 	
 	/*addbook.jsp*/
-	$('#addbook').click(function(){
-		$('.fixed-tags').css("left","-200px");
-		setTimeout(function(){
-			$('.tab-content').hide(1000);
-		}, 500);
-		
-		$('#book>li').remove();
-		setTimeout(function(){
-			$('.fixed-books').css({
-				"top": "130px"
-			});
-		},1500);
+	var saved = {};
+	
+	$('#addbook-trigger').click(function(){
+		$('#books>ul>li').show();
+		$('#content').css({
+			"margin-left": "-100%"
+		});
 	});
 	$('#addbook-hide').click(function(){
-		$('.fixed-books').css({
-			"top": "-300px"
+		$('#content').css({
+			"margin-left": "0"
 		});
-		setTimeout(function(){
-			$('.tab-content').show(1000);
-		}, 1000);
-		setTimeout(function(){
-			$('.fixed-tags').css("left","0px");
-		},2000);
+		$('#books>ul>li').hide();
 	});
 	
-	var saved = {};
 	$( '#searchBooks-douban' ).click( function () {
 		$( '#books>ul>li' ).remove();
 		var keys = $( this ).siblings( 'input' ).val();
@@ -111,7 +126,16 @@ $(function(){
 				var index = $( this ).attr( 'id' );
 				saved.books[index].ajax = true;
 				saved.books[index].author = saved.books[index].author.join(',');
-				$.post( '/addbook', saved.books[index]);
+				$.post( '/addbook', saved.books[index], function( r, s) {
+					x.alert({
+						text: r.data["error"]
+					});
+					if ( r.data["error"] == '分享成功' ) {
+						var parent = $(this).parents('li');
+						parent.children('div').replaceWith('<ul class="status"><li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li><li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li></ul>');
+						parent.appendTo($('#tab-me>ul'));
+					}
+				});
 			});
 			
 			//add action of popover about book's summary
@@ -181,26 +205,23 @@ $(function(){
 	})
 	
 	/* message */
-	$( document ).keypress( function ( e ) {
+	$( '#message' ).keypress( function ( e ) {
 		if ( e.keyCode == 13 ) { //enter
-			if ( $( '#message' ).css( 'display' ) == 'none' ) {
-				$( '#message' ).show().find( 'input' ).val('').focus();
-			} else {
-				var msg = $('#message input').val();
-				if ( msg == '' ) {
-					$('#message input').focus();
-					return;
-				}
-				var node = '<p class="me"><b>me:&nbsp;&nbsp;</b><span>'+msg+'</span><span style="float: right;">'+new Date().toLocaleTimeString()+'</span></p>';
-				$( '#message .msg-pane' ).append( node );
-				$('#message input').val('');
+			var msg = $('#message input').val();
+			if ( msg == '' ) {
+				$('#message input').focus();
+				return;
 			}
+			var node = '<p class="me"><b>me:&nbsp;&nbsp;</b><span>'+msg+'</span><span style="float: right;">'+new Date().toLocaleTimeString()+'</span></p>';
+			$( '#message .msg-pane' ).append( node );
+			$('#message input').val('');
 		}
 		
 		if ( e.keyCode == 27 ) { //esc
 			$( '#message' ).hide();
 		}
 	} );
+	
 	$( '#msg-close' ).click(function(){
 		$( '#message' ).hide();
 	});

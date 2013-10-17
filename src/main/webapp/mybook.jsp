@@ -12,11 +12,11 @@
 <div class="row" id="head">
 	<div class="container">
 		<div style="margin: 10px 20%; padding-top: 50px;color:#777777;">
-			<div data-with="text: user.userName" style="height: 37px;line-height: 37px; display: inline-block;width:auto;"></div>
+			<div data-with="fill: user" style="height: 37px;line-height: 37px; display: inline-block;width:auto;"><a title="退出" href="/logout" data-with="text: userName"></a></div>
 			<ul class="nav nav-pills pull-right">
 				<li ><a href="/myBook" title="主页"><span class="glyphicon glyphicon-home"></span></a></li>
 				<li><a href="#add-tag" data-toggle="modal" title="添加新的标签"><span class="glyphicon glyphicon-tag"></span></a></li>
-				<li id=""><a href="/addbook" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
+				<li id="addbook-trigger"><a href="#" title="分享新的书籍"><span class="glyphicon glyphicon-book"></span></a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-envelope"></span><strong class="icon-badge">1</strong></a></li>
 				<li id="search"><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
 			</ul>
@@ -25,30 +25,9 @@
 	</div>
 </div>
 
-<div class="fixed-books">
-<div class="container">
-		<span class="glyphicon glyphicon-remove" id="addbook-hide"></span>
-	<div style="margin: 10px 20%;">
-		<input class="form-control" placeholder="搜索" style="display: inline-block; width: 84%;">
-		<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks-douban"><span class="glyphicon glyphicon-search"></span></button>
-	</div>
-
-	<div id="books">
-	<ul data-with="list: books" class="list-group">
-		<example>
-			<li class="list-group-item">
-			<h3 data-with="text: title"></h3>
-			<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-			<div><span class="glyphicon glyphicon-share" data-with="id: loop"></span></div>
-			<small data-with="text: author"></small>
-			<p data-with="text: publisher"></p>
-			</li>
-		</example>
-	</ul>
-	</div>
-</div>
-</div>
-
+<div id="content">
+<!-- mybook -->
+<div id="mybook">
 <div class="row">
 	<div class="container">
 		<div class="tab-content">
@@ -72,11 +51,6 @@
 			
 			<!-- tab search -->
 			<div class="tab-pane" id="tab-search">
-				<div style="margin: 10px 20%;">
-					<input class="form-control" placeholder="标签内搜索" style="display: inline-block;width:84%">
-					<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks">Go</button>
-				</div>
-			
 				<ul data-with="list: books" class="list-group">
 					<example>
 						<li class="list-group-item">
@@ -116,11 +90,14 @@
 <div class="fixed-tags">
 	<ul class="nav nav-pills nav-stacked nav-tabs" data-with="list: labels" id="tags">
 		<li class="active"><a href="#tab-me" data-toggle="tab">我</a></li>
-		<li ><a href="#tab-search" data-toggle="tab">标签内搜索</a></li>
 		<example>
 			<li><a href="" data-toggle="tab" data-with="href: '#tab'-id; text: labelName"></a><span onclick="removeTag(this)" class="glyphicon glyphicon-remove"></span></li>
 		</example>
 	</ul>
+</div>
+
+<div id="search-input-pane">
+	<input class="form-control" placeholder="标签内搜索" style="display: inline-block;border:none;box-shadow:none;height: 100%;line-height:40px;">
 </div>
 
 <div id="message">
@@ -132,6 +109,35 @@
 		<span id="msg-send" class="glyphicon glyphicon-send" style="position: absolute;top: 0;right:15px;"></span>
 	</div>
 </div>
+</div>
+
+<!-- addbook -->
+<div id="addbook">
+<div class="fixed-books">
+	<div class="container">
+		<span class="glyphicon glyphicon-arrow-left" id="addbook-hide" style="margin-left: 20%;"></span>
+		<div style="margin: 10px 20%;">
+			<input class="form-control" placeholder="搜索" style="display: inline-block; width: 84%;">
+			<button style="width: 15%;" class="btn btn-default" type="button" title="搜索" id="searchBooks-douban"><span class="glyphicon glyphicon-search"></span></button>
+		</div>
+	
+		<div id="books">
+		<ul data-with="list: books" class="list-group">
+			<example>
+				<li class="list-group-item">
+				<h3 data-with="text: title"></h3>
+				<img data-with="src: image"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
+				<div><span class="glyphicon glyphicon-share" data-with="id: loop"></span></div>
+				<small data-with="text: author"></small>
+				<p data-with="text: publisher"></p>
+				</li>
+			</example>
+		</ul>
+		</div>
+	</div>
+</div>
+</div>
+</div>
 
 <%@ include file="patch/result.jsp" %>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -139,6 +145,7 @@
 <script src="static/bootstrap3/js/bootstrap.js" ></script>
 <script src="static/js/with.js"></script>
 <script src="static/js/douban.js"></script>
+<script src="static/js/x.js"></script>
 <script src="static/js/mybook.js"></script>
 </body>
 </html>
