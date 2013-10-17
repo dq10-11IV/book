@@ -8,6 +8,9 @@
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirectAction">myBook</result>
 		</action>
+		<action name="logout" class="com.turtledove.bookdrift.web.AdminLogin" method="logout">
+		   <result name="towelcomepage">/</result>
+		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 	        <result name="toregisterpage">/register.jsp</result>
 	        <result name="success" type="redirect">/login.jsp</result>

@@ -63,6 +63,10 @@ public class AdminLogin extends AjaxBase{
 		getRequest().put("jsonResult", setJsonResult());
 		return TOLOGINPAGE;
 	}
+	private String logout(){
+		LoginUtils.removeUserInfoInSession();
+		return TO_WELCOME_PAGE;
+	}
 	public String validation(){
 			if(userService.validateEmail(fieldValue))
 				setDateWithErrorMsg(ActionMessage.USER_EXIST);

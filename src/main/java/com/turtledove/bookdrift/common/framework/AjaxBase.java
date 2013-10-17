@@ -10,14 +10,15 @@ import com.turtledove.bookdrift.common.utils.JsonUtils;
 
 public class AjaxBase {
 
-	public static String SUCCESS = "success";
-	public static String TOLOGINPAGE="tologinpage";
-	public static String TO_HUB_PAGE ="tohubpage"; 
-    public static String TO_REGISTER_PAGE ="toregisterpage";
-	public static String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
-	public static String TO_ADD_BOOK_PAGE = "toaddbookpage";
-	public static int SUCCESS_CODE = 200;
-	public static int FAILURE_CODE = 500;
+	public static final String SUCCESS = "success";
+	public static final String TOLOGINPAGE="tologinpage";
+	public static final String TO_HUB_PAGE ="tohubpage"; 
+    public static final String TO_REGISTER_PAGE ="toregisterpage";
+	public static final String TO_LOGIN_PAGR_WITH_FAIL_MSG = "tologinpagewithfailmsg";
+	public static final String TO_ADD_BOOK_PAGE = "toaddbookpage";
+	public static final String TO_WELCOME_PAGE = "towelcomepage";
+	public static final int SUCCESS_CODE = 200;
+	public static final int FAILURE_CODE = 500;
 	public String jsonResult = new String();
 	public Map<String,Object> result = new HashMap<String,Object>();
 	public Map<String,Object> dataresult = new HashMap<String, Object>();

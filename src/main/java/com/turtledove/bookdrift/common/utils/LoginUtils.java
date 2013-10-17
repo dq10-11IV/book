@@ -24,7 +24,7 @@ public class LoginUtils {
 		 User user = userService.getUserByEmail(loginEmail);
 		if(validateUser(user)){
 			httpSession.setAttribute(ProjectConstants.LOGIN_USER_IN_SESSION, user);
-			httpSession.setAttribute(ProjectConstants.LOGINED_EMAIL_SESSION, loginEmail);
+			httpSession.setAttribute(ProjectConstants.LOGINED_EMAIL_IN_ESSION, loginEmail);
 			httpSession.setAttribute(ProjectConstants.LOGIN_ID_SESSION, user.getId());
 			return true;
 		}
@@ -32,7 +32,7 @@ public class LoginUtils {
 	}
 	public static boolean isSessionLogin(){
 		HttpSession httpsession = getHttpSession();
-		if(httpsession.getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION) != null)
+		if(httpsession.getAttribute(ProjectConstants.LOGINED_EMAIL_IN_ESSION) != null)
 			return true;
 		return false;
 	}
@@ -52,13 +52,19 @@ public class LoginUtils {
 	    	return ui;
 	    	
 	    }
+	 public static void removeUserInfoInSession(){
+		 HttpSession httpSession = getHttpSession();
+		 httpSession.removeAttribute(ProjectConstants.LOGIN_ID_SESSION);
+		 httpSession.removeAttribute(ProjectConstants.LOGINED_EMAIL_IN_ESSION);
+		 httpSession.removeAttribute(ProjectConstants.LOGIN_USER_IN_SESSION);
+	 }
 	private static boolean validateUser(User user){
 		if(user!=null && user.getUserEmail().equals(loginEmail) && user.getUserPwd().equals(loginPwd))
 			return true;
 		return false;
 	}
 	public static String getCurrentLoginUserEmail(){
-		return (String) getHttpRequest().getSession().getAttribute(ProjectConstants.LOGINED_EMAIL_SESSION);
+		return (String) getHttpRequest().getSession().getAttribute(ProjectConstants.LOGINED_EMAIL_IN_ESSION);
 	}
 	public static Integer getCurrentLoginUserId(){
 		return  (Integer) getHttpSession().getAttribute(ProjectConstants.LOGIN_ID_SESSION);
