@@ -32,7 +32,7 @@ public class LoginUtils {
 	}
 	public static boolean isSessionLogin(){
 		HttpSession httpsession = getHttpSession();
-		if(httpsession.getAttribute(ProjectConstants.LOGINED_EMAIL_IN_ESSION) != null)
+		if(httpsession.getAttribute(ProjectConstants.LOGIN_USER_IN_SESSION) != null)
 			return true;
 		return false;
 	}
@@ -45,6 +45,7 @@ public class LoginUtils {
 	}
 	 public static UserInfo getCurrentUserInfo(){
 	    	User user = getCurrentLoginUser();
+	    	if(user==null) return null;
 	    	UserInfo ui = new UserInfo();
 	    	ui.setId(user.getId());
 	    	ui.setUserEmail(user.getUserEmail());
