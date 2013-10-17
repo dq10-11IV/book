@@ -6,10 +6,10 @@
     <package name="user" extends="json-default" namespace="/">
 		<action name="login" class="com.turtledove.bookdrift.web.AdminLogin"  method="login">
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
-			<result name="tohubpage" type="redirectAction">myBook</result>
+			<result name="tohubpage" type="redirect">/myBook</result>
 		</action>
 		<action name="logout" class="com.turtledove.bookdrift.web.AdminLogin" method="logout">
-		   <result name="towelcomepage">/</result>
+		   <result name="towelcomepage" type="redirect">/</result>
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 	        <result name="toregisterpage">/register.jsp</result>

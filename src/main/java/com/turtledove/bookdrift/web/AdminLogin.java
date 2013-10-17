@@ -63,7 +63,7 @@ public class AdminLogin extends AjaxBase{
 		getRequest().put("jsonResult", setJsonResult());
 		return TOLOGINPAGE;
 	}
-	private String logout(){
+	public String logout(){
 		LoginUtils.removeUserInfoInSession();
 		return TO_WELCOME_PAGE;
 	}
