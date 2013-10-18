@@ -1,0 +1,7 @@
+send message: 
+url: /message
+{
+	ajax: true;
+	to: , //user id
+	msg: , //message content
+}

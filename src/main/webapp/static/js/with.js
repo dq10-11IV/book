@@ -27,6 +27,13 @@
 				this.children().fill( methods.data );
 			},
 			
+			data: function ( arg ) {
+				var params = methods.dualParams( arg );
+				
+				this.data( params.key, params.value );
+				this.children().fill( methods.data );
+			},
+			
 			list: function ( arg ) {
 				//find example, if failed, return
 				var example = this.find( methods.settings.exampleSelector );

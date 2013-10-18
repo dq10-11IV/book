@@ -162,6 +162,7 @@ example {
 	position: relative;
 	float: left;
 	width: 50%;
+	min-height: 1px;
 }
 
 #search-input-pane {
@@ -173,6 +174,7 @@ example {
 	transform: scale(1,0);
 	height: 0;
 	background: white;
+	color: #222222;
 	transition: transform 0.5s, height 0.5s;
 }
 
@@ -182,6 +184,7 @@ example {
 
 #addbook {
 	position: relative;
+	display: none;
 	float: left;
 	width: 50%;
 }
@@ -244,6 +247,7 @@ example {
 }
 .list-group-item {
 	margin: 10px 20%;
+	min-height: 100px;
 }
 .list-group-item > p {
 	position: absolute;
@@ -279,6 +283,7 @@ img:hover {
 	bottom: 50px;
 	left: 35%;
 	width: 30%;
+	background-color: #ffffee;
 }
 
 .msg-pane {

@@ -56,7 +56,7 @@
 						<li class="list-group-item">
 						<h3 data-with="text: bookName"></h3>
 						<img data-with="src: imageUrl"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-						<div data-with="attr: title,owner.id" onclick="chat(this)"><span class="glyphicon glyphicon-comment"></span></div>
+						<div data-with="id: owner.id;data: name,owner.userName" onclick="chat(this)"><span class="glyphicon glyphicon-comment"></span></div>
 						<small data-with="text: authorName"></small>
 						<p data-with="text: bookPress"></p>
 						</li>
@@ -97,16 +97,16 @@
 </div>
 
 <div id="search-input-pane">
-	<input class="form-control" placeholder="标签内搜索" style="display: inline-block;border:none;box-shadow:none;height: 100%;line-height:40px;">
+	<input class="form-control" placeholder="标签内搜索" style="display: inline-block;border:none;box-shadow:none;height: 100%;line-height:60px;font-size:25px;">
 </div>
 
 <div id="message">
 	<div class="msg-pane">
 	</div>
 	<div class="input-inset">
-		<span id="msg-close" class="glyphicon glyphicon-remove" style="position: absolute;top: 0;left:15px;"></span>
+		<span title="Esc 关闭留言" id="msg-close" class="glyphicon glyphicon-remove" style="position: absolute;top: 0;left:15px;"></span>
 		<input class="form-control" type="text">
-		<span id="msg-send" class="glyphicon glyphicon-send" style="position: absolute;top: 0;right:15px;"></span>
+		<span title="Enter 发送" id="msg-send" class="glyphicon glyphicon-send" style="position: absolute;top: 0;right:15px;"></span>
 	</div>
 </div>
 </div>

@@ -1,10 +1,14 @@
 function chat(e) {
-	var str = 'talk to ' + $(e).attr("title");
-	alert(str);
+	var tip = '给 '+$(e).data('name')+' 留言';
+	$('#message').data('to', $(e).attr('id')).attr('title', tip).show().find('input').attr('placeholder', tip).focus();
 };
 function removeTag(e) {
-	var str = 'remove tag '+$(e).siblings('a').attr('href').substr(4).trim();
-	alert(str);
+	var param = {};
+	param.ajax = true;
+	param.labelId = $(e).siblings('a').attr('href').substr(4).trim();
+	$.post( '/removelabel', param, function ( data, status ) {
+		/* todo */
+	})
 };
 $(function(){
 	$('#head').fill( result.data );
@@ -60,7 +64,7 @@ $(function(){
 			setTimeout(function(){
 				$('#search-input-pane').css({
 					"transform": "scale(1,1)",
-					"height": "60px"
+					"height": "80px"
 				}).children('input').focus();
 			},500);
 			$('.fixed-tags').css({
@@ -73,9 +77,9 @@ $(function(){
 				"height": "0"
 			}).children('input').val('');
 			setTimeout(function(){
-				$('.fixed-tags').css({
+				$($('.fixed-tags').css({
 					"left": "0"
-				}).find('li.active>a').attr('href').trim().addClass('active');;
+				}).find('li.active>a').attr('href').trim()).addClass('active');
 			},500);
 			$('#search span').removeClass('glyphicon-remove').addClass('glyphicon-search');
 			$('#tab-search').removeClass('active');
@@ -90,9 +94,10 @@ $(function(){
 			
 			$('#tab-search>ul>li').remove();
 			$.post('/query', param, function ( data, status) {
-				$('#tab-search').fill(data.data).addClass('active');;
+				$('#tab-search').fill(data.data);
 				thumbnailPopover('#tab-search img');
 				$('.tab-content .active').removeClass('active');
+				$('#tab-search').addClass('active');
 			});
 		}
 	});
@@ -101,7 +106,7 @@ $(function(){
 	var saved = {};
 	
 	$('#addbook-trigger').click(function(){
-		$('#books>ul>li').show();
+		$('#addbook').show();
 		$('#content').css({
 			"margin-left": "-100%"
 		});
@@ -110,7 +115,7 @@ $(function(){
 		$('#content').css({
 			"margin-left": "0"
 		});
-		$('#books>ul>li').hide();
+		$('#addbook').hide();
 	});
 	
 	$( '#searchBooks-douban' ).click( function () {
@@ -158,36 +163,8 @@ $(function(){
 			} );
 		} );
 	} );
-	/*$('.nav-pills').find('li:not(:eq(0))').draggable({
-		revert: 'invalid'
-	});
 	
-	$('#trash').droppable({
-		drop: function ( event, ui ) {
-			ui.draggable.remove();
-		},
-		hoverClass: 'btn-danger'
-	});
-	
-	var saved = {};
-	$( '#searchIsbn' ).click( function () {
-		var isbn = $( '#add-book' ).find( '.modal-body input' ).val();
-		var data = new douban().askBookByIsbn( isbn, function( data ) {
-			$( '#add-book' ).fill( data );
-			$( '#add-book' ).find( 'table' ).show();
-			saved.data = data;
-		} );
-	} );
-	
-	$( '#submitBook' ).click( function () {
-		if ( typeof saved.data !== 'undefined' ) {
-			saved.data.ajax = true;
-			saved.data.author = saved.data.author.join('');
-			$.post( '/addbook', saved.data);
-		}
-		$( '#add-book' ).find( 'table' ).hide();
-	} );*/
-	
+	/* add tag */
 	$( '#submitTag' ).click( function () {
 		var param = {};
 		param['labelName'] = $( '#add-tag input' ).val();
@@ -202,28 +179,21 @@ $(function(){
 			}
 		})
 		
-	})
+	});
 	
 	/* message */
 	$( '#message' ).keypress( function ( e ) {
 		if ( e.keyCode == 13 ) { //enter
-			var msg = $('#message input').val();
-			if ( msg == '' ) {
-				$('#message input').focus();
-				return;
-			}
-			var node = '<p class="me"><b>me:&nbsp;&nbsp;</b><span>'+msg+'</span><span style="float: right;">'+new Date().toLocaleTimeString()+'</span></p>';
-			$( '#message .msg-pane' ).append( node );
-			$('#message input').val('');
+			$('#msg-send').click();
 		}
 		
 		if ( e.keyCode == 27 ) { //esc
-			$( '#message' ).hide();
+			$('#msg-close').click();
 		}
 	} );
 	
 	$( '#msg-close' ).click(function(){
-		$( '#message' ).hide();
+		$( '#message' ).hide().find('input').val('');
 	});
 	$( '#msg-send' ).click(function(){
 		var msg = $('#message input').val();
@@ -234,5 +204,11 @@ $(function(){
 		var node = '<p class="me"><b>me:&nbsp;&nbsp;</b><span>'+msg+'</span><span style="float: right;">'+new Date().toLocaleTimeString()+'</span></p>';
 		$( '#message .msg-pane' ).append( node );
 		$('#message input').val('');
+		
+		var param = {};
+		param.ajax = true;
+		param.msg = msg;
+		param.to = $('#message').data('to');
+		$.post('/message', param);
 	});
 });
