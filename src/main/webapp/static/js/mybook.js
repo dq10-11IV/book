@@ -75,7 +75,7 @@ $(function(){
 			setTimeout(function(){
 				$('.fixed-tags').css({
 					"left": "0"
-				}).find('li.active>a').attr('href').trim()).addClass('active');;
+				}).find('li.active>a').attr('href').trim().addClass('active');;
 			},500);
 			$('#search span').removeClass('glyphicon-remove').addClass('glyphicon-search');
 			$('#tab-search').removeClass('active');

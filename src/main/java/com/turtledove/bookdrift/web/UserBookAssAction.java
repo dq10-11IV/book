@@ -8,6 +8,7 @@ import com.turtledove.bookdrift.application.service.UserBookAssService;
 import com.turtledove.bookdrift.commom.Enum.ActionResult;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
+import com.turtledove.bookdrift.common.framework.ProjectConstants;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.domain.entity.UserBookAss;
@@ -45,8 +46,8 @@ public class UserBookAssAction extends AjaxBase{
 		book.setBookPress(publisher);
 		book.setIsbn(isbn13);
 		book.setImageUrl(image);
-		book.setSummary(summary);
-		book.setBookPrice(Double.valueOf(price.substring(0, price.length() - 2)));
+		book.setSummary(summary.length() <=ProjectConstants.SUMMARY_LENGTH ?summary:summary.substring(0, ProjectConstants.SUMMARY_LENGTH));
+		book.setBookPrice(Double.valueOf(price.length() > 2 ?price.substring(0, price.length() - 2):"-1"));
 		book.setCreateDate(new Date());
 		book.setLastUpdateDate(new Date());
 		return book;
