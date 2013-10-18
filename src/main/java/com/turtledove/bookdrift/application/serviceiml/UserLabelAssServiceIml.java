@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.turtledove.bookdrift.application.service.LabelService;
 import com.turtledove.bookdrift.application.service.UserLabelAssService;
+import com.turtledove.bookdrift.commom.Enum.UpdateOptionResult;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Label;
 import com.turtledove.bookdrift.domain.entity.UserLabelAss;
@@ -36,5 +37,11 @@ public class UserLabelAssServiceIml implements UserLabelAssService {
 			   return true;
 			}
 		return false;
+	}
+	public UpdateOptionResult update(Integer userId, Integer oldlabelId, Integer newLabelId) {
+		if(userLabelAssDao.findByUserIdAndLabelId(userId, newLabelId)!= null)
+		  return UpdateOptionResult.EXIT;
+		userLabelAssDao.update(userId, oldlabelId, newLabelId);
+		  return UpdateOptionResult.SUCCESS;
 	}
 }

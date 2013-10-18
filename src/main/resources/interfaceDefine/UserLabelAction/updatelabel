@@ -1,0 +1,6 @@
+<!--访问URL:/updatelabel--><!--参数：当前labelId:labelId,
+更新的LabelName:newLabelName-->{
+    data:{
+        error:"更新成功"
+    }
+}

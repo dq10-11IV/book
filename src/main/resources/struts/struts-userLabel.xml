@@ -10,6 +10,10 @@
                 <param name="root">result</param>
               </result>
           </action>
-          
+         <action name="updatelabel" class="com.turtledove.bookdrift.web.UserLabelAction" method="updateLabel">
+           <result name="success" type="json">
+                <param name="root">result</param>
+            </result>
+         </action>
       </package> 
  </struts>

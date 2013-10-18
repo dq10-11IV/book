@@ -31,4 +31,11 @@
 		INSERT INTO bd_user_label(USER_ID,LABEL_ID,CREATE_DATE,LAST_UPDATE_DATE)
 		VALUE(#{userId},#{labelId},#{createDate},#{lastUpdateDate});
 	</insert>
+	<update id="update">
+	    UPDATE bd_user_label SET LABEL_ID = #{newLabelId} WHERE USER_ID =#{userId} AND LABEL_ID = #{oldlabelId};
+	</update>
+	<select id="findByUserIdAndLabelId" resultMap="result">
+	   <include refid="sql_select"/>
+	   WHERE USER_ID =#{userId} AND LABEL_ID = #{labelId};
+	</select>
 </mapper>
