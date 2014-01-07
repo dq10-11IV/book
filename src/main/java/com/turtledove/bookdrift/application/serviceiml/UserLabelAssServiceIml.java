@@ -44,4 +44,9 @@ public class UserLabelAssServiceIml implements UserLabelAssService {
 		userLabelAssDao.update(userId, oldlabelId, newLabelId);
 		  return UpdateOptionResult.SUCCESS;
 	}
+	public void remove(Integer labelId) {
+		if(userLabelAssDao.findByUserIdAndLabelId(LoginUtils.getCurrentLoginUserId(), labelId)!=null){
+			userLabelAssDao.remove(LoginUtils.getCurrentLoginUserId(), labelId);
+		}
+	}
 }

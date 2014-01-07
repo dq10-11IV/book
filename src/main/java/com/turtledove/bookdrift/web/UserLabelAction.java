@@ -34,6 +34,17 @@ public class UserLabelAction extends AjaxBase{
 		}
 		return SUCCESS;
 	}
+	public String removelabel(){
+		
+		try{
+            userLabelAssService.remove(labelId);
+            setSuccessResult("success");
+		}catch(Exception e ){
+			setSuccessResult("fail");
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 	public String updateLabel(){
 		UpdateOptionResult optionResult ;
 		try {

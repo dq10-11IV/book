@@ -10,4 +10,5 @@ public interface UserLabelAssService {
 	public Integer insert(UserLabelAss userLabelAss);
 	public boolean addLabelToCurrentUser(Label label);
 	public UpdateOptionResult update(Integer userId,Integer oldlabelId,Integer newLabelId);
+	public void remove(Integer labelId);
 }

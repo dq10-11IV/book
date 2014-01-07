@@ -97,7 +97,7 @@
 </div>
 
 <div id="search-input-pane">
-	<input class="form-control" placeholder="标签内搜索" style="display: inline-block;border:none;box-shadow:none;height: 100%;line-height:60px;font-size:25px;">
+	<input class="form-control" placeholder="标签内搜索" style="display: inline-block;border:none;box-shadow:none;width:30%;align:center;height: 100%;line-height:60px;font-size:25px;">
 </div>
 
 <div id="message">

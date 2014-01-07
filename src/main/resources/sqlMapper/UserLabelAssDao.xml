@@ -38,4 +38,8 @@
 	   <include refid="sql_select"/>
 	   WHERE USER_ID =#{userId} AND LABEL_ID = #{labelId};
 	</select>
+	<delete id="remove">
+	  DELETE FROM bd_user_label
+       WHERE  USER_ID=#{userId} AND LABEL_ID=#{labelId};
+	</delete>
 </mapper>

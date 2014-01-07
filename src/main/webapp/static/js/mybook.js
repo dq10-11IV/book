@@ -64,7 +64,9 @@ $(function(){
 			setTimeout(function(){
 				$('#search-input-pane').css({
 					"transform": "scale(1,1)",
-					"height": "80px"
+					"height": "60px",
+					"width":"100px",
+					"align":"center"
 				}).children('input').focus();
 			},500);
 			$('.fixed-tags').css({
@@ -74,7 +76,9 @@ $(function(){
 		} else {
 			$('#search-input-pane').css({
 				"transform": "scale(1,0)",
-				"height": "0"
+				"height": "0",
+				"width":"100px",
+				"align":"center"
 			}).children('input').val('');
 			setTimeout(function(){
 				$($('.fixed-tags').css({
