@@ -2,6 +2,7 @@ package com.turtledove.bookdrift.web;
 
 import java.util.Date;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -14,6 +15,8 @@ import com.turtledove.bookdrift.domain.entity.User;
 
 public class AdminLogin extends AjaxBase{
 
+	private static Logger logger = Logger.getLogger(AdminLogin.class);
+	
 	public String data;
 	public String email;
 
@@ -42,8 +45,9 @@ public class AdminLogin extends AjaxBase{
 		    setSuccessResult(user);
 		} catch (Exception e) {
 			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
-			e.printStackTrace();
+			logger.error(ActionMessage.FINAL_EXCEPTION_MESSAGE, e);
 		}
+		
 		return SUCCESS;
 	}
 	public String login() {
