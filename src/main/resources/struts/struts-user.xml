@@ -3,12 +3,8 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
     "http://struts.apache.org/dtds/struts-2.0.dtd">
  <struts>
-    <package name="user" extends="json-default" namespace="/">
-       <interceptors>
-          <interceptor name="exceptionInterceptor" class="com.turtledove.bookdrift.web.interceptors.ExceptionInterceptor">
-             <param name="name">异常拦截器</param>
-          </interceptor>
-       </interceptors>
+   
+    <package name="user" extends="root-package" namespace="/">
 		<action name="login" class="com.turtledove.bookdrift.web.AdminLogin"  method="login">
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirect">/myBook</result>

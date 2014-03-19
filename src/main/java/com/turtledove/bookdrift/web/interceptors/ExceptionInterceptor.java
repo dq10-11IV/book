@@ -25,7 +25,7 @@ public class ExceptionInterceptor implements Interceptor {
 	public String intercept(ActionInvocation invocation) throws Exception {
 		//TODO 如果有新的异常，可以分别处理
 		
-		LogServiceAgent.info("start" );
+		LogServiceAgent.info("start",invocation.getAction().getClass().toString() );
 		String result = Action.ERROR;
 		try{
 			 result = invocation.invoke();	

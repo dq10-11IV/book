@@ -3,12 +3,13 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <package name="userbook" extends="json-default" namespace="/">
+    <package name="userbook" extends="root-package" namespace="/">
         <action name="addbook" class="com.turtledove.bookdrift.web.UserBookAssAction" method="addBook">
           <result name="toaddbookpage">/addbook.jsp</result>
            <result name="success" type="json">
               <param name="root">result</param>
            </result>
+           <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
         </action>
     </package> 
 </struts> 

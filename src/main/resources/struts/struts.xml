@@ -8,5 +8,19 @@
 	<constant name="struts.locale" value="UTF-8" />
 	<constant name="struts.serve.static" value="false"/>
 
+    <package name="root-package" extends="json-default">
+
+     
+      <interceptors>
+          <interceptor name="exceptionInterceptor" class="com.turtledove.bookdrift.web.interceptors.ExceptionInterceptor">
+             <param name="name">异常拦截器</param>
+          </interceptor>
+       </interceptors>
+       
+          <global-results>
+	         <result name="error">/login.jsp</result>
+	      </global-results> 
+    </package>
+    
 	<include file="struts/struts-*.xml"></include>
 </struts> 
