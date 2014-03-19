@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.turtledove.bookdrift.application.service.LabelService;
 import com.turtledove.bookdrift.application.service.UserLabelAssService;
 import com.turtledove.bookdrift.commom.Enum.UpdateOptionResult;
+import com.turtledove.bookdrift.common.agent.LogServiceAgent;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
@@ -29,7 +30,7 @@ public class UserLabelAction extends AjaxBase{
 				setSuccessResult(ActionMessage.ADD_LABEL_SUCCESS);
 			else setFailureResult(ActionMessage.EXIST_DATE_IN_TABEL);
 		}catch(Exception e){
-			e.printStackTrace();
+			LogServiceAgent.error(ActionMessage.EXCEPTION, e);
 			setFailureResult(ActionMessage.EXCEPTION);
 		}
 		return SUCCESS;
@@ -41,7 +42,7 @@ public class UserLabelAction extends AjaxBase{
             setSuccessResult("success");
 		}catch(Exception e ){
 			setSuccessResult("fail");
-			e.printStackTrace();
+			LogServiceAgent.error("error", e);
 		}
 		return SUCCESS;
 	}

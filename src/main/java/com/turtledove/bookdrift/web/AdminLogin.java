@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.turtledove.bookdrift.application.service.UserService;
+import com.turtledove.bookdrift.common.agent.LogServiceAgent;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.JsonUtils;
@@ -15,7 +16,6 @@ import com.turtledove.bookdrift.domain.entity.User;
 
 public class AdminLogin extends AjaxBase{
 
-	private static Logger logger = Logger.getLogger(AdminLogin.class);
 	
 	public String data;
 	public String email;
@@ -45,12 +45,14 @@ public class AdminLogin extends AjaxBase{
 		    setSuccessResult(user);
 		} catch (Exception e) {
 			setFailureResult(ActionMessage.FINAL_EXCEPTION_MESSAGE);
-			logger.error(ActionMessage.FINAL_EXCEPTION_MESSAGE, e);
+			LogServiceAgent.error(ActionMessage.FINAL_EXCEPTION_MESSAGE, e);
 		}
 		
 		return SUCCESS;
 	}
 	public String login() {
+		LogServiceAgent.info("login");
+		
 		if(LoginUtils.isFromWelcomePage()){
 			getRequest().put("jsonResult", setJsonResult());
 			return TOLOGINPAGE;

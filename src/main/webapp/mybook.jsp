@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>漂流</title>
+	<title>分享，让知识不再孤单！</title>
 	<link rel="stylesheet" href="static/bootstrap3/css/bootstrap.css" />
 	<link rel="stylesheet" href="static/css/book.css" />
 </head>
@@ -38,8 +38,7 @@
 						<li class="list-group-item">
 						<h3 data-with="text: bookName"></h3>
 						<img data-with="src: imageUrl"><p class="book-summary" data-with="text: summary" style="display: none;"></p>
-						<ul class="status">
-							<li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li>
+						<ul class="status">							<li title="可借"><span class="glyphicon glyphicon-ok-sign"></span></li>
 							<li title="已借出"><span class="glyphicon glyphicon-minus-sign"></span></li>
 						</ul>
 						<small data-with="text: authorName"></small>
