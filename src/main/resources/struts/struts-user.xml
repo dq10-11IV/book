@@ -4,21 +4,30 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
  <struts>
     <package name="user" extends="json-default" namespace="/">
+       <interceptors>
+          <interceptor name="exceptionInterceptor" class="com.turtledove.bookdrift.web.interceptors.ExceptionInterceptor">
+             <param name="name">异常拦截器</param>
+          </interceptor>
+       </interceptors>
 		<action name="login" class="com.turtledove.bookdrift.web.AdminLogin"  method="login">
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirect">/myBook</result>
+			<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
 		</action>
 		<action name="logout" class="com.turtledove.bookdrift.web.AdminLogin" method="logout">
 		   <result name="towelcomepage" type="redirect">/</result>
+		   <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 	        <result name="toregisterpage">/register.jsp</result>
 	        <result name="success" type="redirect">/login.jsp</result>
+	        <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
 		</action>
 		<action name="validation" class="com.turtledove.bookdrift.web.AdminLogin" method="validation">
 		   <result name="success" type="json">
 		     <param name="root">result</param>
 		   </result>
+		   <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
 		</action>
 	</package>
  </struts>

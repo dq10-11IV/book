@@ -20,4 +20,7 @@ public class LogServiceAgent {
 	public static void error(String msg,Throwable e){
 		logger.error(msg, e);
 	}
+	public static void info(String key,String msg){
+		logger.info(key +":"+msg);
+	}
 }

@@ -27,7 +27,7 @@ public class AdminLogin extends AjaxBase{
 	@Autowired
 	UserService userService;
 	/*
-	 * 用户注册时的actionO
+	 * 用户注册时的action
 	 * */
 	public String register(){
 		if(username == null && email==null)
@@ -51,8 +51,6 @@ public class AdminLogin extends AjaxBase{
 		return SUCCESS;
 	}
 	public String login() {
-		LogServiceAgent.info("login");
-		
 		if(LoginUtils.isFromWelcomePage()){
 			getRequest().put("jsonResult", setJsonResult());
 			return TOLOGINPAGE;
