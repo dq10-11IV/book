@@ -12,16 +12,19 @@
 				<param name="root">result</param>
 			</result>
 			<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"/> 
 		</action>
 		<action name="myBook" class="com.turtledove.bookdrift.web.BookAction" method="myBook">
 		 <result name="success">/mybook.jsp</result>
 		 <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+         <interceptor-ref name="defaultStack"/> 
 		</action>
 		<action name="getBooksUnderLabel" class="com.turtledove.bookdrift.web.BookAction" method="getBooksUnderLabel">
 		  <result type="json" name="success">
 		     <param name="root">result</param>
 		  </result>
 		  <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+          <interceptor-ref name="defaultStack"/> 
 		</action>
       </package>
  </struts>

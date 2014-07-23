@@ -9,21 +9,25 @@
 			<result name="tologinpage" type="dispatcher">/login.jsp</result>
 			<result name="tohubpage" type="redirect">/myBook</result>
 			<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"/> 
 		</action>
 		<action name="logout" class="com.turtledove.bookdrift.web.AdminLogin" method="logout">
 		   <result name="towelcomepage" type="redirect">/</result>
 		   <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+           <interceptor-ref name="defaultStack"/> 
 		</action>
 		<action name="register" class="com.turtledove.bookdrift.web.AdminLogin" method="register">
 	        <result name="toregisterpage">/register.jsp</result>
 	        <result name="success" type="redirect">/login.jsp</result>
 	        <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"/> 
 		</action>
 		<action name="validation" class="com.turtledove.bookdrift.web.AdminLogin" method="validation">
 		   <result name="success" type="json">
 		     <param name="root">result</param>
 		   </result>
 		   <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+           <interceptor-ref name="defaultStack"/> 
 		</action>
 	</package>
  </struts>

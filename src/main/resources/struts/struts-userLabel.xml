@@ -10,18 +10,21 @@
                 <param name="root">result</param>
               </result>
               <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+              <interceptor-ref name="defaultStack"/> 
           </action>
          <action name="updatelabel" class="com.turtledove.bookdrift.web.UserLabelAction" method="updateLabel">
            <result name="success" type="json">
                 <param name="root">result</param>
             </result>
             <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"/> 
          </action>
          <action name="removelabel" class="com.turtledove.bookdrift.web.UserLabelAction" method="removelabel">
            <result name="success" type="json">
               <param name="root">result</param>
            </result>
            <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+           <interceptor-ref name="defaultStack"/> 
          </action>
       </package> 
  </struts>

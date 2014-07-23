@@ -77,7 +77,7 @@ public class LoginUtils {
         HttpServletRequest request = getHttpRequest();
         return request.getSession();
     }
-    private static HttpServletRequest getHttpRequest(){
+    public static HttpServletRequest getHttpRequest(){
     	return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
     }
    

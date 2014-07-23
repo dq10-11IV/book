@@ -40,7 +40,7 @@
 		B.ISBN AS isbnId,
 		B.BOOK_NAME AS
 		bookName,
-		b.AUTHOR AS authorName,
+		B.AUTHOR AS authorName,
 		B.BOOK_PRESS AS bookPress,
 		B.BOOK_PRICE AS bookPrice,
 		B.BOOK_VERSION AS bookVersion,

@@ -14,7 +14,6 @@ import com.turtledove.bookdrift.common.framework.AjaxBase;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.Book;
 import com.turtledove.bookdrift.domain.entity.Label;
-import com.turtledove.bookdrift.domain.entity.User;
 public class BookAction extends AjaxBase {
 
 	@Autowired
@@ -27,7 +26,8 @@ public class BookAction extends AjaxBase {
 	public String data;
 	public boolean isAjax;
 	public int  label;
-	public String query() throws UnsupportedEncodingException {
+	
+    public String query() throws UnsupportedEncodingException {
 		
 		Map<String,Object> para = new HashMap<String,Object>();
 		para.put("userId", LoginUtils.getCurrentLoginUserId());
@@ -51,6 +51,7 @@ public class BookAction extends AjaxBase {
 	public String getBooksUnderLabel(){
 		String email = LoginUtils.getCurrentLoginUserEmail();
 		Map<String,Object> para = new HashMap<String, Object>();
+		
 		para.put("currentUserId", LoginUtils.getCurrentLoginUserId());
 		para.put("labelId", label);
 		List<Book> bookList = queryService.getBooksUnderLableExceptCurrentUser(para);
@@ -77,8 +78,13 @@ public class BookAction extends AjaxBase {
 	public void setAjax(boolean isAjax) {
 		this.isAjax = isAjax;
 	}
-	public void setLabel(int label) {
-		this.label = label;
-	}
+
+	public int getLabel() {
+        return label;
+    }
+    public void setLabel(int label) {
+        this.label = label;
+    }
+	
 	
 }

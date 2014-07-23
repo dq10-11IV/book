@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.turtledove.bookdrift.common.agent.LogServiceAgent;
-import com.turtledove.bookdrift.common.utils.LoginUtils;
 
 /**
  * 异常拦截器：将action中可能抛出的异常在拦截器里面统一处理，这样减少action里面重复代码
@@ -13,7 +12,8 @@ import com.turtledove.bookdrift.common.utils.LoginUtils;
  */
 public class ExceptionInterceptor implements Interceptor {
 
-	public void destroy() {
+    private static final long serialVersionUID = 1L;
+    public void destroy() {
 		// TODO Auto-generated method stub
 
 	}

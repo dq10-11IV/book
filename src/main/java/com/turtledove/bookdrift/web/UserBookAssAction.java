@@ -18,12 +18,16 @@ public class UserBookAssAction extends AjaxBase{
 	public boolean ajax;
 	public String publisher;
 	public String isbn13;
+	public String isbn10;
 	public String title;
 	public String image;
 	public String author ;
 	public String summary;
 	public String price;
-	@Autowired
+	public String loop;
+	
+
+    @Autowired
 	UserBookAssService userBookAssService ;
 	
 	public String addBook(){
@@ -65,4 +69,13 @@ public class UserBookAssAction extends AjaxBase{
 	public void setAjax(boolean ajax) {
 		this.ajax = ajax;
 	}
+    public String getIsbn10() {
+        return isbn10;
+    }
+    public void setIsbn10(String isbn10) {
+        this.isbn10 = isbn10;
+    }
+    public void setLoop(String loop) {
+        this.loop = loop;
+    }
 }
