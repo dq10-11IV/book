@@ -20,6 +20,7 @@
 			<id property="Id" column="USER_ID" />
 			<result property="userName" column="USER_NAME" />
 			<result property="userEmail" column="USER_EMAIL" />
+            <result property="wechatNum" column="WECHATNUM"/>
 		</association>
 	</resultMap>
 
@@ -40,7 +41,8 @@
 		B.PUBLISH_DATE,
 		U.USER_ID,
 		U.USER_EMAIL,
-		U.USER_NAME
+		U.USER_NAME,
+        U.WECHATNUM
 	</sql>
 	<sql id="sql_from">
 		FROM bd_book AS B

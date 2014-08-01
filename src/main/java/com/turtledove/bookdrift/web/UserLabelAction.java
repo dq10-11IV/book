@@ -1,6 +1,5 @@
 package com.turtledove.bookdrift.web;
 
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.turtledove.bookdrift.application.service.LabelService;
@@ -19,6 +18,8 @@ public class UserLabelAction extends AjaxBase{
 	public Integer labelId;
 	public String newLabelName;
 
+	private Boolean ajax;
+	
 	@Autowired
 	UserLabelAssService userLabelAssService;
 	@Autowired
@@ -69,4 +70,10 @@ public class UserLabelAction extends AjaxBase{
 	public void setLabelService(LabelService labelService) {
 		this.labelService = labelService;
 	}
+    public Boolean getAjax() {
+        return ajax;
+    }
+    public void setAjax(Boolean ajax) {
+        this.ajax = ajax;
+    }
 }

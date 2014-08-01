@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -57,7 +58,10 @@ public class LoginFilter implements Filter {
 		}
 		if(LoginUtils.isSessionLogin())
 			chain.doFilter(request, response);
-		else httpResponse.sendRedirect("/login");
+		else if(httpRequest.getRequestURI().contains("api/app")){
+		    //TODO 404 找不到/api/app/login/again
+		    httpRequest.getRequestDispatcher("/api/app/login-again").forward(httpRequest, httpResponse);
+		}else httpResponse.sendRedirect("/login");
 
 	}
 	/**

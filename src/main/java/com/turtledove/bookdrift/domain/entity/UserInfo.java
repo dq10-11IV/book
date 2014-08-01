@@ -5,6 +5,7 @@ public class UserInfo {
 	private Integer Id;
 	private String userName;
 	private String userEmail;
+	private String wechatNum; 
 	public Integer getId() {
 		return Id;
 	}
@@ -23,4 +24,10 @@ public class UserInfo {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+    public String getWechatNum() {
+        return wechatNum;
+    }
+    public void setWechatNum(String wechatNum) {
+        this.wechatNum = wechatNum;
+    }
 }

@@ -8,6 +8,7 @@ public class User extends AbstractDomainObject{
 	private String userEmail;
 	private String userPwd;
 	private int userLevel;
+	private String wechatNum;
 	public String getUserName() {
 		return userName;
 	}
@@ -32,5 +33,11 @@ public class User extends AbstractDomainObject{
 	public void setUserLevel(int userLevel) {
 		this.userLevel = userLevel;
 	}
-	
+    public String getWechatNum() {
+        return wechatNum;
+    }
+    public void setWechatNum(String wechatNum) {
+        this.wechatNum = wechatNum;
+    }
+ 
 }

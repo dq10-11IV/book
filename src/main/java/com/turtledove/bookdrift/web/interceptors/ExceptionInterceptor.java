@@ -1,5 +1,10 @@
 package com.turtledove.bookdrift.web.interceptors;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSONObject;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
@@ -30,7 +35,15 @@ public class ExceptionInterceptor implements Interceptor {
 		try{
 			 result = invocation.invoke();	
 		}catch(Exception e){
-			LogServiceAgent.error(Action.ERROR, e);
+		    e.printStackTrace();
+			//LogServiceAgent.error(Action.ERROR, e);
+			/*HttpServletResponse response = ServletActionContext.getResponse();
+			JSONObject json = new JSONObject();
+			json.put("code", "500");
+			json.put("msg","error");
+			response.setContentType("text/plain; charset=UTF-8");
+            response.getWriter().print(json.toJSONString());
+            return "success";*/
 		}
 		return result;
 	}
