@@ -10,5 +10,6 @@ public interface UserBookAssService {
 	public UserBookAss findById(Integer Id);
 	public ActionResult save(Book book,UserBookAss userBookAss);
 	public UserBookAss findByUserIdAndBookId(Integer userId, Integer bookId);
+	public boolean remove(long userId, long bookId);
 
 }

@@ -8,5 +8,6 @@ import com.turtledove.bookdrift.domain.entity.UserBookAss;
 public interface UserBookAssDao  extends DomainObjectDao<UserBookAss>{
 
 	public UserBookAss findById(Integer Id);
-	public UserBookAss findByUserIdAndBookId(@Param("userId")Integer userId, @Param("bookId")Integer bookId); 
+	public UserBookAss findByUserIdAndBookId(@Param("userId")Integer userId, @Param("bookId")Integer bookId);
+	public void remove(@Param("userId")long userId, @Param("bookId")long bookId); 
 }

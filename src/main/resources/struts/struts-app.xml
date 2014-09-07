@@ -36,7 +36,13 @@
             <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
             <interceptor-ref name="defaultStack" />
         </action>
-        
+         <action name="cancle-share" class="com.turtledove.bookdrift.web.app.BookController" method="cancleShare" >
+            <result name="success" type="json" >
+                <param name="root">result</param>
+            </result>
+            <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+        </action>
         <action name="mybook" class="com.turtledove.bookdrift.web.app.BookController" method="myBook" >
             <result name="success" type="json" >
                 <param name="root">result</param>

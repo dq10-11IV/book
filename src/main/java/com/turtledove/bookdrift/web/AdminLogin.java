@@ -2,15 +2,12 @@ package com.turtledove.bookdrift.web;
 
 import java.util.Date;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.agent.LogServiceAgent;
 import com.turtledove.bookdrift.common.framework.ActionMessage;
 import com.turtledove.bookdrift.common.framework.AjaxBase;
-import com.turtledove.bookdrift.common.utils.JsonUtils;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.User;
 

@@ -28,6 +28,7 @@ public class BookController extends AbstractController{
     private String price;
 
     private int labelId;
+    private long bookId;
     @Autowired
     UserBookAssService userBookAssService ;
     
@@ -49,6 +50,7 @@ public class BookController extends AbstractController{
         }
         return  SUCCESS;
     }
+    
     public String myBook(){
         try{
             List<Book> books = queryService.getBookUnderUser(LoginUtils.getCurrentLoginUserId());
@@ -60,6 +62,20 @@ public class BookController extends AbstractController{
         return SUCCESS;
     }
     
+    public String cancleShare(){
+    	
+    	try{
+    		long userId = LoginUtils.getCurrentLoginUserId();
+    		boolean result = userBookAssService.remove(userId,bookId);
+    		if(result)
+    			setSuccessResult("已取消分享！");
+    		else setFailureResult("取消失败！");
+    	}catch(Exception e){
+    		setFailureResult("取消分享失败！");
+    		LogServiceAgent.error(e.getMessage(), e);
+    	}
+    	return SUCCESS;
+    }
     public String bookUnderLabel(){
         try {
             Map<String,Object> para = new HashMap<String, Object>();
@@ -73,7 +89,6 @@ public class BookController extends AbstractController{
         }
            return SUCCESS;
     }
-    
     public String query(){
         
         try {
@@ -81,7 +96,6 @@ public class BookController extends AbstractController{
             para.put("userId", LoginUtils.getCurrentLoginUserId());
             para.put("bookName", title);
             List<Book> books = queryService.query(para);
-            
             setSuccessResultWithList(books);
         } catch (Exception e) {
             LogServiceAgent.error("book-under-query", e);
@@ -185,4 +199,12 @@ public class BookController extends AbstractController{
     public void setLabelId(int labelId) {
         this.labelId = labelId;
     }
+
+	public long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(long bookId) {
+		this.bookId = bookId;
+	}
 }

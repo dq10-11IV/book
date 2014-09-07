@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.turtledove.bookdrift.infrastruct.dao.UserBookAssDao">
-    <resultMap type="UserBookAss" id="result">
-         <id property="Id" column="USER_BOOK_ID"/>
-         <result property="bookId" column="BOOK_ID"/>
-         <result property="userId" column="USER_ID"/>
-         <result property="isOnHand" column="IS_ONHAND"/>
-         <result property="isWanted" column="IS_ANY_PERSON_WANTED"/>
-         <result property="createDate" column="CREATE_DATE"/>
-         <result property="lastUpdateDate" column="LAST_UPDATE_DATE"/>
-    </resultMap>
-    <sql id="sql_select">
-    SELECT
-      USER_BOOK_ID,
-      BOOK_ID,
-      USER_ID,
-      IS_ONHAND,
-      IS_ANY_PERSON_WANTED,
-      CREATE_DATE,
-      LAST_UPDATE_DATE
-   FROM bd_user_book_ass
-    </sql>
-    <select id="findById" parameterType="Integer" resultMap="result">
-       <include refid="sql_select"/>
-       WHERE USER_BOOK_ID = #{Id}
-    </select>
-    <select id="findByUserIdAndBookId" resultMap="result">
-       <include refid="sql_select"/>
-       WHERE USER_ID  = #{userId} AND BOOK_ID = #{bookId};
-    </select>
-    <insert id="insert" parameterType="UserBookAss" useGeneratedKeys="true" keyProperty="Id">
-       INSERT INTO bd_user_book_ass(BOOK_ID,USER_ID,IS_ONHAND,IS_ANY_PERSON_WANTED,CREATE_DATE,LAST_UPDATE_DATE)
-         VALUE(#{bookId},#{userId},#{isOnHand},#{isWanted},#{createDate},#{lastUpdateDate});
-    </insert>
+	<resultMap type="UserBookAss" id="result">
+		<id property="Id" column="USER_BOOK_ID" />
+		<result property="bookId" column="BOOK_ID" />
+		<result property="userId" column="USER_ID" />
+		<result property="isOnHand" column="IS_ONHAND" />
+		<result property="isWanted" column="IS_ANY_PERSON_WANTED" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="lastUpdateDate" column="LAST_UPDATE_DATE" />
+	</resultMap>
+	<sql id="sql_select">
+		SELECT
+		USER_BOOK_ID,
+		BOOK_ID,
+		USER_ID,
+		IS_ONHAND,
+		IS_ANY_PERSON_WANTED,
+		CREATE_DATE,
+		LAST_UPDATE_DATE
+		FROM bd_user_book_ass
+	</sql>
+	<select id="findById" parameterType="Integer" resultMap="result">
+		<include refid="sql_select" />
+		WHERE USER_BOOK_ID = #{Id}
+	</select>
+	<select id="findByUserIdAndBookId" resultMap="result">
+		<include refid="sql_select" />
+		WHERE USER_ID = #{userId} AND BOOK_ID = #{bookId};
+	</select>
+	<insert id="insert" parameterType="UserBookAss"
+		useGeneratedKeys="true" keyProperty="Id">
+		INSERT INTO
+		bd_user_book_ass(BOOK_ID,USER_ID,IS_ONHAND,IS_ANY_PERSON_WANTED,CREATE_DATE,LAST_UPDATE_DATE)
+		VALUE(#{bookId},#{userId},#{isOnHand},#{isWanted},#{createDate},#{lastUpdateDate});
+	</insert>
+
+	<delete id="remove">
+		DELETE FROM
+		bd_user_book_ass
+		WHERE USER_ID=#{userId} AND BOOK_ID=#{bookId};
+
+	</delete>
 </mapper>

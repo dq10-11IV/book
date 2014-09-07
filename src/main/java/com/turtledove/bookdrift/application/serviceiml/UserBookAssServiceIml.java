@@ -44,5 +44,9 @@ public class UserBookAssServiceIml implements UserBookAssService {
 	public UserBookAss findByUserIdAndBookId(Integer userId, Integer bookId) {
 		return userBookAssDao.findByUserIdAndBookId(userId,bookId);
 	}
+	public boolean remove(long userId, long bookId) {
+		userBookAssDao.remove(userId,bookId);
+		return true;
+	}
 
 }
