@@ -26,7 +26,10 @@
 
 	<sql id="sql_select">
 		SELECT
-		DISTINCT
+		U.USER_ID,
+		U.USER_EMAIL,
+		U.USER_NAME,
+        U.WECHATNUM,
 		B.AUTHOR,
 		B.BOOK_ID,
 		B.BOOK_IMAGE_URL,
@@ -38,11 +41,7 @@
 		B.CREAT_DATE,
 		B.ISBN,
 		B.LAST_UPDATE_DATE,
-		B.PUBLISH_DATE,
-		U.USER_ID,
-		U.USER_EMAIL,
-		U.USER_NAME,
-        U.WECHATNUM
+		B.PUBLISH_DATE
 	</sql>
 	<sql id="sql_from">
 		FROM bd_book AS B
@@ -57,6 +56,7 @@
 		<include refid="sql_from" />
 		WHERE UL.LABEL_ID IN (SELECT ULL.LABEL_ID FROM bd_user_label AS ULL
 		WHERE ULL.USER_ID =#{para.userId})
+		AND U.USER_ID !=#{para.userId}
 		AND B.BOOK_NAME LIKE '%${para.bookName}%' <!-- CONCAT('%','${para.bookName}','%' 
 			) -->
 	</select>

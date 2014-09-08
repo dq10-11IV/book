@@ -90,7 +90,6 @@ public class BookController extends AbstractController{
            return SUCCESS;
     }
     public String query(){
-        
         try {
             Map<String,Object> para = new HashMap<String,Object>();
             para.put("userId", LoginUtils.getCurrentLoginUserId());

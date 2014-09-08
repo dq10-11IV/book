@@ -8,6 +8,7 @@ import com.turtledove.bookdrift.application.service.UserService;
 import com.turtledove.bookdrift.common.agent.LogServiceAgent;
 import com.turtledove.bookdrift.common.utils.LoginUtils;
 import com.turtledove.bookdrift.domain.entity.User;
+import com.turtledove.bookdrift.domain.entity.UserInfo;
 
 
 
@@ -22,10 +23,11 @@ public class LoginController  extends AbstractController{
     @Autowired
     UserService userService;
     public String login() throws Exception{
-        
-        if(LoginUtils.isAExistUser())
-            setSuccessResult("ok");
-        else setFailureResult("please register");
+        if(LoginUtils.isAExistUser()){
+        	UserInfo info = LoginUtils.getCurrentUserInfo();
+        	setSuccessResult(info);
+        }else 
+        	setFailureResult("please register");
         return SUCCESS;
     }
     
