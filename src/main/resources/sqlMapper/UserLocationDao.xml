@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turtledove.bookdrift.infrastruct.dao.UserLocationDao">
+	<resultMap type="UserLocation" id="result">
+		<id property="Id" column="ID" />
+		<result property="userId" column="USER_ID" />
+		<result property="longitude" column="LOC_LGN" />
+		<result property="latitude" column="LOC_LAT" />
+		<result property="address" column="LOC_ADDRESS" />
+	</resultMap>
+	
+	<select id="getLocationList" resultMap="result">
+           SELECT ID,USER_ID,LOC_LGN,LOC_LAT,LOC_ADDRESS
+           FROM bd_user_loc
+           WHERE USER_ID=#{currentLoginUserId};
+	</select>
+	
+	<insert id="insert" parameterType="UserLocation"
+		useGeneratedKeys="true" keyProperty="Id">
+		INSERT INTO bd_user_loc(USER_ID,LOC_LGN,LOC_LAT,LOC_ADDRESS)
+		VALUE(#{userId},#{longitude},#{latitude},#{address});
+	</insert>
+</mapper>

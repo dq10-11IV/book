@@ -103,5 +103,21 @@
             <interceptor-ref name="defaultStack" />
         </action>
         
+        
+       <action name="user-locations" class="com.turtledove.bookdrift.web.app.UserController" method="getUserLocs" >
+            <result name="success" type="json" >
+                <param name="root">result</param>
+            </result>
+            <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+        </action>
+        
+       <action name="add-location" class="com.turtledove.bookdrift.web.app.UserController" method="addLocation" >
+            <result name="success" type="json" >
+                <param name="root">result</param>
+            </result>
+            <interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+        </action>
     </package>
 </struts>

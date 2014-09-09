@@ -30,7 +30,6 @@ public class LoginController  extends AbstractController{
         	setFailureResult("please register");
         return SUCCESS;
     }
-    
     public String needLogin(){
         
         setFailureResult("need login");
@@ -38,7 +37,6 @@ public class LoginController  extends AbstractController{
     }
     public String register(){
        try{
-       
            User user = new User();
            user.setUserEmail(email);
            user.setUserName(name);

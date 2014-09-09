@@ -8,6 +8,7 @@
         <typeAlias alias="UserBookAss" type="com.turtledove.bookdrift.domain.entity.UserBookAss"/>
         <typeAlias alias="UserLabelAss" type="com.turtledove.bookdrift.domain.entity.UserLabelAss"/>  
         <typeAlias alias="UserInfo"  type="com.turtledove.bookdrift.domain.entity.UserInfo"/>
+        <typeAlias alias="UserLocation" type="com.turtledove.bookdrift.domain.entity.UserLocation"/>
     </typeAliases>  
     <mappers>  
         <mapper resource="sqlMapper/UserDao.xml" />
@@ -16,5 +17,6 @@
         <mapper resource="sqlMapper/UserBookAssDao.xml"/>
         <mapper resource="sqlMapper/UserLabelAssDao.xml"/>
         <mapper resource="sqlMapper/QueryDao.xml"/>
+        <mapper resource="sqlMapper/UserLocationDao.xml"/>
     </mappers>  
 </configuration>    
